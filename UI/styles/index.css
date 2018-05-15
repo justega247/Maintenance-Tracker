@@ -2,7 +2,8 @@ html, body {
   width: 100%;
   height: 100%;
   margin: 0;  
-  font-family: 'Old Standard TT';font-size: 15px;
+  font-family: 'Old Standard TT';
+  font-size: 15px;
 }
 
 h1 {
@@ -56,7 +57,7 @@ button {
     0px 1px 0px 0px rgba(250, 250, 250, 0.5) ;
   margin-left: auto;
   margin-right: auto;
-  border: 3px mediumslateblue solid;
+  border: 3px #7b68ee solid;
 }
 
 #signup,#fg {
