@@ -40,6 +40,8 @@ button {
   border: 1px solid;
   padding: 20px 30px;
   border-radius: 5px;
+  width: 185px;
+  height: 220px;
 }
 
 .lg {
@@ -48,13 +50,14 @@ button {
     0px 1px 0px 0px rgba(250, 250, 250, 0.5) ;
   margin-left: auto;
   margin-right: auto;
+  border: 3px mediumslateblue solid;
 }
 
 #signup,#fg {
   font-size: .8em;
 }
 
-div>input {
+div>input {  
   border: 1px solid;
   padding-bottom: .3em;
   padding-top: .3em;

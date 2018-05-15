@@ -24,11 +24,12 @@ h1 {
 }
 
 button {
+  background-color: rgb(0, 195, 255);
+  border-radius: 5px;
   background-color: blue;
   border-radius: 7px;
   color: whitesmoke;
   padding: .35em .45em;
-  margin-left: 4.5em;
 }
 
 .sg {
@@ -41,7 +42,7 @@ button {
 
 #signin {
   font-size: .8em;
-  margin-left: 2.5em;
+  float: right;
 }
 
 #signup:hover {
@@ -81,11 +82,4 @@ form {
   margin-bottom: 8px;
   margin-right: auto;
   margin-left: auto;
-}
-
-#radio {
-  display: flex;
-  flex-direction: column;
-  float: none;
-  padding-top: 20px;
 }
