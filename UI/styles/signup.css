@@ -32,7 +32,9 @@ button {
   background-color: blue;
   border-radius: 7px;
   color: whitesmoke;
-  padding: .45em 1em;
+  padding: .6em 1em;
+  font-size: 1.5em;
+  width: 100%;
 }
 
 .sg {
@@ -55,10 +57,10 @@ button {
 #login>div {
   display: block; 
   background-color: rgba(255, 255, 255, 0.808);
-  padding: 20px 30px;
+  padding: 40px 50px;
   border-radius: 5px;
   width: 330px;
-  height: 410px;
+  height: 440px;
 }
 
 div>input {
