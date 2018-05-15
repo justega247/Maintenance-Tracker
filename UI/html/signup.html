@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Index</title>
 
+  <link href='https://fonts.googleapis.com/css?family=Old Standard TT' rel='stylesheet'>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <link rel="stylesheet" href="./../styles/signup.css" type="text/css">
 </head>
@@ -17,22 +18,22 @@
     <div>
       <form action="" id="lgfrm">
         <div><label for="username">Username:</label></div>
-        <div><input type="text" id="username" name="username"></div>
+        <div><input class="sg" type="text" name="username" placeholder="username" autofocus required></div>
         <div><label for="fullname">Fullname:</label></div>
-        <div><input type="text" id="fullname" name="fullname"></div>
+        <div><input class="sg" type="text" name="fullname" placeholder="fullname" required></div>
         <div><label for="email">Email:</label></div>
-        <div><input class="sg" type="text" id="email" name="email"></div>
+        <div><input class="sg" type="email" name="email" placeholder="yourname@email.com" required></div>
         <div><label for="password">Password:</label></div>
-        <div><input type="password" id="password" name="password"></div>
+        <div><input class="sg" type="password" name="password" placeholder="password" required></div>
         <div>
-          <form action="">
+          <form action="" id="radio">
             <input type="radio" name="role" id="user" checked>User <br>
             <input type="radio" name="role" id="admin">Admin
           </form>
         </div>
         <div><button type="submit" id=signup>Signup</button></div>
         <div>
-          <h4>Have an account? <a href="index.html">login</a></h4>
+          <h4 id="signin">Have an account? <a href="index.html">login</a></h4>
         </div>       
       </form>
     </div>
