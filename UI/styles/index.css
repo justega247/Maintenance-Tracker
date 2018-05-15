@@ -28,6 +28,11 @@ button {
   background-color: blue;
   border-radius: 5px;
   color: whitesmoke;
+  padding-top: .4em;
+  padding-right: .3em;
+  padding-bottom: .4em;
+  padding-left: .3em;
+
 }
 
 #signin:hover {
@@ -40,8 +45,8 @@ button {
   border: 1px solid;
   padding: 20px 30px;
   border-radius: 5px;
-  width: 185px;
-  height: 220px;
+  width: 270px;
+  height: 250px;
 }
 
 .lg {
@@ -59,8 +64,8 @@ button {
 
 div>input {  
   border: 1px solid;
-  padding-bottom: .3em;
-  padding-top: .3em;
+  padding-bottom: .7em;
+  padding-top: .7em;
   padding-left: .2em;
   width: 100%;
 }

@@ -14,6 +14,9 @@ h1 {
   flex-wrap: nowrap;
   height: 100%;
   width: 100%;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
   justify-content: center;
   align-items: center;
   background-color: whitesmoke;
@@ -29,15 +32,15 @@ button {
   background-color: blue;
   border-radius: 7px;
   color: whitesmoke;
-  padding: .35em .45em;
+  padding: .45em .5em;
 }
 
 .sg {
   border-radius: 3px;
   box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 
     0px 1px 0px 0px rgba(250, 250, 250, 0.5) ;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
 }
 
 #signin {
@@ -51,21 +54,20 @@ button {
 }
 
 #login>div {
-  display: block; 
+  /* display: block;  */
   background-color: rgba(255, 255, 255, 0.808);
   padding: 20px 30px;
   border-radius: 5px;
-  width: 185px;
+  width: 220px;
   height: 370px;
 }
 
 div>input {
   border: 3px mediumslateblue solid;
-  padding-bottom: .3em;
-  padding-top: .3em;
-  padding-left: .2em;
-  margin-right: auto;
-  margin-left: auto;
+  padding-bottom: .7em;
+  padding-top: .7em;
+  padding-left: .4em;
+  width: 100%;
 }
 
 .header {
@@ -75,11 +77,8 @@ div>input {
 form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 #lgfrm>div {
-  margin-bottom: 8px;
-  margin-right: auto;
-  margin-left: auto;
+  margin-bottom: 8px; 
 }
