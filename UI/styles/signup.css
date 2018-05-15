@@ -32,7 +32,7 @@ button {
   background-color: blue;
   border-radius: 7px;
   color: whitesmoke;
-  padding: .45em .5em;
+  padding: .45em 1em;
 }
 
 .sg {
@@ -44,8 +44,7 @@ button {
 }
 
 #signin {
-  font-size: .8em;
-  float: right;
+  font-size: .9em;
 }
 
 #signup:hover {
@@ -58,14 +57,14 @@ button {
   background-color: rgba(255, 255, 255, 0.808);
   padding: 20px 30px;
   border-radius: 5px;
-  width: 220px;
-  height: 370px;
+  width: 330px;
+  height: 410px;
 }
 
 div>input {
   border: 3px mediumslateblue solid;
-  padding-bottom: .7em;
-  padding-top: .7em;
+  padding-bottom: 1em;
+  padding-top: 1em;
   padding-left: .4em;
   width: 100%;
 }

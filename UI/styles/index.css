@@ -29,9 +29,9 @@ button {
   border-radius: 5px;
   color: whitesmoke;
   padding-top: .4em;
-  padding-right: .3em;
+  padding-right: 1em;
   padding-bottom: .4em;
-  padding-left: .3em;
+  padding-left: 1em;
 
 }
 
@@ -45,8 +45,8 @@ button {
   border: 1px solid;
   padding: 20px 30px;
   border-radius: 5px;
-  width: 270px;
-  height: 250px;
+  width: 400px;
+  height: 280px;
 }
 
 .lg {
@@ -59,13 +59,13 @@ button {
 }
 
 #signup,#fg {
-  font-size: .8em;
+  font-size: .9em;
 }
 
 div>input {  
   border: 1px solid;
-  padding-bottom: .7em;
-  padding-top: .7em;
+  padding-bottom: 1em;
+  padding-top: 1em;
   padding-left: .2em;
   width: 100%;
 }
