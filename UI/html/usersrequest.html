@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>User request</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Old Standard TT' rel='stylesheet'>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="./../styles/usersrequest.css" type="text/css">
+</head>
+<body>
+  <div class="header">
+    <h1>Maintenance Tracker <i class="fas fa-cogs"></i></h1>
+    <div id="logout">
+      <a href="index.html"><button id="lgbtn">Logout</button></a>
+    </div>
+  </div>
+  <div id="filter">
+    <div>
+      <div id="drop">
+        <h4>Filter: </h4>
+        <div id="sort">
+          <select name="req" id="req">
+            <option value="resolved">Resolved</option>
+            <option value="rejected">Rejected</option>
+            <option value="pending">Pending</option>
+          </select>
+        </div>
+      </div>      
+    </div>
+    <h2>Requests</h2>
+    <div id="newrequest">
+      <a href="usernewreq.html"><button id="nwreq">create new request</button></a>
+    </div>
+  </div>
+  <div class="container">
+    <div class="requests">
+      <p>Title: Faulty CPU</p>        
+      <p>Type: Maintenance</p>
+      <p id="pass">Status: Resolved &#9989;</p>
+    </div>
+    <div class="requests">
+      <p>Title: Faulty Arm Rest</p>        
+      <p>Type: Repairs</p>
+      <p id="pass">Status: Resolved &#9989;</p>
+    </div>
+    <div class="requests">
+      <p>Title: Faulty Desktop</p>        
+      <p>Type: Maintenance</p>
+      <p id="pass">Status: Resolved &#9989;</p>
+    </div>
+    <div class="requests">
+      <p>Title: Broken Desk</p>        
+      <p>Type: Maintenance</p>
+      <p id="pend">Status: Pending &#9995;</p>
+    </div>
+    <div class="requests">
+      <p>Title: Shaky Chairs</p>        
+      <p>Type: Repairs</p>
+      <p id="fail">Status: Rejected &#10060;</p>
+    </div>
+    <div class="requests">
+      <p>Title: Faulty Microphone</p>        
+      <p>Type: Maintenance</p>
+      <p id="pass">Status: Resolved &#9989;</p>
+    </div>
+    <div class="requests">
+      <p>Title: Broken Keyboard</p>        
+      <p>Type: Repairs</p>
+      <p id="pass">Status: Resolved &#9989;</p>
+    </div>
+    <div class="requests">
+      <p>Title: Broken Toaster</p>        
+      <p>Type: Maintenance</p>
+      <p id="fail">Status: Rejected &#10060;</p>
+    </div>
+    <div class="requests">
+      <p>Title: Faulty Comm Links</p>        
+      <p>Type: Repairs</p>
+      <p id="pend">Status: Pending &#9995;</p>
+    </div>
+    <div class="requests">
+      <p>Title: Fake Hardware</p>        
+      <p>Type: Maintenance</p>
+      <p id="pass">Status: Resolved &#9989;</p>
+    </div>
+    <div class="requests">
+      <p>Title: Broken Desk</p>        
+      <p>Type: Repairs</p>
+      <p id="pass">Status: Resolved &#9989;</p>
+    </div>
+    <div class="requests">
+      <p>Title: Faulty CPU</p>        
+      <p>Type: Maintenance</p>
+      <p id="fail">Status: Rejected &#10060;</p>
+    </div>  
+  </div>
+  <div id="footer"><small>&copy; Copyright 2018, Andela 21</small></div>
+  
+</body>
+</html>
