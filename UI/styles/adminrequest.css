@@ -1,0 +1,97 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;  
+  font-family: 'Old Standard TT';
+  font-size: 15px;
+}
+
+h1 {
+  color: white;
+}
+
+body {  
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 1em;
+  background-color: blue;
+}
+
+#logout {
+  align-self: center;
+  margin-right: 1.8em;
+}
+
+#lgbtn {
+  padding: .5em 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+#lgbtn:hover {
+  background-color: grey;
+  color: whitesmoke;
+}
+
+#sort {
+  align-self: center;
+  margin-left: .8em;
+}
+
+#req {
+  width: 18em;
+  padding: .3em 0em;
+  border: 1px solid;
+}
+
+#filter {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: baseline;
+  padding: 1em 1em;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: whitesmoke;
+  margin-bottom: 5em;
+  min-height: 100%;
+}
+
+.requests {
+  background-color: white;
+  font-weight: bold;
+  border: 1px solid;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-right: 1em;
+  padding-left: 1em;
+  width: 320px;
+  color: black;
+}
+
+#footer {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  bottom:0;
+  width:100%;
+  height:60px;
+  background: blue;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5em;
+}
