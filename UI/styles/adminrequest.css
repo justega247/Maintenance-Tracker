@@ -22,9 +22,32 @@ body {
   background-color: blue;
 }
 
+#logout {
+  align-self: center;
+  margin-right: 1.8em;
+}
+
+#lgbtn {
+  padding: .5em 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+#lgbtn:hover {
+  background-color: grey;
+  color: whitesmoke;
+}
+
 #sort {
   align-self: center;
   margin-left: .8em;
+}
+
+#req {
+  width: 18em;
+  padding: .3em 0em;
+  border: 1px solid;
 }
 
 #filter {
