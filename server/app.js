@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api/v1/users', userRoutes);
 
 app.get('/', (req, res) => res.status(200).send({
-  message: 'Welcome to the Maintenance-Tracker App (version 1).'
+  message: 'Welcome to the Maintenance-Tracker App (version 1).',
 }));
 
 app.get('*', (req, res) => res.status(200).send({

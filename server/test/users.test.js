@@ -15,7 +15,7 @@ describe('GET /users/request', () => {
         expect(res.body.myRequests).to.be.an('array');
       })
       .end(done);
-  })
+  });
 
   describe('# When no request has been made', () => {
     before(() => {
@@ -34,5 +34,5 @@ describe('GET /users/request', () => {
         })
         .end(done);
     });
-  })
-})
+  });
+});
