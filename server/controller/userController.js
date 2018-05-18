@@ -5,12 +5,15 @@ import requests from '../seedData/request';
  */
 class Users {
   /**
+ * @description Returns all the requests made by a user
+ *
  * @return {Object}
+ *
  * @param {param} req
  * @param {param} res
- * @description Returns all the requests made by a user
  */
   static retrieveRequests(req, res) {
+    const myRequests = [];
     if (requests.length === 0) {
       return res.status(200).json({
         status: 'success',
@@ -18,19 +21,21 @@ class Users {
         requests: [],
       });
     }
-    const myRequests = requests.map(request => Object.assign({}, request));
+    myRequests.push(...requests);
     return res.status(200).json({
       status: 'success',
       message: 'Your requests, have been retrieved successfuly',
-      myRequests,
+      requests: myRequests,
     });
   }
 
   /**
+ * @description Returns a request made by a user
+ *
  * @return {Object}
+ *
  * @param {param} req
  * @param {param} res
- * @description Returns a request made by a user
  */
   static returnRequest(req, res) {
     const requestId = parseInt(req.params.requestId, 10);

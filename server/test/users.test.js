@@ -13,7 +13,7 @@ describe('GET /users/request', () => {
         expect(res.body.status).to.equal('success');
         expect(res.body.message).to
           .equal('Your requests, have been retrieved successfuly');
-        expect(res.body.myRequests).to.be.an('array');
+        expect(res.body.requests).to.be.an('array');
       })
       .end(done);
   });
