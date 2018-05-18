@@ -21,4 +21,4 @@ app.get('*', (req, res) => res.status(200).send({
   message: 'Please, check your route details',
 }));
 
-module.exports = app;
+export default app;
