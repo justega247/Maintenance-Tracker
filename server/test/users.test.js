@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import request from 'supertest';
-
 import requests from '../seedData/request';
 import app from '../../server/app';
 
@@ -11,7 +10,8 @@ describe('GET /users/request', () => {
       .expect(200)
       .expect((res) => {
         expect(res.body.status).to.equal('success');
-        expect(res.body.message).to.equal('Your requests');
+        expect(res.body.message).to
+          .equal('Your requests, have been retrieved successfuly');
         expect(res.body.myRequests).to.be.an('array');
       })
       .end(done);
@@ -27,8 +27,10 @@ describe('GET /users/request', () => {
         .get('/api/v1/users/requests')
         .expect(200)
         .expect((res) => {
-          expect(res.body.status).to.equal('fail');
-          expect(res.body.message).to.equal('Sorry, you have not made any request');
+          expect(res.body.status).to.equal('success');
+          expect(res.body.message).to
+            .equal('Sorry, you have not made any request');
+          expect(res.body.requests).to.have.lengthOf(0);
         })
         .end(done);
     });
