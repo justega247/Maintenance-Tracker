@@ -1,38 +1,9 @@
 {
-  "globals": {
-    "document": true,
-    "window": true,
-    "localStorage": true,
-    "scope": true
-  },
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaVersion": 8,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "arrowFunctions": true,
-      "blockBindings": true,
-      "classes": true,
-      "defaultParams": true,
-      "destructuring": true,
-      "forOf": true,
-      "generators": false,
-      "modules": true,
-      "objectLiteralComputedProperties": true,
-      "objectLiteralDuplicateProperties": false,
-      "objectLiteralShorthandMethods": true,
-      "objectLiteralShorthandProperties": true,
-      "spread": true,
-      "superInFunctions": true,
-      "templateStrings": true
-    }
-  },
   "root": true,
   "extends": "airbnb",
   "env": {
     "node": true,
     "es6": true,
-    "browser": true,
     "mocha": true
   }
 }
