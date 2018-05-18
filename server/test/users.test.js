@@ -12,7 +12,7 @@ describe('GET /users/request', () => {
       .expect((res) => {
         expect(res.body.status).to.equal('success');
         expect(res.body.message).to
-          .equal('Your requests, have been retrieved successfuly');
+          .equal('Your requests have been retrieved successfuly');
         expect(res.body.requests).to.be.an('array');
       })
       .end(done);
@@ -63,6 +63,73 @@ describe('GET /users/request/requestId', () => {
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
         expect(res.body.message).to.equal('Sorry, there is no request with that id');
+      })
+      .end(done);
+  });
+});
+
+describe('POST /users/requests', () => {
+  it('should create a new request when valid data is sent', (done) => {
+    const newRequest = {
+      title: 'faulty sink',
+      description: 'My sink is broken, I would like to fix it now.',
+      type: 'repairs',
+    };
+    request(app)
+      .post('/api/v1/users/requests/')
+      .send(newRequest)
+      .expect(201)
+      .expect((res) => {
+        expect(res.body.status).to.equal('success');
+      })
+      .end(done);
+  });
+
+  it('should not create a new request when clashing data is sent', (done) => {
+    const newRequest = {
+      title: 'faulty sink',
+      description: 'My sink is broken, I would like to fix it now.',
+      type: 'repairs',
+    };
+    request(app)
+      .post('/api/v1/users/requests/')
+      .send(newRequest)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.message).to.equal('Sorry, you already have a request with those details');
+      })
+      .end(done);
+  });
+
+  it('should not create a new request when faulty title is sent', (done) => {
+    const newRequest = {
+      title: 'fault9y sink',
+      description: 'My sink is broken, I would like to fix it now.',
+      type: 'repairs',
+    };
+    request(app)
+      .post('/api/v1/users/requests/')
+      .send(newRequest)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+      })
+      .end(done);
+  });
+
+  it('should not create a new request when faulty title is sent', (done) => {
+    const newRequest = {
+      title: 'faulty sink',
+      description: 'My sink6 is broken, I would like to fix it now.',
+      type: 'repairs',
+    };
+    request(app)
+      .post('/api/v1/users/requests/')
+      .send(newRequest)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
       })
       .end(done);
   });
