@@ -134,3 +134,109 @@ describe('POST /users/requests', () => {
       .end(done);
   });
 });
+
+describe('POST /users/request/requestId', () => {
+  it('should update a request when valid data is sent', (done) => {
+    const id = 1;
+    const updateRequest = {
+      title: 'faulty sink',
+      description: 'My sink is broken, I would like to fix it now please.',
+      type: 'repairs',
+    };
+    request(app)
+      .post(`/api/v1/users/requests/${id}`)
+      .send(updateRequest)
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.status).to.equal('success');
+      })
+      .end(done);
+  });
+
+  it('should not update a request when a request with the same details exists', (done) => {
+    const id = 2;
+    const updateRequest = {
+      title: 'faulty sink',
+      description: 'My sink is broken, I would like to fix it now please.',
+      type: 'repairs',
+    };
+    request(app)
+      .post(`/api/v1/users/requests/${id}`)
+      .send(updateRequest)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.message).to.equal('Sorry, you already have a request with those details');
+      })
+      .end(done);
+  });
+
+  it('should not update a request when an invalid id is sent', (done) => {
+    const id = 22;
+    const updateRequest = {
+      title: 'faulty sink',
+      description: 'My sink is badly broken, I would like to fix it now please.',
+      type: 'repairs',
+    };
+    request(app)
+      .post(`/api/v1/users/requests/${id}`)
+      .send(updateRequest)
+      .expect(404)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.message).to.equal('Sorry, no request with that id exists');
+      })
+      .end(done);
+  });
+
+  it('should not update a request when a empty string is sent', (done) => {
+    const id = 2;
+    const updateRequest = {
+      title: '      ',
+      description: 'My sink is broken, I would like to fix it now please.',
+      type: 'repairs',
+    };
+    request(app)
+      .post(`/api/v1/users/requests/${id}`)
+      .send(updateRequest)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.message).to.equal('Sorry, one or more of your update value is empty');
+      })
+      .end(done);
+  });
+
+  it('should not update a request that has invalid characters', (done) => {
+    const id = 2;
+    const updateRequest = {
+      title: '      97',
+      description: 'My sink is broken, I would like to fix it now please.',
+      type: 'repairs',
+    };
+    request(app)
+      .post(`/api/v1/users/requests/${id}`)
+      .send(updateRequest)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+      })
+      .end(done);
+  });
+
+  it('should not update a request that has invalid characters', (done) => {
+    const id = 2;
+    const updateRequest = {
+      description: 'My sink4 is broken, I would like to fix it now please.',
+      type: 'repairs',
+    };
+    request(app)
+      .post(`/api/v1/users/requests/${id}`)
+      .send(updateRequest)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+      })
+      .end(done);
+  });
+});
