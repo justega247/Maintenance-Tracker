@@ -4,10 +4,15 @@ html, body {
   margin: 0;
   font-family: 'Old Standard TT';
   font-size: 15px;
+  overflow-y: hidden;
 }
 
 h1 {
   color: blue;
+}
+
+#lgin {
+  text-decoration: none;
 }
 
 #login {
@@ -65,7 +70,7 @@ button {
 }
 
 div>input {
-  border: 3px #7b68ee solid;
+  border: 1px solid;
   padding-bottom: 1em;
   padding-top: 1em;
   padding-left: .4em;
