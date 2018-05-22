@@ -6,9 +6,10 @@
   "scripts": {
     "start": "babel-node server/bin/www",
     "start:dev": "nodemon --exec babel-node server/bin/www",
-    "test": "nyc --reporter=html --reporter=text mocha --require babel-core/register server/**/*.test.js --exit",
+    "test": "cross-env NODE_ENV=test npm run migrate && nyc --reporter=html --reporter=text mocha --require babel-core/register server/**/*.test.js --exit",
     "test-watch": "nodemon --exec \"npm test\"",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "migrate": "babel-node server/models/database.js"
   },
   "repository": {
     "type": "git",
@@ -22,9 +23,12 @@
   "homepage": "https://github.com/justega247/Maintenance-Tracker#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "lodash.isempty": "^4.4.0",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "pg": "^7.4.3",
+    "winston": "^3.0.0-rc5"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -33,6 +37,7 @@
     "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
     "coveralls": "^3.0.1",
+    "cross-env": "^5.1.5",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.11.0",
