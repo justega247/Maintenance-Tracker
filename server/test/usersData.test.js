@@ -128,3 +128,83 @@ describe('POST /auth/signup', () => {
       .end(done);
   });
 });
+
+describe('POST /auth/login', () => {
+  it('should login a registered user when valid data is sent', (done) => {
+    const userLogin = {
+      username: 'johnson',
+      password: 'password',
+    };
+    request(app)
+      .post('/api/v1/users/auth/login')
+      .send(userLogin)
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.status).to.equal('success');
+        expect(res.body.message).to.equal('You signed in successfully');
+      })
+      .end(done);
+  });
+
+  it('should not login a user when invalid email is sent', (done) => {
+    const userLogin = {
+      username: 'johnsono',
+      password: 'password',
+    };
+    request(app)
+      .post('/api/v1/users/auth/login')
+      .send(userLogin)
+      .expect(404)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.message).to.equal('No user found with that username.');
+      })
+      .end(done);
+  });
+
+  it('should not login a user when invalid password is sent', (done) => {
+    const userLogin = {
+      username: 'johnson',
+      password: 'passwordd',
+    };
+    request(app)
+      .post('/api/v1/users/auth/login')
+      .send(userLogin)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.message).to.equal('Sorry, your password does not match');
+      })
+      .end(done);
+  });
+
+  it('should not login a user when no username is sent', (done) => {
+    const userLogin = {
+      password: 'password',
+    };
+    request(app)
+      .post('/api/v1/users/auth/login')
+      .send(userLogin)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.error.username).to.equal('Sorry, you have to specify a valid username');
+      })
+      .end(done);
+  });
+
+  it('should not login a user when no password is sent', (done) => {
+    const userLogin = {
+      username: 'johnson',
+    };
+    request(app)
+      .post('/api/v1/users/auth/login')
+      .send(userLogin)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.error.password).to.equal('Sorry, you have to specify a valid password');
+      })
+      .end(done);
+  });
+});
