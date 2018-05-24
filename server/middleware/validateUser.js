@@ -57,6 +57,36 @@ class ValidateUser {
 
     return next();
   }
+
+  /**
+   * validate user input on signIn
+   *
+   * @param {object} req
+   * @param {object} res
+   * @param {func} next
+   *
+   * @return {void}
+   */
+  static signInDataValidation(req, res, next) {
+    const error = {};
+    const { username, password } = req.body;
+    if (!username || username.trim() === '') {
+      error.username = 'Sorry, you have to specify a valid username';
+    }
+
+    if (!password || password.trim() === '') {
+      error.password = 'Sorry, you have to specify a valid password';
+    }
+
+    if (!isEmpty(error)) {
+      return res.status(400).json({
+        status: 'fail',
+        error,
+      });
+    }
+
+    return next();
+  }
 }
 
 export default ValidateUser;

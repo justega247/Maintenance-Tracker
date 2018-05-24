@@ -4,13 +4,16 @@
   "description": "Maintenance Tracker App is an application that provides users with the ability to reach out to\r operations or repairs department regarding repair or maintenance requests and monitor the\r status of their request.",
   "main": "app.js",
   "scripts": {
-    "start": "babel-node server/bin/www",
-    "start:dev": "nodemon --exec babel-node server/bin/www",
-    "pretest": "set NODE_ENV=test",
-    "test": "npm run migrate && nyc --reporter=html --reporter=text mocha --require babel-core/register server/**/*.test.js --timeout 10000 --exit",
+    "start": "cross-env NODE_ENV=production babel-node server/bin/www",
+    "start:dev": "cross-env NODE_ENV=development nodemon --exec babel-node server/bin/www",
+    "pretest": "npm run migrate-test",
+    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require babel-core/register server/**/*.test.js --timeout 10000 --exit",
     "test-watch": "nodemon --exec \"npm test\"",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "migrate": "babel-node server/models/database.js"
+    "migrateme": "babel-node server/models/database.js",
+    "migrate": "cross-env NODE_ENV=production babel-node server/models/database.js",
+    "migrate-dev": "cross-env NODE_ENV=development babel-node server/models/database.js",
+    "migrate-test": "cross-env NODE_ENV=test babel-node server/models/database.js"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,9 @@
 import { hashSync } from 'bcrypt-nodejs';
+import dotenv from 'dotenv';
 
-const testPassword = hashSync('password');
+dotenv.config();
+
+const testPassword = hashSync(process.env.test_user_password);
 
 const createUsersTableQuery = "DROP TABLE IF EXISTS users CASCADE; DROP TYPE IF EXISTS user_status; CREATE TYPE user_status AS ENUM ('user', 'admin'); CREATE TABLE users(id SERIAL PRIMARY KEY,username VARCHAR (20) NOT NULL UNIQUE,fullname VARCHAR (50) NOT NULL,email VARCHAR (50) NOT NULL UNIQUE,password VARCHAR (240) NOT NULL,role user_status default 'user',created_at timestamp (0) without time zone default now());";
 const usersTableSeed = `INSERT INTO users(username,fullname,email,password)(VALUES('johnson','Holmes','me@you','${testPassword}'));`;
