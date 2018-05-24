@@ -61,6 +61,30 @@ class Users {
           }));
       });
   }
+
+  /**
+ *@description it returns a registered user on login with valid credentials
+ *
+ * @return {Object}
+ *
+ * @param {param} req
+ * @param {param} res
+ */
+  static signinUser(req, res) {
+    const { id, username } = req.user;
+    const token = sign(
+      { id }, SECRET,
+      { expiresIn: TOKEN_EXPIRATION_TIME },
+    );
+    res.header('x-auth', token).status(200).json({
+      status: 'success',
+      message: 'You signed in successfully',
+      details: {
+        id,
+        username,
+      },
+    });
+  }
 }
 
 export default Users;
