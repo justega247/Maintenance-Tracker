@@ -10,6 +10,10 @@ export const fakeToken = jwt.sign({ id: 1 }, SECRET, {
   expiresIn: '1d',
 });
 
+export const nextfakeToken = jwt.sign({ id: 2 }, SECRET, {
+  expiresIn: '1d',
+});
+
 export const secondfakeToken = jwt.sign({ id: 111 }, SECRET, {
   expiresIn: '1d',
 });
