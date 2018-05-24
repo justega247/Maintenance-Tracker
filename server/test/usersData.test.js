@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import request from 'supertest';
 import app from '../../server/app';
+import { fakeToken, expiredToken, secondfakeToken } from './mock';
 
 describe('POST /auth/signup', () => {
   it('should sign up a new user if valid data is sent', (done) => {
@@ -204,6 +205,133 @@ describe('POST /auth/login', () => {
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
         expect(res.body.error.password).to.equal('Sorry, you have to specify a valid password');
+      })
+      .end(done);
+  });
+});
+
+describe('POST /users/requests', () => {
+  it('should create a new request when valid data is sent', (done) => {
+    const newRequest = {
+      title: 'A broken desk',
+      type: 'repairs',
+      description: 'I have a desk that is badly broken, and i will like it fixed',
+    };
+    request(app)
+      .post('/api/v1/users/requests')
+      .set('x-auth', fakeToken)
+      .send(newRequest)
+      .expect(201)
+      .expect((res) => {
+        expect(res.body.status).to.equal('success');
+        expect(res.body.message).to.equal('A new request was just created');
+      })
+      .end(done);
+  });
+
+  it('should not create a new request when invalid data is sent', (done) => {
+    const newRequest = {
+      title: '',
+      type: 'repairs',
+      description: 'I have a desk that is badly broken, and i will like it fixed',
+    };
+    request(app)
+      .post('/api/v1/users/requests')
+      .set('x-auth', fakeToken)
+      .send(newRequest)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.error.title).to.equal('Sorry, the title you have entered is invalid');
+      })
+      .end(done);
+  });
+
+  it('should not create a new request when invalid data is sent', (done) => {
+    const newRequest = {
+      title: 'broken desk',
+      type: 'repairs',
+      description: '',
+    };
+    request(app)
+      .post('/api/v1/users/requests')
+      .set('x-auth', fakeToken)
+      .send(newRequest)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.error.description).to.equal('Sorry, the description you have entered is invalid');
+      })
+      .end(done);
+  });
+
+  it('should not create a new request when the user does not exist', (done) => {
+    const newRequest = {
+      title: 'broken desk',
+      type: 'repairs',
+      description: 'A very bad desk to begin with',
+    };
+    request(app)
+      .post('/api/v1/users/requests')
+      .set('x-auth', secondfakeToken)
+      .send(newRequest)
+      .expect(404)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.message).to.equal('Sorry, no user with a matching id was found');
+      })
+      .end(done);
+  });
+
+  it('should not create a new request when the type does not exist', (done) => {
+    const newRequest = {
+      title: 'broken desk',
+      type: 'fixing',
+      description: 'A very bad desk to begin with',
+    };
+    request(app)
+      .post('/api/v1/users/requests')
+      .set('x-auth', fakeToken)
+      .send(newRequest)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.message).to.equal('Please check the details you have entered');
+      })
+      .end(done);
+  });
+
+  it('should not create a new request the token is expired', (done) => {
+    const newRequest = {
+      title: 'broken desk',
+      type: 'repairs',
+      description: '',
+    };
+    request(app)
+      .post('/api/v1/users/requests')
+      .set('x-auth', expiredToken)
+      .send(newRequest)
+      .expect(401)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.message).to.equal('Current session expired,please login to continue');
+      })
+      .end(done);
+  });
+
+  it('should not create a new request the token is not supplied', (done) => {
+    const newRequest = {
+      title: 'broken desk',
+      type: 'repairs',
+      description: '',
+    };
+    request(app)
+      .post('/api/v1/users/requests')
+      .send(newRequest)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.message).to.equal('Please, you have not added your token');
       })
       .end(done);
   });

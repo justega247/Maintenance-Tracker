@@ -1,6 +1,9 @@
 import { sign } from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import { hashSync } from 'bcrypt-nodejs';
-import pool from '../models/db';
+import pool from '../models/database';
+
+dotenv.config();
 
 const { SECRET, TOKEN_EXPIRATION_TIME } = process.env;
 
@@ -84,6 +87,32 @@ class Users {
         username,
       },
     });
+  }
+
+  /**
+ * @description Create a new request
+ *
+ * @return {Object}
+ *
+ * @param {param} req
+ * @param {param} res
+ */
+  static addRequest(req, res) {
+    const { title, type, description } = req.body;
+    const { id } = req.user;
+
+    const requestDetails = `INSERT INTO requests (user_id,title,type,description) VALUES('${id}','${title}','${type}','${description}') RETURNING id, title, type, description, user_id;`;
+
+    pool.query(requestDetails)
+      .then(newRequest => res.status(201).json({
+        status: 'success',
+        message: 'A new request was just created',
+        request: newRequest.rows[0],
+      }))
+      .catch(() => res.status(400).json({
+        status: 'fail',
+        message: 'Please check the details you have entered',
+      }));
   }
 }
 
