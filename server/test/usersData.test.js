@@ -362,3 +362,47 @@ describe('GET /users/requests', () => {
       .end(done);
   });
 });
+
+describe('GET /users/requests/:requestId', () => {
+  it('should get a request made by a user', (done) => {
+    const requestId = 2;
+
+    request(app)
+      .get(`/api/v1/users/requests/${requestId}`)
+      .set('x-auth', fakeToken)
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.status).to.equal('success');
+        expect(res.body.message).to.equal('Your request has been retrieved');
+      })
+      .end(done);
+  });
+
+  it('should return an error if the request id is invalid', (done) => {
+    const requestId = 22;
+
+    request(app)
+      .get(`/api/v1/users/requests/${requestId}`)
+      .set('x-auth', fakeToken)
+      .expect(404)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.message).to.equal('Sorry, there is no request with that id');
+      })
+      .end(done);
+  });
+
+  it('should return an error if the request was made by a different user', (done) => {
+    const requestId = 1;
+
+    request(app)
+      .get(`/api/v1/users/requests/${requestId}`)
+      .set('x-auth', nextfakeToken)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.message).to.equal('Sorry, you cannot view that request');
+      })
+      .end(done);
+  });
+});
