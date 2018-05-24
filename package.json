@@ -6,7 +6,8 @@
   "scripts": {
     "start": "babel-node server/bin/www",
     "start:dev": "nodemon --exec babel-node server/bin/www",
-    "test": "cross-env NODE_ENV=test npm run migrate && nyc --reporter=html --reporter=text mocha --require babel-core/register server/**/*.test.js --exit",
+    "pretest": "set NODE_ENV=test",
+    "test": "npm run migrate && nyc --reporter=html --reporter=text mocha --require babel-core/register server/**/*.test.js --timeout 10000 --exit",
     "test-watch": "nodemon --exec \"npm test\"",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "migrate": "babel-node server/models/database.js"
@@ -22,12 +23,15 @@
   },
   "homepage": "https://github.com/justega247/Maintenance-Tracker#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.1",
     "lodash.isempty": "^4.4.0",
     "morgan": "^1.9.0",
     "pg": "^7.4.3",
+    "validator": "^10.2.0",
     "winston": "^3.0.0-rc5"
   },
   "devDependencies": {
