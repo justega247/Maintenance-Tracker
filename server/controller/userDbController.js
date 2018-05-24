@@ -114,6 +114,35 @@ class Users {
         message: 'Please check the details you have entered',
       }));
   }
+
+  /**
+ * @description Returns all the requests made by a user
+ *
+ * @return {Object}
+ *
+ * @param {param} req
+ * @param {param} res
+ */
+  static retrieveRequests(req, res) {
+    const { id } = req.user;
+
+    const getUserRequests = `SELECT * FROM requests WHERE requests.user_id = '${id}'`;
+
+    pool.query(getUserRequests)
+      .then((userRequests) => {
+        if (userRequests.rowCount === 0) {
+          return res.status(200).json({
+            status: 'success',
+            message: 'Sorry,you have not made any requests',
+          });
+        }
+        return res.status(200).json({
+          status: 'success',
+          message: 'Your requests have been retrieved',
+          requests: userRequests.rows,
+        });
+      });
+  }
 }
 
 export default Users;

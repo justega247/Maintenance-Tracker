@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import request from 'supertest';
 import app from '../../server/app';
-import { fakeToken, expiredToken, secondfakeToken } from './mock';
+import { fakeToken, expiredToken, secondfakeToken, nextfakeToken } from './mock';
 
 describe('POST /auth/signup', () => {
   it('should sign up a new user if valid data is sent', (done) => {
@@ -332,6 +332,32 @@ describe('POST /users/requests', () => {
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
         expect(res.body.message).to.equal('Please, you have not added your token');
+      })
+      .end(done);
+  });
+});
+
+describe('GET /users/requests', () => {
+  it('should return all the requests created by a user', (done) => {
+    request(app)
+      .get('/api/v1/users/requests')
+      .set('x-auth', fakeToken)
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.status).to.equal('success');
+        expect(res.body.message).to.equal('Your requests have been retrieved');
+      })
+      .end(done);
+  });
+
+  it('should return a no request message when a user has not made any requests', (done) => {
+    request(app)
+      .get('/api/v1/users/requests')
+      .set('x-auth', nextfakeToken)
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.status).to.equal('success');
+        expect(res.body.message).to.equal('Sorry,you have not made any requests');
       })
       .end(done);
   });
