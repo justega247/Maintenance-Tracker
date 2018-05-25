@@ -11,8 +11,6 @@ router.post('/auth/login', ValidateUser.signInDataValidation, Authenticate.findB
 router.post('/requests', Authenticate.authenticateUser, ValidateRequests.requestDataValidation, Users.addRequest);
 router.get('/requests', Authenticate.authenticateUser, Users.retrieveRequests);
 router.get('/requests/:requestId', Authenticate.authenticateUser, Users.returnRequest);
-
-// router
-//   .post('/requests/:requestId', ValidateRequests.requestUpdateValidation, Users.updateRequest);
+router.put('/requests/:requestId', Authenticate.authenticateUser, ValidateRequests.requestUpdateValidation, Users.updateRequest);
 
 export default router;

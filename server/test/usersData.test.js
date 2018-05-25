@@ -216,6 +216,7 @@ describe('POST /users/requests', () => {
       title: 'A broken desk',
       type: 'repairs',
       description: 'I have a desk that is badly broken, and i will like it fixed',
+      status: 'approved',
     };
     request(app)
       .post('/api/v1/users/requests')
@@ -402,6 +403,147 @@ describe('GET /users/requests/:requestId', () => {
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
         expect(res.body.message).to.equal('Sorry, you cannot view that request');
+      })
+      .end(done);
+  });
+});
+
+describe('PUT users/requests/requestsId/', () => {
+  it('should update a request when valid data is sent', (done) => {
+    const requestId = 2;
+    const update = {
+      title: 'Broken flask',
+      description: 'Please come mend my flask,it is broken',
+      type: 'repairs',
+    };
+
+    request(app)
+      .put(`/api/v1/users/requests/${requestId}`)
+      .set('x-auth', fakeToken)
+      .send(update)
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.status).to.equal('success');
+        expect(res.body.message).to.equal('Your request has been updated');
+      })
+      .end(done);
+  });
+
+  it('should not update a request when the same data already exists', (done) => {
+    const requestId = 1;
+    const update = {
+      title: 'Broken flask',
+      description: 'Please come mend my flask,it is broken',
+      type: 'repairs',
+    };
+
+    request(app)
+      .put(`/api/v1/users/requests/${requestId}`)
+      .set('x-auth', fakeToken)
+      .send(update)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.message).to.equal('Sorry, you already have a request with those details');
+      })
+      .end(done);
+  });
+
+  it('should not update a request when a user has none', (done) => {
+    const requestId = 2;
+    const update = {
+      title: 'Broken flask',
+      description: 'Please come mend my flasky,it is broken',
+      type: 'repairs',
+    };
+
+    request(app)
+      .put(`/api/v1/users/requests/${requestId}`)
+      .set('x-auth', nextfakeToken)
+      .send(update)
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.status).to.equal('success');
+        expect(res.body.message).to.equal('Sorry,you have not made any requests');
+      })
+      .end(done);
+  });
+
+  it('should not update a request when it has been approved', (done) => {
+    const requestId = 1;
+    const update = {
+      title: 'Broken flask',
+      description: 'Please come mend my flasky,it is broken',
+      type: 'repairs',
+    };
+
+    request(app)
+      .put(`/api/v1/users/requests/${requestId}`)
+      .set('x-auth', fakeToken)
+      .send(update)
+      .expect(401)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.message).to.equal('Sorry you cannot update this request');
+      })
+      .end(done);
+  });
+
+  it('should not update a request when invalid id is sent', (done) => {
+    const requestId = 22;
+    const update = {
+      title: 'Broken flasks',
+      description: 'Please come mend my flask,it is broken',
+      type: 'repairs',
+    };
+
+    request(app)
+      .put(`/api/v1/users/requests/${requestId}`)
+      .set('x-auth', fakeToken)
+      .send(update)
+      .expect(404)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.message).to.equal('Sorry, there is no request with that id');
+      })
+      .end(done);
+  });
+
+  it('should not update a request when invalid data is sent', (done) => {
+    const requestId = 2;
+    const update = {
+      title: '',
+      description: '',
+      type: 'repairs',
+    };
+
+    request(app)
+      .put(`/api/v1/users/requests/${requestId}`)
+      .set('x-auth', fakeToken)
+      .send(update)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+      })
+      .end(done);
+  });
+
+  it('should not update a request when invalid data is sent', (done) => {
+    const requestId = 2;
+    const update = {
+      title: '9',
+      description: '56',
+      type: 'repairs',
+    };
+
+    request(app)
+      .put(`/api/v1/users/requests/${requestId}`)
+      .set('x-auth', fakeToken)
+      .send(update)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.error).to.be.an('object');
       })
       .end(done);
   });
