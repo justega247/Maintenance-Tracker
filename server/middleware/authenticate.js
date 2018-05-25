@@ -93,6 +93,53 @@ class Authenticate {
     }
     return null;
   }
+  static authenticateAdminUser(req, res, next) {
+    const token = req.headers['x-auth'];
+
+    if (token) {
+      verify(token, SECRET, (err, decoded) => {
+        if (err) {
+          if (err.name === 'TokenExpiredError') {
+            return res
+              .status(401)
+              .json({
+                status: 'fail',
+                message: 'Current session expired,please login to continue',
+              });
+          }
+        }
+        req.decoded = decoded;
+        const userId = decoded.id;
+        const findUserWithId = `SELECT * FROM users WHERE users.id = '${userId}'`;
+        pool.query(findUserWithId)
+          .then((foundUser) => {
+            if (foundUser.rowCount === 0) {
+              return res.status(404).json({
+                status: 'fail',
+                message: 'Sorry, no user with a matching id was found',
+              });
+            }
+            if (foundUser.rows[0].role !== 'admin') {
+              return res.status(403).json({
+                status: 'fail',
+                message: 'Sorry, you are not allowed to access this route',
+              });
+            }
+            req.user = {
+              id: foundUser.rows[0].id,
+            };
+            return next();
+          });
+        return null;
+      });
+    } else {
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Please, you have not added your token',
+      });
+    }
+    return null;
+  }
 }
 
 export default Authenticate;
