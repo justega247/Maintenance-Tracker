@@ -147,7 +147,7 @@ describe('POST /auth/login', () => {
       .end(done);
   });
 
-  it('should not login a user when invalid email is sent', (done) => {
+  it('should not login a user when invalid username is sent', (done) => {
     const userLogin = {
       username: 'johnsono',
       password: 'password',

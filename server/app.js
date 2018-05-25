@@ -3,6 +3,7 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 
 import userRoutes from './routes/userRoutes';
+import requestRoutes from './routes/requestRoutes';
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/requests', requestRoutes);
 
 app.get('/', (req, res) => res.status(200).send({
   message: 'Welcome to the Maintenance-Tracker App (version 1).',
