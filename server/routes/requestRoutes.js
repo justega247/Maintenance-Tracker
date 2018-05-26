@@ -7,5 +7,6 @@ const router = express.Router();
 router.use('*', Authenticate.authenticateAdminUser);
 
 router.get('/', Requests.retrieveRequests);
+router.put('/:requestId/approve', Requests.approveRequests);
 
 export default router;
