@@ -139,3 +139,19 @@ describe('PUT /:requestId/disapprove', () => {
       .end(done);
   });
 });
+
+describe('PUT /:requestId/resolve', () => {
+  it('should change the state of a request to resolved', (done) => {
+    const id = 2;
+
+    request(app)
+      .put(`/api/v1/requests/${id}/resolve`)
+      .set('x-auth', fakeToken)
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.status).to.equal('success');
+        expect(res.body.message).to.equal('This request has been successfully resolved');
+      })
+      .end(done);
+  });
+});

@@ -154,30 +154,19 @@ class Users {
  */
   static returnRequest(req, res) {
     const { id } = req.user;
-    const requestId = parseInt(req.params.requestId, 10);
+    const { request } = req.foundARequest;
 
-    const findARequest = `SELECT * FROM requests WHERE requests.id = '${requestId}'`;
-
-    pool.query(findARequest)
-      .then((requestFound) => {
-        if (requestFound.rowCount === 0) {
-          return res.status(404).json({
-            status: 'fail',
-            message: 'Sorry, there is no request with that id',
-          });
-        }
-        if (requestFound.rows[0].user_id !== id) {
-          return res.status(400).json({
-            status: 'fail',
-            message: 'Sorry, you cannot view that request',
-          });
-        }
-        return res.status(200).json({
-          status: 'success',
-          message: 'Your request has been retrieved',
-          request: requestFound.rows[0],
-        });
+    if (request.user_id !== id) {
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Sorry, you cannot view that request',
       });
+    }
+    return res.status(200).json({
+      status: 'success',
+      message: 'Your request has been retrieved',
+      request,
+    });
   }
 
   /**
