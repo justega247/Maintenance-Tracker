@@ -109,3 +109,33 @@ describe('PUT /:requestId/approve', () => {
       .end(done);
   });
 });
+
+describe('PUT /:requestId/disapprove', () => {
+  it('should change the status of the request to disapproved', (done) => {
+    const id = 2;
+
+    request(app)
+      .put(`/api/v1/requests/${id}/disapprove`)
+      .set('x-auth', fakeToken)
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.status).to.equal('success');
+        expect(res.body.message).to.equal('You have successfully disapproved this request');
+      })
+      .end(done);
+  });
+
+  it('should return an error message if the id provided is invalid', (done) => {
+    const id = 22;
+
+    request(app)
+      .put(`/api/v1/requests/${id}/disapprove`)
+      .set('x-auth', fakeToken)
+      .expect(404)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.message).to.equal('Sorry, there is no request with that id');
+      })
+      .end(done);
+  });
+});

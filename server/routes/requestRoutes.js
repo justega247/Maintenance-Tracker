@@ -8,5 +8,6 @@ router.use('*', Authenticate.authenticateAdminUser);
 
 router.get('/', Requests.retrieveRequests);
 router.put('/:requestId/approve', Requests.approveRequests);
+router.put('/:requestId/disapprove', Requests.disapproveRequests);
 
 export default router;

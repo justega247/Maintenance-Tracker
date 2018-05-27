@@ -60,6 +60,38 @@ class Requests {
         return null;
       });
   }
+
+  /**
+ * @description it enables an admin set the state of a request to disapproved
+ *
+ * @return {Object}
+ *
+ * @param {param} req
+ * @param {param} res
+ */
+  static disapproveRequests(req, res) {
+    const requestId = parseInt(req.params.requestId, 10);
+
+    const findARequest = `SELECT * FROM requests WHERE requests.id = '${requestId}'`;
+    const updateFoundRequestStatus = `UPDATE requests SET status = 'disapproved' WHERE requests.id = '${requestId}' RETURNING *`;
+
+    pool.query(findARequest)
+      .then((requestFound) => {
+        if (requestFound.rowCount === 0) {
+          return res.status(404).json({
+            status: 'fail',
+            message: 'Sorry, there is no request with that id',
+          });
+        }
+        pool.query(updateFoundRequestStatus)
+          .then(updatedRequest => res.status(200).json({
+            status: 'success',
+            message: 'You have successfully disapproved this request',
+            request: updatedRequest.rows[0],
+          }));
+        return null;
+      });
+  }
 }
 
 export default Requests;
