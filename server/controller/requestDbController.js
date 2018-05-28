@@ -1,4 +1,5 @@
 import pool from '../models/database';
+import { sendSuccess, sendMessage } from '../middleware/utils';
 
 /**
  * @class Requests
@@ -16,11 +17,7 @@ class Requests {
     const getAllRequests = 'SELECT requests.type,requests.title,requests.description,requests.status, users.fullname AS requested_by FROM requests INNER JOIN users ON requests.user_id = users.id';
 
     pool.query(getAllRequests)
-      .then(AllRequests => res.status(200).json({
-        status: 'success',
-        message: 'Here are the request(s), that have been made',
-        requests: AllRequests.rows,
-      }));
+      .then(AllRequests => sendSuccess(res, 200, 'Here are the request(s), that have been made', AllRequests.rows));
   }
 
   /**
@@ -37,17 +34,11 @@ class Requests {
     const updateFoundRequestStatus = `UPDATE requests SET status = 'approved' WHERE requests.id = '${requestId}' RETURNING *`;
 
     if (request.status !== 'pending') {
-      return res.status(400).json({
-        status: 'fail',
-        message: 'Sorry, the status of this request is no longer pending',
-      });
+      sendMessage(res, 400, 'fail', 'Sorry, the status of this request is no longer pending');
+      return null;
     }
     pool.query(updateFoundRequestStatus)
-      .then(updatedRequest => res.status(200).json({
-        status: 'success',
-        message: 'You have successfully approved this request',
-        request: updatedRequest.rows[0],
-      }));
+      .then(updatedRequest => sendSuccess(res, 200, 'You have successfully approved this request', updatedRequest.rows[0]));
     return null;
   }
 
@@ -64,11 +55,7 @@ class Requests {
     const updateFoundRequestStatus = `UPDATE requests SET status = 'disapproved' WHERE requests.id = '${requestId}' RETURNING *`;
 
     pool.query(updateFoundRequestStatus)
-      .then(updatedRequest => res.status(200).json({
-        status: 'success',
-        message: 'You have successfully disapproved this request',
-        request: updatedRequest.rows[0],
-      }));
+      .then(updatedRequest => sendSuccess(res, 200, 'You have successfully disapproved this request', updatedRequest.rows[0]));
     return null;
   }
 
@@ -86,11 +73,8 @@ class Requests {
     const updateFoundRequestState = `UPDATE requests SET state = 'resolved' WHERE requests.id = '${requestId}' RETURNING *`;
 
     pool.query(updateFoundRequestState)
-      .then(updatedRequest => res.status(200).json({
-        status: 'success',
-        message: 'This request has been successfully resolved',
-        request: updatedRequest.rows[0],
-      }));
+      .then(updatedRequest => sendSuccess(res, 200, 'This request has been successfully resolved', updatedRequest.rows[0]));
+    return null;
   }
 }
 

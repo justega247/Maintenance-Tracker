@@ -2,6 +2,7 @@ import { sign } from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { hashSync } from 'bcrypt-nodejs';
 import pool from '../models/database';
+import { sendSuccess, sendMessage } from '../middleware/utils';
 
 dotenv.config();
 
@@ -106,19 +107,12 @@ class Users {
           const request = userRequests.rows.find(singleRequest => (singleRequest.title === title &&
           singleRequest.description === description && singleRequest.type === type));
           if (request) {
-            res.status(400).json({
-              status: 'fail',
-              message: 'Sorry, you already have a request with those details',
-            });
+            sendMessage(res, 400, 'fail', 'Sorry, you already have a request with those details');
             return null;
           }
         }
         pool.query(requestDetails)
-          .then(newRequest => res.status(201).json({
-            status: 'success',
-            message: 'A new request was just created',
-            request: newRequest.rows[0],
-          }));
+          .then(newRequest => sendSuccess(res, 201, 'A new request was just created', newRequest.rows[0]));
         return null;
       });
   }
@@ -139,16 +133,11 @@ class Users {
     pool.query(getUserRequests)
       .then((userRequests) => {
         if (userRequests.rowCount === 0) {
-          return res.status(200).json({
-            status: 'success',
-            message: 'Sorry,you have not made any requests',
-          });
+          sendMessage(res, 200, 'success', 'Sorry,you have not made any requests');
+          return null;
         }
-        return res.status(200).json({
-          status: 'success',
-          message: 'Your requests have been retrieved',
-          requests: userRequests.rows,
-        });
+        sendSuccess(res, 200, 'Your requests have been retrieved', userRequests.rows);
+        return null;
       });
   }
 
@@ -165,16 +154,11 @@ class Users {
     const { request } = req.foundARequest;
 
     if (request.user_id !== id) {
-      return res.status(400).json({
-        status: 'fail',
-        message: 'Sorry, you cannot view that request',
-      });
+      sendMessage(res, 400, 'fail', 'Sorry, you cannot view that request');
+      return null;
     }
-    return res.status(200).json({
-      status: 'success',
-      message: 'Your request has been retrieved',
-      request,
-    });
+    sendSuccess(res, 200, 'Your request has been retrieved', request);
+    return null;
   }
 
   /**
@@ -188,16 +172,15 @@ class Users {
   static updateRequest(req, res) {
     const { id } = req.user;
     const updateValueArray = Object.keys(req.body);
-    const requestId = parseInt(req.params.requestId, 10);
     const { title, type, description } = req.body;
+    const requestId = parseInt(req.params.requestId, 10);
+
 
     const emptyString = updateValueArray.find(updateValue => req.body[updateValue].trim() === '');
 
     if (emptyString) {
-      return res.status(400).json({
-        status: 'fail',
-        message: 'Sorry, one or more of your update value is empty',
-      });
+      sendMessage(res, 400, 'fail', 'Sorry, one or more of your update value is empty');
+      return null;
     }
 
     const getUserRequests = `SELECT * FROM requests WHERE requests.user_id = '${id}'`;
@@ -205,19 +188,13 @@ class Users {
     pool.query(getUserRequests)
       .then((userRequests) => {
         if (userRequests.rowCount === 0) {
-          res.status(200).json({
-            status: 'success',
-            message: 'Sorry,you have not made any requests',
-          });
+          sendMessage(res, 200, 'success', 'Sorry,you have not made any requests');
           return null;
         }
         const request = userRequests.rows.find(singleRequest => (singleRequest.title === title &&
           singleRequest.description === description && singleRequest.type === type));
         if (request) {
-          res.status(400).json({
-            status: 'fail',
-            message: 'Sorry, you already have a request with those details',
-          });
+          sendMessage(res, 400, 'fail', 'Sorry, you already have a request with those details');
           return null;
         }
 
@@ -226,37 +203,18 @@ class Users {
         return pool.query(requestToUpdate)
           .then((requestFound) => {
             if (requestFound.rowCount === 0) {
-              res.status(404).json({
-                status: 'fail',
-                message: 'Sorry, there is no request with that id',
-              });
+              sendMessage(res, 404, 'fail', 'Sorry, there is no request with that id');
               return null;
             }
             if (requestFound.rows[0].status === 'approved') {
-              return res.status(401).json({
-                status: 'fail',
-                message: 'Sorry you cannot update this request',
-              });
+              sendMessage(res, 401, 'fail', 'Sorry you cannot update this request');
+              return null;
             }
-            if (title) {
-              const updateTitle = `UPDATE requests SET title = '${title}' WHERE requests.id = '${requestId}'`;
-              pool.query(updateTitle)
-                .then((title));
-            }
-            if (description) {
-              const updateDescription = `UPDATE requests SET description = '${description}' WHERE requests.id = '${requestId}'`;
-              pool.query(updateDescription).then((description));
-            }
-            if (type) {
-              const updateType = `UPDATE requests SET type = '${type}' WHERE requests.id = '${requestId}'`;
-              pool.query(updateType).then((type));
-            }
-            const findARequest = `SELECT * FROM requests WHERE requests.id = '${requestId}'`;
-            pool.query(findARequest).then(foundRequest => res.status(200).json({
-              status: 'success',
-              message: 'Your request has been updated',
-              request: foundRequest.rows,
-            }));
+            const updatedRequest = { ...requestFound.rows[0], ...req.body };
+
+            const updateTheRequest = `UPDATE requests SET title = '${updatedRequest.title}', type = '${updatedRequest.type}', description = '${updatedRequest.description}' WHERE requests.id = '${requestId}' RETURNING *`;
+            pool.query(updateTheRequest)
+              .then(updatedFoundRequest => sendSuccess(res, 200, 'Your request has been updated', updatedFoundRequest.rows[0]));
             return null;
           });
       });
