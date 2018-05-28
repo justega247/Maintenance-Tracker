@@ -13,7 +13,7 @@ describe('POST /auth/signup', () => {
       password: 'passworded',
     };
     request(app)
-      .post('/api/v1/users/auth/signup')
+      .post('/api/v1/auth/signup')
       .send(newUser)
       .expect(201)
       .expect((res) => {
@@ -30,7 +30,7 @@ describe('POST /auth/signup', () => {
       password: 'passworded',
     };
     request(app)
-      .post('/api/v1/users/auth/signup')
+      .post('/api/v1/auth/signup')
       .send(newUser)
       .expect(409)
       .expect((res) => {
@@ -47,12 +47,12 @@ describe('POST /auth/signup', () => {
       password: 'passworded',
     };
     request(app)
-      .post('/api/v1/users/auth/signup')
+      .post('/api/v1/auth/signup')
       .send(newUser)
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.error.email).to.equal('Sorry, your email is invalid');
+        expect(res.body.errors.email[0]).to.equal('The email format is invalid.');
       })
       .end(done);
   });
@@ -65,12 +65,12 @@ describe('POST /auth/signup', () => {
       password: 'passworded',
     };
     request(app)
-      .post('/api/v1/users/auth/signup')
+      .post('/api/v1/auth/signup')
       .send(newUser)
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.error.username).to.equal('Sorry, your username is invalid');
+        expect(res.body.errors.username[0]).to.equal('The username field is required.');
       })
       .end(done);
   });
@@ -83,12 +83,12 @@ describe('POST /auth/signup', () => {
       password: '',
     };
     request(app)
-      .post('/api/v1/users/auth/signup')
+      .post('/api/v1/auth/signup')
       .send(newUser)
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.error.password).to.equal('Sorry, your password is invalid');
+        expect(res.body.errors.password[0]).to.equal('The password field is required.');
       })
       .end(done);
   });
@@ -101,30 +101,12 @@ describe('POST /auth/signup', () => {
       password: 'passworded',
     };
     request(app)
-      .post('/api/v1/users/auth/signup')
+      .post('/api/v1/auth/signup')
       .send(newUser)
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.error.fullname).to.equal('Sorry, your fullname is invalid');
-      })
-      .end(done);
-  });
-
-  it('should throw an error when the request cannot be processed', (done) => {
-    const newUser = {
-      username: 'iamnofourthhhhhhhhhhhhhhhy',
-      fullname: 'Fernando Torres',
-      email: 'thorreso@andela.com',
-      password: 'passworded',
-    };
-    request(app)
-      .post('/api/v1/users/auth/signup')
-      .send(newUser)
-      .expect(400)
-      .expect((res) => {
-        expect(res.body.status).to.equal('fail');
-        expect(res.body.message).to.equal('Sorry, your request could not be processed');
+        expect(res.body.errors.fullname[0]).to.equal('The fullname format is invalid.');
       })
       .end(done);
   });
@@ -137,7 +119,7 @@ describe('POST /auth/login', () => {
       password: 'password',
     };
     request(app)
-      .post('/api/v1/users/auth/login')
+      .post('/api/v1/auth/login')
       .send(userLogin)
       .expect(200)
       .expect((res) => {
@@ -153,7 +135,7 @@ describe('POST /auth/login', () => {
       password: 'password',
     };
     request(app)
-      .post('/api/v1/users/auth/login')
+      .post('/api/v1/auth/login')
       .send(userLogin)
       .expect(404)
       .expect((res) => {
@@ -169,7 +151,7 @@ describe('POST /auth/login', () => {
       password: 'passwordd',
     };
     request(app)
-      .post('/api/v1/users/auth/login')
+      .post('/api/v1/auth/login')
       .send(userLogin)
       .expect(400)
       .expect((res) => {
@@ -184,12 +166,12 @@ describe('POST /auth/login', () => {
       password: 'password',
     };
     request(app)
-      .post('/api/v1/users/auth/login')
+      .post('/api/v1/auth/login')
       .send(userLogin)
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.error.username).to.equal('Sorry, you have to specify a valid username');
+        expect(res.body.errors.username[0]).to.equal('The username field is required.');
       })
       .end(done);
   });
@@ -199,12 +181,12 @@ describe('POST /auth/login', () => {
       username: 'johnson',
     };
     request(app)
-      .post('/api/v1/users/auth/login')
+      .post('/api/v1/auth/login')
       .send(userLogin)
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.error.password).to.equal('Sorry, you have to specify a valid password');
+        expect(res.body.errors.password[0]).to.equal('The password field is required.');
       })
       .end(done);
   });
@@ -230,6 +212,25 @@ describe('POST /users/requests', () => {
       .end(done);
   });
 
+  it('should not create a new request when the request already exists', (done) => {
+    const newRequest = {
+      title: 'A broken desk',
+      type: 'repairs',
+      description: 'I have a desk that is badly broken, and i will like it fixed',
+      status: 'approved',
+    };
+    request(app)
+      .post('/api/v1/users/requests')
+      .set('x-auth', fakeToken)
+      .send(newRequest)
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.message).to.equal('Sorry, you already have a request with those details');
+      })
+      .end(done);
+  });
+
   it('should not create a new request when invalid data is sent', (done) => {
     const newRequest = {
       title: '',
@@ -243,7 +244,7 @@ describe('POST /users/requests', () => {
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.error.title).to.equal('Sorry, the title you have entered is invalid');
+        expect(res.body.errors.title[0]).to.equal('The title field is required.');
       })
       .end(done);
   });
@@ -261,7 +262,7 @@ describe('POST /users/requests', () => {
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.error.description).to.equal('Sorry, the description you have entered is invalid');
+        expect(res.body.errors.description[0]).to.equal('The description field is required.');
       })
       .end(done);
   });
@@ -297,7 +298,7 @@ describe('POST /users/requests', () => {
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.message).to.equal('Please check the details you have entered');
+        expect(res.body.errors.type[0]).to.equal('The type specified has to be either repairs or maintenance');
       })
       .end(done);
   });
@@ -543,7 +544,6 @@ describe('PUT users/requests/requestsId/', () => {
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.error).to.be.an('object');
       })
       .end(done);
   });

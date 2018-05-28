@@ -1,5 +1,4 @@
-import validator from 'validator';
-import isEmpty from 'lodash.isempty';
+import Validator from 'validatorjs';
 
 /**
  * @class Validate Users
@@ -15,47 +14,29 @@ class ValidateUser {
    * @return {void}
    */
   static signUpDataValidation(req, res, next) {
-    const error = {};
-    let {
-      username, fullname,
-    } = req.body;
     const {
-      email, password,
+      username, fullname, email, password,
     } = req.body;
-    username = username.trim();
-    fullname = fullname.trim();
-    const re = /\s/g;
-    const userNameStr = username.toLowerCase().replace(re, '');
-    const fullNameStr = fullname.toLowerCase().replace(re, '');
 
-    if (!validator.isEmail(email.trim())) {
-      error.email = 'Sorry, your email is invalid';
+    const validation = new Validator({
+      username,
+      fullname,
+      email,
+      password,
+    }, {
+      username: 'required|string|min:3|max:12|alpha_num',
+      fullname: ['required', 'string', 'min:4', 'max:40', 'regex:/([a-zA-Z]+)\\s([a-zA-Z]+)/'],
+      email: 'required|string|email',
+      password: 'required|min:6|max:12|string',
+    });
+
+    if (validation.passes()) {
+      return next();
     }
-
-    if (!validator.isAlphanumeric(userNameStr)
-      || userNameStr === ''
-      || userNameStr.length < 3) {
-      error.username = 'Sorry, your username is invalid';
-    }
-
-    if (!password
-        || password.trim() === ''
-        || password.trim().length < 6) {
-      error.password = 'Sorry, your password is invalid';
-    }
-
-    if (!fullNameStr || fullNameStr < 2 || /[^a-z]/i.test(fullNameStr)) {
-      error.fullname = 'Sorry, your fullname is invalid';
-    }
-
-    if (!isEmpty(error)) {
-      return res.status(400).json({
-        status: 'fail',
-        error,
-      });
-    }
-
-    return next();
+    return res.status(400).json({
+      status: 'fail',
+      errors: validation.errors.all(),
+    });
   }
 
   /**
@@ -68,24 +49,22 @@ class ValidateUser {
    * @return {void}
    */
   static signInDataValidation(req, res, next) {
-    const error = {};
     const { username, password } = req.body;
-    if (!username || username.trim() === '') {
-      error.username = 'Sorry, you have to specify a valid username';
-    }
+    const validation = new Validator({
+      username,
+      password,
+    }, {
+      username: 'required|string|min:3|max:12|alpha_num',
+      password: 'required|min:6|max:12|string',
+    });
 
-    if (!password || password.trim() === '') {
-      error.password = 'Sorry, you have to specify a valid password';
+    if (validation.passes()) {
+      return next();
     }
-
-    if (!isEmpty(error)) {
-      return res.status(400).json({
-        status: 'fail',
-        error,
-      });
-    }
-
-    return next();
+    return res.status(400).json({
+      status: 'fail',
+      errors: validation.errors.all(),
+    });
   }
 }
 

@@ -57,11 +57,7 @@ class Users {
                 username: createdUser.rows[0].username,
               },
             });
-          })
-          .catch(() => res.status(400).json({
-            status: 'fail',
-            message: 'Sorry, your request could not be processed',
-          }));
+          });
       });
   }
 
@@ -101,18 +97,30 @@ class Users {
     const { title, type, description } = req.body;
     const { id } = req.user;
 
+    const getUserRequests = `SELECT * FROM requests WHERE requests.user_id = '${id}'`;
     const requestDetails = `INSERT INTO requests (user_id,title,type,description) VALUES('${id}','${title}','${type}','${description}') RETURNING id, title, type, description, user_id;`;
 
-    pool.query(requestDetails)
-      .then(newRequest => res.status(201).json({
-        status: 'success',
-        message: 'A new request was just created',
-        request: newRequest.rows[0],
-      }))
-      .catch(() => res.status(400).json({
-        status: 'fail',
-        message: 'Please check the details you have entered',
-      }));
+    pool.query(getUserRequests)
+      .then((userRequests) => {
+        if (userRequests.rowCount !== 0) {
+          const request = userRequests.rows.find(singleRequest => (singleRequest.title === title &&
+          singleRequest.description === description && singleRequest.type === type));
+          if (request) {
+            res.status(400).json({
+              status: 'fail',
+              message: 'Sorry, you already have a request with those details',
+            });
+            return null;
+          }
+        }
+        pool.query(requestDetails)
+          .then(newRequest => res.status(201).json({
+            status: 'success',
+            message: 'A new request was just created',
+            request: newRequest.rows[0],
+          }));
+        return null;
+      });
   }
 
   /**

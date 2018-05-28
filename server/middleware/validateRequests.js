@@ -1,4 +1,4 @@
-import isEmpty from 'lodash.isempty';
+import Validator from 'validatorjs';
 
 /**
  * @class Validate requests
@@ -14,29 +14,29 @@ class ValidateRequests {
    * @return {void}
    */
   static requestDataValidation(req, res, next) {
-    const error = {};
-    let { title, description } = req.body;
-    title = title.trim();
-    description = description.trim();
-    const re = /\s/g;
-    const titleStr = title.toLowerCase().replace(re, '');
-    const descriptionStr = description.toLowerCase().replace(re, '');
+    const {
+      type, title, description,
+    } = req.body;
 
-    if (!title || /[^a-z,;'".!]/i.test(titleStr) || titleStr.length < 2) {
-      error.title = 'Sorry, the title you have entered is invalid';
-    }
+    const validation = new Validator({
+      type,
+      title,
+      description,
+    }, {
+      type: ['required', { in: ['repairs', 'maintenance'] }],
+      title: ['required', 'string', 'min:4', 'max:40', 'regex:/^[a-z\\d\\-_,.*()!\\s]+$/i'],
+      description: ['required', 'string', 'min:20', 'max:300', 'regex:/^[a-z\\d\\-_,.*()!\\s]+$/i'],
+    }, {
+      in: 'The type specified has to be either repairs or maintenance',
+    });
 
-    if (!description || /[^a-z,;'".!]/i.test(descriptionStr) || descriptionStr.length < 20) {
-      error.description = 'Sorry, the description you have entered is invalid';
+    if (validation.passes()) {
+      return next();
     }
-
-    if (!isEmpty(error)) {
-      return res.status(400).json({
-        status: 'fail',
-        error,
-      });
-    }
-    return next();
+    return res.status(400).json({
+      status: 'fail',
+      errors: validation.errors.all(),
+    });
   }
 
   /**
@@ -49,36 +49,29 @@ class ValidateRequests {
   * @return {void}
   */
   static requestUpdateValidation(req, res, next) {
-    const error = {};
-    let titleStr;
-    let descriptionStr;
-    let { title, description } = req.body;
-    if (title) title = title.trim();
-    if (description) description = description.trim();
-    const re = /\s/g;
-    if (title) titleStr = title.toLowerCase().replace(re, '');
+    const {
+      type, title, description,
+    } = req.body;
 
-    if (description) descriptionStr = description.toLowerCase().replace(re, '');
+    const validation = new Validator({
+      type,
+      title,
+      description,
+    }, {
+      type: [{ in: ['repairs', 'maintenance'] }],
+      title: ['string', 'min:4', 'max:40', 'regex:/^[a-z\\d\\-_,.*()!\\s]+$/i'],
+      description: ['string', 'min:20', 'max:300', 'regex:/^[a-z\\d\\-_,.*()!\\s]+$/i'],
+    }, {
+      in: 'The type specified has to be either repairs or maintenance',
+    });
 
-    if (title) {
-      if (/[^a-z,;'".!]/i.test(titleStr) || titleStr.length < 2) {
-        error.title = 'Sorry, the title you have entered is invalid';
-      }
+    if (validation.passes()) {
+      return next();
     }
-
-    if (description) {
-      if (/[^a-z,;'".!]/i.test(descriptionStr) || descriptionStr.length < 20) {
-        error.description = 'Sorry, the description you have entered is invalid';
-      }
-    }
-
-    if (!isEmpty(error)) {
-      return res.status(400).json({
-        status: 'fail',
-        error,
-      });
-    }
-    return next();
+    return res.status(400).json({
+      status: 'fail',
+      errors: validation.errors.all(),
+    });
   }
 }
 
