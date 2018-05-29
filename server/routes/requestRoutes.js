@@ -1,7 +1,7 @@
 import express from 'express';
 import Requests from '../controller/requestDbController';
 import Authenticate from '../middleware/authenticate';
-import findARequestById from '../middleware/utils';
+import { findARequestById } from '../middleware/utils';
 
 const router = express.Router();
 

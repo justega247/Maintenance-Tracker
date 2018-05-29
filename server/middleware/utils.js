@@ -20,4 +20,41 @@ const findARequestById = (req, res, next) => {
     });
 };
 
-export default findARequestById;
+/**
+ * @return {undefined}
+ *
+ * @param {object} res
+ * @param {number} code - status code
+ * @param {string} returnMessage
+ * @param {object} returnObject
+ */
+const sendSuccess = (res, code, returnMessage, returnObject) => {
+  res.status(code).json({
+    status: 'success',
+    message: returnMessage,
+    request: returnObject,
+  });
+  res.end();
+};
+
+/**
+ * @return {undefined}
+ *
+ * @param {object} res
+ * @param {number} code - status code
+ * @param {string} returnStatus
+ * @param {string} returnMessage
+ */
+const sendMessage = (res, code, returnStatus, returnMessage) => {
+  res.status(code).json({
+    status: returnStatus,
+    message: returnMessage,
+  });
+  res.end();
+};
+
+export {
+  findARequestById,
+  sendSuccess,
+  sendMessage,
+};

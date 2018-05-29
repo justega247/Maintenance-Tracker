@@ -9,7 +9,7 @@
     "pretest": "npm run migrate-test",
     "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require babel-core/register server/test/index.js --timeout 10000 --exit",
     "test-watch": "nodemon --exec \"npm test\"",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "coverage": "nyc report --reporter=lcov | coveralls",
     "migrateme": "babel-node server/models/database.js",
     "migrate": "cross-env NODE_ENV=production babel-node server/models/database.js",
     "migrate-dev": "cross-env NODE_ENV=development babel-node server/models/database.js",
@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/justega247/Maintenance-Tracker#readme",
   "dependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "dotenv": "^5.0.1",
