@@ -27,7 +27,7 @@ h2 {
 }
 
 #lgbtn {
-  padding: .5em 1em;
+  padding: .6em 3em;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1em;
@@ -59,7 +59,7 @@ h2 {
   padding: 2.5em;
   justify-content: space-around;
   border-radius: .5em;
-  background-color: white;
+  background-color: #878f99;
   width: 320px;
   height: 400px;
 }
@@ -79,16 +79,22 @@ input,textarea {
 #sub {
   margin: 1em 0em;
   padding: 1em;
-  border-radius: 5px;
+  border-radius: 10px;
   width: 100%;
-  background-color: blue;
+  background-color: #0000ff;
   font-size: 1.2em;
   cursor: pointer;
+  color: white;
+  font-size: 1.3em;
+}
+
+#sub:hover {
+  background-color: #1919d8b6;
 }
 
 #reqbtn {
-  margin: 1em 2em 1em 0em;
-  padding: .5em;
+  margin: 1em 2.4em 1em 0em;
+  padding: .5em 3em;
   border-radius: 5px;
   cursor: pointer;
   align-self: center;
@@ -105,15 +111,22 @@ input {
 
 @media screen and (max-width: 610px) {
   #request {
-    border: 1px solid;
-    display: flex;
-    flex-direction: column;
-    padding: 2.5em;
-    justify-content: space-around;
-    border-radius: .5em;
-    background-color: white;
     width: 73%;
-    height: 400px;
+  }
+
+  #lgbtn {
+    padding: .3em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  #reqbtn {
+    margin: 1em 2.4em 1em 0em;
+    padding: .5em;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: center;
   }
 }
 
