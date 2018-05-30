@@ -2,7 +2,7 @@ import { sign } from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { hashSync } from 'bcrypt-nodejs';
 import pool from '../models/database';
-import { sendSuccess, sendMessage } from '../middleware/utils';
+import { sendSuccess, sendMessage } from '../utils/utils';
 
 dotenv.config();
 
@@ -33,10 +33,7 @@ class Users {
     pool.query(checkDetails)
       .then((detailsFound) => {
         if (detailsFound.rowCount !== 0) {
-          return res.status(409).json({
-            status: 'fail',
-            message: 'Sorry, the username or email you supplied, already exists',
-          });
+          return sendMessage(res, 409, 'fail', 'Sorry, the username or email you supplied, already exists');
         }
         return pool.query(newUser)
           .then((createdUser) => {
@@ -50,13 +47,15 @@ class Users {
               },
             );
             res.header('x-auth', token).status(201).json({
-              status: 'success',
-              message: 'A new user has just been created',
-              yourDetails: {
-                id: createdUser.rows[0].id,
-                name: createdUser.rows[0].fullname,
-                username: createdUser.rows[0].username,
+              data: {
+                user: {
+                  id: createdUser.rows[0].id,
+                  name: createdUser.rows[0].fullname,
+                  username: createdUser.rows[0].username,
+                },
               },
+              message: 'A new user has just been created',
+              status: 'success',
             });
           });
       });
@@ -77,12 +76,14 @@ class Users {
       { expiresIn: TOKEN_EXPIRATION_TIME },
     );
     res.header('x-auth', token).status(200).json({
-      status: 'success',
-      message: 'You signed in successfully',
-      details: {
-        id,
-        username,
+      data: {
+        user: {
+          id,
+          username,
+        },
       },
+      message: 'You signed in successfully',
+      status: 'success',
     });
   }
 
