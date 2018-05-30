@@ -19,7 +19,7 @@
   </div>
   <div id="heading">
     <div id="new"><h2>Manage Request</h2></div> 
-    <a href="adminrequest.html"><button id="reqbtn">All requests</button></a>      
+    <a href="adminrequest.html"><button id="reqbtn">&#8592; All requests</button></a>      
   </div>
 
   <div class="container">
@@ -37,16 +37,12 @@
         </h3>
       </div>
       <div>
-        <h3 id="decision">Decision:
-          <br>
-          <input type="radio" name="decide" id="approve" checked> Approve
-          <br>
-          <input type="radio" name="decide" id="reject"> Reject
-        </h3>
+        <h3>Decision:</h3>
         <div>
-          <h3>Resolved: <input type="checkbox" name="resolve" id="resolve"></h3>
-        </div>         
-      </div>          
+          <button class="decide" id="greenbtn">Approve</button>
+          <button class="decide" id="redbtn">Reject</button>
+        </div>
+      </div>
     </div>
   </div>
 
