@@ -13,7 +13,7 @@ describe('GET /api/v1/requests/', () => {
       .expect((res) => {
         expect(res.body.status).to.equal('success');
         expect(res.body.message).to.equal('Here are the request(s), that have been made');
-        expect(res.body.request).to.be.an('array');
+        expect(res.body.data.request).to.be.an('array');
       })
       .end(done);
   });

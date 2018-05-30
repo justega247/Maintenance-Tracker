@@ -1,6 +1,7 @@
 import { compareSync } from 'bcrypt-nodejs';
 import { verify } from 'jsonwebtoken';
 import pool from '../models/database';
+import { sendMessage } from '../utils/utils';
 
 const { SECRET } = process.env;
 
@@ -25,10 +26,7 @@ class Authenticate {
     pool.query(findUserWithUsername)
       .then((usernameFound) => {
         if (usernameFound.rowCount === 0) {
-          return res.status(404).json({
-            status: 'fail',
-            message: 'No user found with that username.',
-          });
+          return sendMessage(res, 404, 'fail', 'No user found with that username.');
         } else if (compareSync(password, usernameFound.rows[0].password)) {
           req.user = {
             id: usernameFound.rows[0].id,
@@ -36,10 +34,7 @@ class Authenticate {
           };
           return next();
         }
-        return res.status(400).json({
-          status: 'fail',
-          message: 'Sorry, your password does not match',
-        });
+        return sendMessage(res, 400, 'fail', 'Sorry, your password does not match');
       });
   }
 
@@ -59,12 +54,7 @@ class Authenticate {
       verify(token, SECRET, (err, decoded) => {
         if (err) {
           if (err.name === 'TokenExpiredError') {
-            return res
-              .status(401)
-              .json({
-                status: 'fail',
-                message: 'Current session expired,please login to continue',
-              });
+            return sendMessage(res, 401, 'fail', 'Current session expired,please login to continue');
           }
         }
         req.decoded = decoded;
@@ -73,10 +63,7 @@ class Authenticate {
         pool.query(findUserWithId)
           .then((foundUser) => {
             if (foundUser.rowCount === 0) {
-              return res.status(404).json({
-                status: 'fail',
-                message: 'Sorry, no user with a matching id was found',
-              });
+              return sendMessage(res, 404, 'fail', 'Sorry, no user with a matching id was found');
             }
             req.user = {
               id: foundUser.rows[0].id,
@@ -86,10 +73,7 @@ class Authenticate {
         return null;
       });
     } else {
-      return res.status(400).json({
-        status: 'fail',
-        message: 'Please, you have not added your token',
-      });
+      return sendMessage(res, 400, 'fail', 'Please, you have not added your token');
     }
     return null;
   }
@@ -100,12 +84,7 @@ class Authenticate {
       verify(token, SECRET, (err, decoded) => {
         if (err) {
           if (err.name === 'TokenExpiredError') {
-            return res
-              .status(401)
-              .json({
-                status: 'fail',
-                message: 'Current session expired,please login to continue',
-              });
+            return sendMessage(res, 401, 'fail', 'Current session expired,please login to continue');
           }
         }
         req.decoded = decoded;
@@ -114,16 +93,10 @@ class Authenticate {
         pool.query(findUserWithId)
           .then((foundUser) => {
             if (foundUser.rowCount === 0) {
-              return res.status(404).json({
-                status: 'fail',
-                message: 'Sorry, no user with a matching id was found',
-              });
+              return sendMessage(res, 404, 'fail', 'Sorry, no user with a matching id was found');
             }
             if (foundUser.rows[0].role !== 'admin') {
-              return res.status(403).json({
-                status: 'fail',
-                message: 'Sorry, you are not allowed to access this route',
-              });
+              return sendMessage(res, 403, 'fail', 'Sorry, you are not allowed to access this route');
             }
             req.user = {
               id: foundUser.rows[0].id,
@@ -133,10 +106,7 @@ class Authenticate {
         return null;
       });
     } else {
-      return res.status(400).json({
-        status: 'fail',
-        message: 'Please, you have not added your token',
-      });
+      return sendMessage(res, 400, 'fail', 'Please, you have not added your token');
     }
     return null;
   }

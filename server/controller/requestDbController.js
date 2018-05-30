@@ -1,5 +1,5 @@
 import pool from '../models/database';
-import { sendSuccess, sendMessage } from '../middleware/utils';
+import { sendSuccess, sendMessage } from '../utils/utils';
 
 /**
  * @class Requests
