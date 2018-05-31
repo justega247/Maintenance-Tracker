@@ -6,7 +6,7 @@ const loginUser = (e) => {
   const username = document.getElementById('username');
   const password = document.getElementById('password');
 
-  fetch('http://localhost:8000/api/v1/auth/login', {
+  fetch('https://maintenance-tracker-andela.herokuapp.com/api/v1/auth/login', {
     method: 'post',
     mode: 'cors',
     headers: {
@@ -20,7 +20,7 @@ const loginUser = (e) => {
   })
     .then((res) => {
       const token = res.headers.get('x-auth');
-      localStorage.setItem('token', JSON.stringify(token));
+      localStorage.setItem('token', token);
       return res.json();
     })
     .then((foundUser) => {

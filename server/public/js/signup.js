@@ -1,5 +1,4 @@
-/*  global document:true, fetch:true, window:true */
-/*  eslint no-undef: "error"  */
+/* eslint-disable */
 
 const signupUser = (e) => {
   e.preventDefault();
@@ -9,7 +8,7 @@ const signupUser = (e) => {
   const fullname = document.getElementById('fullname');
   const email = document.getElementById('email');
 
-  fetch('http://localhost:8000/api/v1/auth/signup', {
+  fetch('https://maintenance-tracker-andela.herokuapp.com/api/v1/auth/signup', {
     method: 'post',
     mode: 'cors',
     headers: {
@@ -25,7 +24,7 @@ const signupUser = (e) => {
   })
     .then((res) => {
       const token = res.headers.get('x-auth');
-      localStorage.setItem('token', JSON.stringify(token));
+      localStorage.setItem('token', token);
       return res.json();
     })
     .then((newUser) => {

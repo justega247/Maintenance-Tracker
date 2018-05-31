@@ -505,7 +505,7 @@ describe('PUT users/requests/requestsId/', () => {
       .expect(404)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.message).to.equal('Sorry, there is no request with that id');
+        expect(res.body.message).to.equal('Sorry, you do not have a request with that id');
       })
       .end(done);
   });

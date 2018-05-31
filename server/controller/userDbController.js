@@ -199,12 +199,12 @@ class Users {
           return null;
         }
 
-        const requestToUpdate = `SELECT * FROM requests WHERE requests.id = '${requestId}'`;
+        const requestToUpdate = `SELECT * FROM requests WHERE requests.id = '${requestId}' AND requests.user_id = '${id}'`;
 
         return pool.query(requestToUpdate)
           .then((requestFound) => {
             if (requestFound.rowCount === 0) {
-              sendMessage(res, 404, 'fail', 'Sorry, there is no request with that id');
+              sendMessage(res, 404, 'fail', 'Sorry, you do not have a request with that id');
               return null;
             }
             if (requestFound.rows[0].status === 'approved') {
