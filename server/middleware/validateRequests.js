@@ -60,7 +60,7 @@ class ValidateRequests {
     }, {
       type: [{ in: ['repairs', 'maintenance'] }],
       title: ['string', 'min:4', 'max:40', 'regex:/^[a-z\\d\\-_,.*()!\\s]+$/i'],
-      description: ['string', 'min:20', 'max:300', 'regex:/^[a-z\\d\\-_,.*()!\\s]+$/i'],
+      description: ['string', 'min:20', 'max:300', 'regex:/^[a-z\\d\\-_,.*()!?\\s]+$/i'],
     }, {
       in: 'The type specified has to be either repairs or maintenance',
     });
