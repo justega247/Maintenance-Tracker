@@ -1,0 +1,157 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;  
+  font-family: 'Old Standard TT';
+}
+
+h1 {
+  color: white;
+}
+
+h2 {
+  padding-left: 1em;
+}
+
+#heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#reqbtn {
+  margin: 1em 2.4em 1em 0em;
+  padding: .5em 3em;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: center;
+}
+
+#head {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+body {  
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 1em;
+  background-color: #0000ff;
+}
+
+#logout {
+  align-self: center;
+  margin-right: 1.8em;
+}
+
+#lgbtn {
+  padding: .6em 3em;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+#reqbtn:hover,
+#lgbtn:hover {
+  background-color: #808080;
+  color: #f5f5f5;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  align-items: center;
+  justify-content: center;
+}
+
+#reqdetails {
+  display: flex;
+  flex-grow: inherit;
+  flex-direction: column;
+  height: auto;
+  padding: 40px;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-size: 1em;
+  border-radius: 30px;
+  border: 2px #f5f5f5 solid;
+  background-color: #878f99;
+  width: 60%;
+  color: whitesmoke;
+}
+
+.decide {
+  padding: .6em 1.5em;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#greenbtn {
+  background-color: green;
+  color: white;
+}
+
+#greenbtn:hover {
+  background-color: #6fb802;
+  color: black;
+}
+
+#redbtn {
+  background-color: red;
+  color: white;
+}
+
+#redbtn:hover {
+  background-color: #ffa600;
+  color: black;
+}
+
+#approve{
+  color: #ffffff;
+}
+
+@media screen and (max-width: 610px) {
+  #lgbtn {
+    padding: .5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  #reqbtn {
+    margin: 1em 2em 1em 0em;
+    padding: .5em;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: center;
+  }
+
+  #reqdetails {
+    border: none;
+    width: 70%;
+  }
+}
+
+#footer {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  bottom:0;
+  width:100%;
+  height:60px;
+  background: #0000ff;
+  color: #ffffff;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5em;
+}
