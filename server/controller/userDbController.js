@@ -21,9 +21,10 @@ class Users {
  * @param {param} res
  */
   static addUser(req, res) {
-    const {
-      username, fullname, email, password,
-    } = req.body;
+    const { email, password } = req.body;
+    let { username, fullname } = req.body;
+    username = username.trim().toLowerCase();
+    fullname = fullname.trim().toLowerCase();
 
     const hashedPassword = hashSync(password);
 
@@ -33,7 +34,7 @@ class Users {
     pool.query(checkDetails)
       .then((detailsFound) => {
         if (detailsFound.rowCount !== 0) {
-          return sendMessage(res, 409, 'fail', 'Sorry, the username or email you supplied, already exists');
+          return sendMessage(res, 409, 'fail', 'Sorry, the username and/or email you supplied, already exists');
         }
         return pool.query(newUser)
           .then((createdUser) => {
@@ -54,7 +55,7 @@ class Users {
                   username: createdUser.rows[0].username,
                 },
               },
-              message: 'A new user has just been created',
+              message: 'Account successfully created',
               status: 'success',
             });
           });
@@ -96,8 +97,11 @@ class Users {
  * @param {param} res
  */
   static addRequest(req, res) {
-    const { title, type, description } = req.body;
     const { id } = req.user;
+    let { title, type, description } = req.body;
+    title = title.trim().toLowerCase();
+    type = type.trim().toLowerCase();
+    description = description.trim().toLowerCase();
 
     const getUserRequests = `SELECT * FROM requests WHERE requests.user_id = '${id}'`;
     const requestDetails = `INSERT INTO requests (user_id,title,type,description) VALUES('${id}','${title}','${type}','${description}') RETURNING id, title, type, description, user_id;`;

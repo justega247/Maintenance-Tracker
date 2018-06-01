@@ -19,7 +19,10 @@ class Authenticate {
  * @param {func} next
  */
   static findByCredentials(req, res, next) {
-    const { username, password } = req.body;
+    const { password } = req.body;
+    let { username } = req.body;
+
+    username = username.trim().toLowerCase();
 
     const findUserWithUsername = `SELECT * FROM users WHERE users.username = '${username}'`;
 
@@ -77,6 +80,16 @@ class Authenticate {
     }
     return null;
   }
+
+  /**
+ * @description it authenticates the validity of adminUser
+ *
+ * @return {void}
+ *
+ * @param {param} req
+ * @param {param} res
+ * @param {func} next
+ */
   static authenticateAdminUser(req, res, next) {
     const token = req.headers['x-auth'];
 

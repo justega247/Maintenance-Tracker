@@ -22,7 +22,11 @@ app.use('/api/v1/requests', requestRoutes);
 
 app.use('/', express.static(path.join(__dirname, 'public')));
 
-app.get('*', (req, res) => res.status(200).send({
+app.get('/api/v1', (req, res) => res.status(200).json({
+  message: 'Welcome to the maintenance tracker app version(1)',
+}));
+
+app.get('*', (req, res) => res.status(400).json({
   message: 'Please, check your route details',
 }));
 

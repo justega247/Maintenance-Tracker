@@ -431,7 +431,7 @@ describe('PUT users/requests/requestsId/', () => {
   });
 
   it('should not update a request when the same data already exists', (done) => {
-    const requestId = 1;
+    const requestId = 2;
     const update = {
       title: 'Broken flask',
       description: 'Please come mend my flask,it is broken',
