@@ -154,4 +154,18 @@ describe('PUT /:requestId/resolve', () => {
       })
       .end(done);
   });
+
+  it('should not change the state of a request to resolved when id is not a number', (done) => {
+    const id = 'abc';
+
+    request(app)
+      .put(`/api/v1/requests/${id}/resolve`)
+      .set('x-auth', fakeToken)
+      .expect(422)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+        expect(res.body.message).to.equal('Sorry, your requestId has to be a number');
+      })
+      .end(done);
+  });
 });
