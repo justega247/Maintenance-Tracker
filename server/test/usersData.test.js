@@ -298,7 +298,7 @@ describe('POST /users/requests', () => {
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.errors.type[0]).to.equal('The type specified has to be either repairs or maintenance');
+        expect(res.body.errors.type[0]).to.equal('The type specified has to be either repairs or maintenance, lowercased');
       })
       .end(done);
   });

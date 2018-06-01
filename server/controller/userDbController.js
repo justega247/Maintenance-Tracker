@@ -180,6 +180,10 @@ class Users {
     const { title, type, description } = req.body;
     const requestId = parseInt(req.params.requestId, 10);
 
+    if (!Number.isInteger(requestId)) {
+      sendMessage(res, 422, 'fail', 'Sorry, your requestId has to be a number');
+      return null;
+    }
 
     const emptyString = updateValueArray.find(updateValue => req.body[updateValue].trim() === '');
 
