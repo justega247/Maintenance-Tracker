@@ -14,21 +14,17 @@ class ValidateRequests {
    * @return {void}
    */
   static requestDataValidation(req, res, next) {
-    let { title, type, description } = req.body;
-    title = title.trim().toLowerCase();
-    type = type.trim().toLowerCase();
-    description = description.trim().toLowerCase();
-
+    const { type, title, description } = req.body;
     const validation = new Validator({
       type,
       title,
       description,
     }, {
-      type: ['required', { in: ['repairs', 'maintenance'] }],
+      type: ['required', 'string', { in: ['repairs', 'maintenance'] }],
       title: ['required', 'string', 'min:4', 'max:60', 'regex:/^[a-z\\d\\-_,.()!\\s]+$/i'],
       description: ['required', 'string', 'min:15', 'max:300', 'regex:/^[a-z\\d\\-_,.*()!\\s]+$/i'],
     }, {
-      in: 'The type specified has to be either repairs or maintenance',
+      in: 'The type specified has to be either repairs or maintenance, lowercased',
     });
 
     if (validation.passes()) {
@@ -50,21 +46,17 @@ class ValidateRequests {
   * @return {void}
   */
   static requestUpdateValidation(req, res, next) {
-    let { title, type, description } = req.body;
-    title = title.trim().toLowerCase();
-    type = type.trim().toLowerCase();
-    description = description.trim().toLowerCase();
-
+    const { type, title, description } = req.body;
     const validation = new Validator({
       type,
       title,
       description,
     }, {
-      type: [{ in: ['repairs', 'maintenance'] }],
+      type: ['string', { in: ['repairs', 'maintenance'] }],
       title: ['string', 'min:4', 'max:40', 'regex:/^[a-z\\d\\-_,.*()!\\s]+$/i'],
       description: ['string', 'min:20', 'max:300', 'regex:/^[a-z\\d\\-_,.*()!\\s]+$/i'],
     }, {
-      in: 'The type specified has to be either repairs or maintenance',
+      in: 'The type specified has to be either repairs or maintenance, lowercased',
     });
 
     if (validation.passes()) {
