@@ -298,7 +298,7 @@ describe('POST /users/requests', () => {
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.errors.type[0]).to.equal('The type specified has to be either repairs or maintenance, lowercased');
+        expect(res.body.errors.type[0]).to.equal('The type specified has to be either repairs or maintenance.');
       })
       .end(done);
   });
@@ -542,6 +542,24 @@ describe('PUT users/requests/requestsId/', () => {
       .set('x-auth', fakeToken)
       .send(update)
       .expect(400)
+      .expect((res) => {
+        expect(res.body.status).to.equal('fail');
+      })
+      .end(done);
+  });
+
+  it('should not update a request when invalid id is sent', (done) => {
+    const update = {
+      title: 'Broken flasks',
+      description: 'Please come mend my flask,it is broken',
+      type: 'repairs',
+    };
+
+    request(app)
+      .put('/api/v1/users/requests/poll')
+      .set('x-auth', fakeToken)
+      .send(update)
+      .expect(422)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
       })

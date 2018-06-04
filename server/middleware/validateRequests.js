@@ -14,7 +14,10 @@ class ValidateRequests {
    * @return {void}
    */
   static requestDataValidation(req, res, next) {
-    const { type, title, description } = req.body;
+    let { title, type, description } = req.body;
+    title = title.trim().toLowerCase();
+    type = type.trim().toLowerCase();
+    description = description.trim().toLowerCase();
     const validation = new Validator({
       type,
       title,
@@ -24,7 +27,7 @@ class ValidateRequests {
       title: ['required', 'string', 'min:4', 'max:60', 'regex:/^[a-z\\d\\-_,.()!\\s]+$/i'],
       description: ['required', 'string', 'min:15', 'max:300', 'regex:/^[a-z\\d\\-_,.*()!\\s]+$/i'],
     }, {
-      in: 'The type specified has to be either repairs or maintenance, lowercased',
+      in: 'The type specified has to be either repairs or maintenance.',
     });
 
     if (validation.passes()) {
