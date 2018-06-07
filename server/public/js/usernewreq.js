@@ -9,7 +9,10 @@ const createRequest = (e) => {
 
   const retrievedToken = localStorage.getItem('token');
 
-  fetch('https://maintenance-tracker-andela.herokuapp.com/api/v1/users/requests', {
+  const url = 'https://maintenance-tracker-andela.herokuapp.com/api/v1/users/requests';
+  //const url = 'http://localhost:8000/api/v1/users/requests';
+
+  fetch(url, {
     method: 'post',
     mode: 'cors',
     headers: {

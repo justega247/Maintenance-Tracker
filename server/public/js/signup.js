@@ -8,7 +8,10 @@ const signupUser = (e) => {
   const fullname = document.getElementById('fullname');
   const email = document.getElementById('email');
 
-  fetch('https://maintenance-tracker-andela.herokuapp.com/api/v1/auth/signup', {
+  const url = 'https://maintenance-tracker-andela.herokuapp.com/api/v1/auth/signup';
+  //const url = 'http://localhost:8000/api/v1/auth/signup';
+
+  fetch(url, {
     method: 'post',
     mode: 'cors',
     headers: {
