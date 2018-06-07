@@ -6,7 +6,10 @@ const loginUser = (e) => {
   const username = document.getElementById('username');
   const password = document.getElementById('password');
 
-  fetch('https://maintenance-tracker-andela.herokuapp.com/api/v1/auth/login', {
+  const url = 'https://maintenance-tracker-andela.herokuapp.com/api/v1/auth/login';
+  //const url = 'http://localhost:8000/api/v1/auth/login';
+
+  fetch(url , {
     method: 'post',
     mode: 'cors',
     headers: {
