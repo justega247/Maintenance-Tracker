@@ -43,13 +43,25 @@
         <th scope="col">Type</th>
         <th scope="col">Status</th>
         <th scope="col">Details</th>
-        <th scope="col">Delete</th>
+        <th scope="col">Edit</th>
       </tr>
     </thead>
     <tbody id="tbody">
 
     </tbody>
   </table>
+
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div><p>RequestId: <span id="requestId"></span></p></div>
+      <div><p>Title: <span id="title"></span></p></div>
+      <div><p>Type: <span id="type"></span></p></div>
+      <div><p>Status: <span id="status"></span></p></div>
+      <div><p>Description: <span id="description"></span></p></div>
+    </div>
+  </div>
 
   <div id="footer"><small>&copy; Copyright 2018, Andela 21</small></div>
   <script src="./js/usersrequest.js"></script>
