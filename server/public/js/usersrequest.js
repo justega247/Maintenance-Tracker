@@ -1,20 +1,21 @@
 /* eslint-disable */
 
-const createNode = element => document.createElement(element);
-const append = (parent, el) => parent.appendChild(el);
+const getUserRequests = () => {
+  const createNode = element => document.createElement(element);
+  const append = (parent, el) => parent.appendChild(el);
 
-const retrievedToken = localStorage.getItem('token');
+  const retrievedToken = localStorage.getItem('token');
 
-const url = 'https://maintenance-tracker-andela.herokuapp.com/api/v1/users/requests';
-//const url = 'http://localhost:8000/api/v1/users/requests';
+  const url = 'https://maintenance-tracker-andela.herokuapp.com/api/v1/users/requests/';
+  //const url = 'http://localhost:8000/api/v1/users/requests/';
 
-fetch(url, {
-  method: 'get',
-  mode: 'cors',
-  headers: {
-    'x-auth': retrievedToken,
-  },
-})
+  fetch(url, {
+    method: 'get',
+    mode: 'cors',
+    headers: {
+      'x-auth': retrievedToken,
+    },
+  })
   .then(res => res.json())
   .then((userRequests) => {
     const requests = userRequests.data.request;
@@ -49,14 +50,14 @@ fetch(url, {
       detailsFont.setAttribute('class', 'fa fa-file');
 
       const td6 = createNode('td');
-      td6.setAttribute('data-label', 'Delete');
+      td6.setAttribute('data-label', 'Edit');
 
-      const deleteBtn = createNode('button');
-      deleteBtn.setAttribute('id', 'delete');
-      deleteBtn.innerHTML = 'Delete ';
+      const editBtn = createNode('button');
+      editBtn.setAttribute('id', 'edit');
+      editBtn.innerHTML = 'Edit ';
 
-      const deleteFont = createNode('i');
-      deleteFont.setAttribute('class', 'fa fa-trash');
+      const editFont = createNode('i');
+      editFont.setAttribute('class', 'far fa-edit');
 
       append(tr, td1);
       append(tr, td2);
@@ -65,11 +66,54 @@ fetch(url, {
       append(detailsBtn, detailsFont);
       append(td5, detailsBtn);
       append(tr, td5);
-      append(deleteBtn, deleteFont);
-      append(td6, deleteBtn);
+      append(editBtn, editFont);
+      append(td6, editBtn);
       append(tr, td6);
 
       const tbody = document.getElementById('tbody');
       append(tbody, tr);
+
+      detailsBtn.addEventListener('click', () => {
+
+        const modal = document.getElementById('myModal');
+        const span = document.getElementsByClassName('close')[0];
+
+        fetch(`${url}${request.id}`, {
+          method: 'get',
+          mode: 'cors',
+          headers: {
+            'x-auth': retrievedToken,
+          },
+        })
+        .then(res => res.json())
+        .then((userRequest) => {
+          const aRequest = userRequest.data.request;
+          document.getElementById('requestId').innerHTML = `${aRequest.id}`;
+          document.getElementById('title').innerHTML = `${aRequest.title}`;
+          document.getElementById('type').innerHTML = `${aRequest.type}`;
+          document.getElementById('status').innerHTML = `${aRequest.status}`;
+          document.getElementById('description').innerHTML = `${aRequest.description}`;
+
+          modal.style.display = 'block';
+
+          span.onclick = () => {
+            modal.style.display = 'none';
+          };
+
+          window.onclick = (event) => {
+            if (event.target === modal) {
+              modal.style.display = 'none';
+            }
+          };
+        })
+      });
     });
   });
+}
+
+getUserRequests();
+
+
+
+
+

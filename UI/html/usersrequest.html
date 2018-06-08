@@ -43,7 +43,7 @@
         <th scope="col">Type</th>
         <th scope="col">Status</th>
         <th scope="col">Details</th>
-        <th scope="col">Delete</th>
+        <th scope="col">Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -52,53 +52,65 @@
         <td data-label="Title">Broken Desk</td>
         <td data-label="Type">repairs</td>
         <td data-label="Status">pending</td>
-        <td data-label="Details"><button id="details">Details <i class="fa fa-file"></i></button></td>
-        <td data-label="Delete"><button id="delete">Delete <i class="fa fa-trash" aria-hidden="true"></i></button></td>
+        <td data-label="Details"><button class="details" id="details">Details <i class="fa fa-file"></i></button></td>
+        <td data-label="Edit"><button id="edit">Edit <i class="far fa-edit"></i></button></td>
       </tr>
       <tr>
         <td scope="row" data-label="id">22</td>
         <td data-label="Title">Broken Desk</td>
         <td data-label="Type">repairs</td>
         <td data-label="Status">pending</td>
-        <td data-label="Details"><button id="details">Details <i class="fa fa-file" aria-hidden="true"></i></button></td>
-        <td data-label="Delete"><button id="delete">Delete <i class="fa fa-trash" aria-hidden="true"></i></button></td>
+        <td data-label="Details"><button class="details" id="details">Details <i class="fa fa-file" aria-hidden="true"></i></button></td>
+        <td data-label="Edit"><button id="edit">Edit <i class="far fa-edit"></i></button></td>
       </tr>
       <tr>
         <td scope="row" data-label="id">22</td>
         <td data-label="Title">Broken Desk</td>
         <td data-label="Type">repairs</td>
         <td data-label="Status">pending</td>
-        <td data-label="Details"><button id="details">Details <i class="fa fa-file" aria-hidden="true"></i></button></td>
-        <td data-label="Delete"><button id="delete">Delete <i class="fa fa-trash" aria-hidden="true"></i></button></td>
+        <td data-label="Details"><button class="details" id="details">Details <i class="fa fa-file" aria-hidden="true"></i></button></td>
+        <td data-label="Edit"><button id="edit">Edit <i class="far fa-edit"></i></button></td>
       </tr>
       <tr>
         <td scope="row" data-label="id">22</td>
         <td data-label="Title">Faulty Microphone</td>
         <td data-label="Type">maintenance</td>
         <td data-label="Status">pending</td>
-        <td data-label="Details"><button id="details">Details <i class="fa fa-file" aria-hidden="true"></i></button></td>
-        <td data-label="Delete"><button id="delete">Delete <i class="fa fa-trash" aria-hidden="true"></i></button></td>
+        <td data-label="Details"><button class="details" id="details">Details <i class="fa fa-file" aria-hidden="true"></i></button></td>
+        <td data-label="Edit"><button id="edit">Edit <i class="far fa-edit"></i></button></td>
       </tr>
       <tr>
         <td scope="row" data-label="id">22</td>
         <td data-label="Title">Broken Desk</td>
         <td data-label="Type">repairs</td>
         <td data-label="Status">pending</td>
-        <td data-label="Details"><button id="details">Details <i class="fa fa-file" aria-hidden="true"></i></button></td>
-        <td data-label="Delete"><button id="delete">Delete <i class="fa fa-trash" aria-hidden="true"></i></button></td>
+        <td data-label="Details"><button class="details" id="details">Details <i class="fa fa-file" aria-hidden="true"></i></button></td>
+        <td data-label="Edit"><button id="edit">Edit <i class="far fa-edit"></i></button></td>
       </tr>
       <tr>
         <td scope="row" data-label="id">22</td>
         <td data-label="Title">Faulty CPU</td>
         <td data-label="Type">repairs</td>
         <td data-label="Status">pending</td>
-        <td data-label="Details"><button id="details">Details <i class="fa fa-file" aria-hidden="true"></i></i></button></td>
-        <td data-label="Delete"><button id="delete">Delete <i class="fa fa-trash" aria-hidden="true"></i></button></td>
+        <td data-label="Details"><button class="details" id="details">Details <i class="fa fa-file" aria-hidden="true"></i></i></button></td>
+        <td data-label="Edit"><button id="edit">Edit <i class="far fa-edit"></i></button></td>
       </tr>
     </tbody>
   </table>
 
-  <div id="footer"><small>&copy; Copyright 2018, Andela 21</small></div>
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div><p>RequestId: <span id="requestId">22</span></p></div>
+      <div><p>Title: <span id="title">Faulty CPU</span></p></div>
+      <div><p>Type: <span id="type">repairs</span></p></div>
+      <div><p>Status: <span id="status">pending</span></p></div>
+      <div><p>Description: <span id="description">The CPU is faulty again, I would like to have it fixed.</span></p></div>
+    </div>
+  </div>
 
+  <div id="footer"><small>&copy; Copyright 2018, Andela 21</small></div>
+  <script src="../js/usersrequest.js"></script>
 </body>
 </html>
