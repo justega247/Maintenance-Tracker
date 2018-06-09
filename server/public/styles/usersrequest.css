@@ -208,6 +208,22 @@ table th {
   }
 }
 
+#footer {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  bottom:0;
+  width:100%;
+  height:60px;
+  background: whitesmoke;
+  color: #0000ff;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
 .modal {
   display: none;
   position: fixed;
@@ -244,19 +260,42 @@ table th {
   cursor: pointer;
 }
 
+#requestDetails {
+  text-align: center;
+}
 
-#footer {
+.editForm {
+  margin-bottom: .6em;
+}
+
+#editForm {
   display: flex;
   flex-direction: column;
-  position: fixed;
-  left: 0;
-  bottom:0;
-  width:100%;
-  height:60px;
-  background: whitesmoke;
-  color: #0000ff;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1.5em;
+}
+
+.update,
+#description,
+select {
+  width: 100%;
+  padding: .5em;
+}
+
+#requestDescription {
+  width: 100%;
+}
+
+#updateBtn {
+  background-color: #0000ff;
+  border-radius: 1em;
+  padding: .8em;
+  width: 100%;
+}
+
+#updateBtn:hover {
+  color: white;
+  cursor: pointer;
+}
+
+#info {
+  color: green;
 }

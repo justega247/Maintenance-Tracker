@@ -259,3 +259,39 @@ table th {
   text-decoration: none;
   cursor: pointer;
 }
+
+#requestDetails {
+  text-align: center;
+}
+
+.editForm {
+  margin-bottom: .6em;
+}
+
+#editForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.update,
+#description,
+select {
+  width: 100%;
+  padding: .5em;
+}
+
+#requestDescription {
+  width: 100%;
+}
+
+#updateBtn {
+  background-color: #0000ff;
+  border-radius: 1em;
+  padding: .8em;
+  width: 100%;
+}
+
+#updateBtn:hover {
+  color: white;
+  cursor: pointer;
+}
