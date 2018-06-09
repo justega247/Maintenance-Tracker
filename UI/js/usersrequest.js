@@ -19,3 +19,23 @@ window.onclick = (event) => {
     modal.style.display = 'none';
   }
 };
+
+const editModal = document.getElementById('editModal');
+
+const editBtn = document.getElementById('edit');
+
+const editSpan = document.getElementsByClassName('close')[1];
+
+editBtn.onclick = () => {
+  editModal.style.display = 'block';
+}
+
+editSpan.onclick = () => {
+  editModal.style.display = 'none';
+}
+
+window.onclick = (event) => {
+  if (event.target === editModal) {
+    editModal.style.display = 'none';
+  }
+};

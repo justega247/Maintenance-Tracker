@@ -38,12 +38,12 @@
     <caption>My Requests</caption>
     <thead>
       <tr>
-        <th scope="col">id</th>
         <th scope="col">Title</th>
         <th scope="col">Type</th>
         <th scope="col">Status</th>
         <th scope="col">Details</th>
         <th scope="col">Edit</th>
+        <th scope="col">Created</th>
       </tr>
     </thead>
     <tbody id="tbody">
@@ -55,11 +55,34 @@
     <!-- Modal content -->
     <div class="modal-content">
       <span class="close">&times;</span>
+      <div><h3 id="requestDetails">Request details</h3></div>
       <div><p>RequestId: <span id="requestId"></span></p></div>
       <div><p>Title: <span id="title"></span></p></div>
       <div><p>Type: <span id="type"></span></p></div>
       <div><p>Status: <span id="status"></span></p></div>
       <div><p>Description: <span id="description"></span></p></div>
+    </div>
+  </div>
+
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <form action="#" id="editForm">
+        <div><h3 id="requestDetails">Edit Request</h3></div>
+        <div><p id="info"></p></div>
+        <div class="editForm">
+          <label for="Type"><b>Type:</b></label>
+          <select name="type" id="requestType">
+            <option value="maintenance">Maintenance</option>
+            <option value="repairs">Repairs</option>
+          </select>
+        </div>
+        <div class="editForm"><label for="title"><b>Title:</b></label></div>
+        <div class="editForm"><input class="update" type="text" name="title" id="requestTitle" required></div>
+        <div class="editForm"><label for="description"><b>Description:</b></label></div>
+        <div class="editForm"><textarea name="description" id="requestDescription" cols="40" rows="8" required></textarea></div>
+        <button type="submit" id="updateBtn"><b>Update</b></button>
+      </form>
     </div>
   </div>
 
