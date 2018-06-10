@@ -78,7 +78,7 @@ body {
 #edit {
   background-color: red;
   border-radius: .5em;
-  padding: .5em 1em;
+  padding: .4em 1em;
 }
 
 #edit:hover {
@@ -89,7 +89,7 @@ body {
 #details {
   background-color: blue;
   border-radius: .5em;
-  padding: .5em 1em;
+  padding: .4em 1em;
 }
 
 #details:hover {
