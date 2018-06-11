@@ -16,7 +16,7 @@ const getUserRequests = () => {
   const retrievedToken = localStorage.getItem('token');
 
   const url = 'https://maintenance-tracker-andela.herokuapp.com/api/v1/users/requests/';
-  //const url = 'http://localhost:8000/api/v1/users/requests/';
+  // const url = 'http://localhost:8000/api/v1/users/requests/';
 
   fetch(url, {
     method: 'get',
@@ -63,7 +63,10 @@ const getUserRequests = () => {
 
         const editBtn = createNode('button');
         editBtn.setAttribute('id', 'edit');
-        if (request.status !== 'pending') editBtn.setAttribute('disabled', 'disabled');
+        if (request.status !== 'pending') {
+          editBtn.setAttribute('disabled', 'disabled');
+          editBtn.style.color = 'black';
+        }
         editBtn.innerHTML = 'Edit ';
 
         const editFont = createNode('i');

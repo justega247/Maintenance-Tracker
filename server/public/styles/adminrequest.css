@@ -14,6 +14,10 @@ body {
   min-height: 100vh;
 }
 
+#info {
+  color: red;
+}
+
 .header {
   display: flex;
   flex-direction: row;

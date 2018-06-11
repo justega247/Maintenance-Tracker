@@ -78,22 +78,22 @@ body {
 #edit {
   background-color: red;
   border-radius: .5em;
+  color: white;
   padding: .5em 1em;
 }
 
 #edit:hover {
-  color: white;
   cursor: pointer;
 }
 
 #details {
   background-color: blue;
   border-radius: .5em;
+  color: white;
   padding: .5em 1em;
 }
 
 #details:hover {
-  color: white;
   cursor: pointer;
 }
 
