@@ -14,7 +14,7 @@ class Requests {
  * @param {param} res
  */
   static retrieveRequests(req, res) {
-    const getAllRequests = 'SELECT requests.type,requests.title,requests.description,requests.status,requests.created_at, users.fullname AS requested_by FROM requests INNER JOIN users ON requests.user_id = users.id';
+    const getAllRequests = 'SELECT requests.id,requests.type,requests.title,requests.description,requests.status,requests.created_at, users.fullname AS requested_by FROM requests INNER JOIN users ON requests.user_id = users.id';
 
     pool.query(getAllRequests)
       .then(AllRequests => sendSuccess(res, 200, 'Here are the request(s), that have been made', AllRequests.rows));

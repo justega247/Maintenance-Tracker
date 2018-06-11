@@ -59,7 +59,6 @@ const getAllUsersRequests = () => {
 
         const resolveBtn = createNode('button');
         resolveBtn.setAttribute('id', 'resolve');
-        resolveBtn.setAttribute('disabled', 'disabled');
         resolveBtn.innerHTML = 'Resolve ';
 
         const resolveFont = createNode('i');
@@ -82,8 +81,52 @@ const getAllUsersRequests = () => {
 
         const tbody = document.getElementById('tbody');
         append(tbody, tr);
+
+        manageBtn.addEventListener('click', () => {
+          resolveBtn.removeAttribute('disabled');
+          const modal = document.getElementById('myModal');
+          const span = document.getElementsByClassName('close')[0];
+
+          modal.style.display = 'block';
+
+          span.onclick = () => {
+            modal.style.display = 'none';
+          };
+
+          window.onclick = (event) => {
+            if (event.target === modal) {
+              modal.style.display = 'none';
+            }
+          };
+
+          document.getElementById('requestId').innerHTML = `${request.id}`;
+          document.getElementById('title').innerHTML = `${request.title}`;
+          document.getElementById('type').innerHTML = `${request.type}`;
+          document.getElementById('status').innerHTML = `${request.status}`;
+          document.getElementById('description').innerHTML = `${request.description}`;
+
+          const approveBtn = document.getElementById('greenbtn');
+
+          approveBtn.addEventListener('click', () => {
+            const id = document.getElementById('requestId').innerHTML
+            return fetch(`${url}${id}/approve`, {
+              method: 'put',
+              mode: 'cors',
+              headers: {
+                'x-auth': retrievedToken,
+              },
+            })
+              .then(res => res.json())
+              .then((requestApproved) => {
+                window.location.href = './adminrequest.html';
+                return null;
+              });
+          });
+        });
       });
     });
 };
 
 getAllUsersRequests();
+
+

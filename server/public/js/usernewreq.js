@@ -9,8 +9,8 @@ const createRequest = (e) => {
 
   const retrievedToken = localStorage.getItem('token');
 
-  //const url = 'https://maintenance-tracker-andela.herokuapp.com/api/v1/users/requests';
-  const url = 'http://localhost:8000/api/v1/users/requests';
+  const url = 'https://maintenance-tracker-andela.herokuapp.com/api/v1/users/requests';
+  // const url = 'http://localhost:8000/api/v1/users/requests';
 
   fetch(url, {
     method: 'post',
@@ -28,7 +28,6 @@ const createRequest = (e) => {
   })
     .then(res => res.json())
     .then((newRequest) => {
-      console.log(newRequest);
       if (newRequest.status === 'success') {
         window.location.href = './usersrequest.html';
       } else {
