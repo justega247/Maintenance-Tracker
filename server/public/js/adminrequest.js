@@ -15,8 +15,8 @@ const getAllUsersRequests = () => {
 
   const retrievedToken = localStorage.getItem('token');
 
-  const url = 'https://maintenance-tracker-andela.herokuapp.com/api/v1/requests/';
-  // const url = 'http://localhost:8000/api/v1/requests/';
+  // const url = 'https://maintenance-tracker-andela.herokuapp.com/api/v1/requests/';
+  const url = 'http://localhost:8000/api/v1/requests/';
 
   fetch(url, {
     method: 'get',
@@ -60,6 +60,13 @@ const getAllUsersRequests = () => {
         const resolveBtn = createNode('button');
         resolveBtn.setAttribute('id', 'resolve');
         resolveBtn.innerHTML = 'Resolve ';
+        resolveBtn.onmouseover = function() {
+          this.style.color = 'white';
+          this.style.cursor = 'pointer';
+        }
+        resolveBtn.onmouseleave = function() {
+          this.style.color = 'black';
+        }
 
         const resolveFont = createNode('i');
         resolveFont.setAttribute('class', 'far fa-check-square');
@@ -106,9 +113,10 @@ const getAllUsersRequests = () => {
           document.getElementById('description').innerHTML = `${request.description}`;
 
           const approveBtn = document.getElementById('greenbtn');
+          const disapproveBtn = document.getElementById('redbtn');
 
           approveBtn.addEventListener('click', () => {
-            const id = document.getElementById('requestId').innerHTML
+            const id = document.getElementById('requestId').innerHTML;
             return fetch(`${url}${id}/approve`, {
               method: 'put',
               mode: 'cors',
@@ -118,6 +126,22 @@ const getAllUsersRequests = () => {
             })
               .then(res => res.json())
               .then((requestApproved) => {
+                window.location.href = './adminrequest.html';
+                return null;
+              });
+          });
+
+          disapproveBtn.addEventListener('click', () => {
+            const id = document.getElementById('requestId').innerHTML;
+            return fetch(`${url}${id}/disapprove`, {
+              method: 'put',
+              mode: 'cors',
+              headers: {
+                'x-auth': retrievedToken,
+              },
+            })
+              .then(res => res.json())
+              .then((requestDisapproved) => {
                 window.location.href = './adminrequest.html';
                 return null;
               });
