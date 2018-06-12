@@ -15,8 +15,8 @@ const getAllUsersRequests = () => {
 
   const retrievedToken = localStorage.getItem('token');
 
-  // const url = 'https://maintenance-tracker-andela.herokuapp.com/api/v1/requests/';
-  const url = 'http://localhost:8000/api/v1/requests/';
+  const url = 'https://maintenance-tracker-andela.herokuapp.com/api/v1/requests/';
+  // const url = 'http://localhost:8000/api/v1/requests/';
 
   fetch(url, {
     method: 'get',
@@ -147,10 +147,24 @@ const getAllUsersRequests = () => {
               });
           });
         });
+
+        resolveBtn.addEventListener('click', () => {
+          const id = document.getElementById('requestId').innerHTML;
+          return fetch(`${url}${id}/resolve`, {
+            method: 'put',
+            mode: 'cors',
+            headers: {
+              'x-auth': retrievedToken,
+            },
+          })
+            .then(res => res.json())
+            .then((requestResolved) => {
+              window.location.href = './adminrequest.html';
+              return null;
+            });
+        });
       });
     });
 };
 
 getAllUsersRequests();
-
-
