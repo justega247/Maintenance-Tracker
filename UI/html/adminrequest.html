@@ -16,104 +16,101 @@
     <div id="logout">
       <a href="index.html"><button id="lgbtn">Logout</button></a>
     </div>
-  </div>  
+  </div>
   <div id="filter">
     <div><h3>Filter: </h3></div>
     <div id="sort">
       <select name="req" id="req">
-        <option value="repair">Repairs</option>
+        <option value="repairs">Repairs</option>
         <option value="maintenance">Maintenance</option>
       </select>
     </div>
   </div>
-  
-  <div class="container">
-    <a href="adminmanagereq.html" id="manage">
-      <div class="requests">
-        <p>Requested by: Andrew Davids</p>
-        <p>Position: Clerk</p>
-        <p>Type: Maintenance</p>
+
+  <table>
+    <caption>All Requests</caption>
+    <thead>
+      <tr>
+        <th scope="col">Requester</th>
+        <th scope="col">Title</th>
+        <th scope="col">Type</th>
+        <th scope="col">Manage</th>
+        <th scope="col">Resolve</th>
+        <th scope="col">Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-label="Requester">Thomas Price</td>
+        <td data-label="Title">bad chair arm</td>
+        <td data-label="Type">repairs</td>
+        <td data-label="Manage"><button id="manage">Manage <i class="far fa-clipboard"></i></button></td>
+        <td data-label="Resolve"><button id="resolve">Resolve <i class="far fa-check-square"></i></button></td>
+        <td data-label="Created">7/9/2018</td>
+      </tr>
+      <tr>
+        <td data-label="Requester">Thompson Adewale</td>
+        <td data-label="Title">bad chair arm</td>
+        <td data-label="Type">maintenance</td>
+        <td data-label="Manage"><button id="manage">Manage <i class="far fa-clipboard"></i></button></td>
+        <td data-label="Resolve"><button id="resolve">Resolve <i class="far fa-check-square"></i></button></td>
+        <td data-label="Created">7/9/2018</td>
+      </tr>
+      <tr>
+        <td data-label="Requester">Thomas Price</td>
+        <td data-label="Title">bad chair arm</td>
+        <td data-label="Type">repairs</td>
+        <td data-label="Manage"><button id="manage">Manage <i class="far fa-clipboard"></i></button></td>
+        <td data-label="Resolve"><button id="resolve">Resolve <i class="far fa-check-square"></i></button></td>
+        <td data-label="Created">6/9/2018</td>
+      </tr>
+      <tr>
+        <td data-label="Requester">Carl Cook</td>
+        <td data-label="Title">bad chair arm</td>
+        <td data-label="Type">maintenance</td>
+        <td data-label="Manage"><button id="manage">Manage <i class="far fa-clipboard"></i></button></td>
+        <td data-label="Resolve"><button id="resolve">Resolve <i class="far fa-check-square"></i></button></td>
+        <td data-label="Created">6/9/2018</td>
+      </tr>
+      <tr>
+        <td data-label="Requester">Thomas Price</td>
+        <td data-label="Title">bad chair arm</td>
+        <td data-label="Type">repairs</td>
+        <td data-label="Manage"><button id="manage">Manage <i class="far fa-clipboard"></i></button></td>
+        <td data-label="Resolve"><button id="resolve">Resolve <i class="far fa-check-square"></i></button></td>
+        <td data-label="Created">6/9/2018</td>
+      </tr>
+      <tr>
+        <td data-label="Requester">Edafe Okih</td>
+        <td data-label="Title">bad chair arm</td>
+        <td data-label="Type">repairs</td>
+        <td data-label="Manage"><button id="manage">Manage <i class="far fa-clipboard"></i></button></td>
+        <td data-label="Resolve"><button id="resolve">Resolve <i class="far fa-check-square"></i></button></td>
+        <td data-label="Created">6/9/2018</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div><h3 id="requestManage">Manage Request</h3></div>
+      <div><p>RequestId: <span id="requestId">22</span></p></div>
+      <div><p>Title: <span id="title">Faulty CPU</span></p></div>
+      <div><p>Type: <span id="type">repairs</span></p></div>
+      <div><p>Status: <span id="status">pending</span></p></div>
+      <div><p>Description: <span id="description">The CPU is faulty again, I would like to have it fixed.</span></p></div>
+      <div>
+        <h3>Decision:</h3>
+        <div>
+          <button class="decide" id="greenbtn">Approve</button>
+          <button class="decide" id="redbtn">Reject</button>
+        </div>
       </div>
-    </a>
-    <a href="adminmanagereq.html" id="manage">
-      <div class="requests">
-        <p>Requested by: Andy Davids</p>
-        <p>Position: Clerk Assistant</p>
-        <p>Type: Maintenance</p>
-      </div>
-    </a>
-    <a href="adminmanagereq.html" id="manage">
-      <div class="requests">
-        <p>Requested by: Anslem David</p>
-        <p>Position: Chief Engineer</p>
-        <p>Type: Repairs</p>
-      </div>
-    </a>   
-    <a href="adminmanagereq.html" id="manage">
-      <div class="requests">
-        <p>Requested by: Drew Dave</p>
-        <p>Position: Facilities Manager</p>
-        <p>Type: Maintenance</p>
-      </div>
-    </a>    
-    <a href="adminmanagereq.html" id="manage">
-      <div class="requests">
-        <p>Requested by: Mike Joe</p>
-        <p>Position: CEO</p>
-        <p>Type: Repairs</p>
-      </div>
-    </a>   
-    <a href="adminmanagereq.html" id="manage">
-      <div class="requests">
-        <p>Requested by: Callum Chambers</p>
-        <p>Position: Security</p>
-        <p>Type: Maintenance</p>
-      </div>
-    </a>   
-    <a href="adminmanagereq.html" id="manage">
-      <div class="requests">
-        <p>Requested by: Scott Matt</p>
-        <p>Position: MD</p>
-        <p>Type: Repairs</p>
-      </div>
-    </a>    
-    <a href="adminmanagereq.html" id="manage">
-      <div class="requests">
-        <p>Requested by: George Filipe</p>
-        <p>Position: Agent</p>
-        <p>Type: Maintenance</p>
-      </div>
-    </a>
-    <a href="adminmanagereq.html" id="manage">
-      <div class="requests">
-        <p>Requested by: Sam Barrows</p>
-        <p>Position: HR</p>
-        <p>Type: Maintenance</p>
-      </div>
-    </a>    
-    <a href="adminmanagereq.html" id="manage">
-      <div class="requests">
-        <p>Requested by: Frank Bill</p>
-        <p>Position: Janitor</p>
-        <p>Type: Repairs</p>
-      </div>
-    </a>    
-    <a href="adminmanagereq.html" id="manage">
-      <div class="requests">
-        <p>Requested by: Edgar Allen</p>
-        <p>Position: Receptionist</p>
-        <p>Type: Maintenance</p>
-      </div>
-    </a>    
-    <a href="adminmanagereq.html" id="manage">
-      <div class="requests">
-        <p>Requested by: Piper Jones</p>
-        <p>Position: Director</p>
-        <p>Type: Repairs</p>
-      </div>
-    </a>    
+    </div>
   </div>
   <div id="footer"><small>&copy; Copyright 2018, Andela 21</small></div>
-  
+  <script src="../js/adminrequest.js"></script>
 </body>
 </html>
