@@ -65,6 +65,7 @@ button {
   margin-left: auto;
   margin-right: auto;
   border: 1px solid;
+  padding-left: .5em;
 }
 
 #signup,#fg,#sign {

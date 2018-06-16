@@ -24,10 +24,18 @@ class ValidateRequests {
       description,
     }, {
       type: ['required', 'string', { in: ['repairs', 'maintenance'] }],
-      title: ['required', 'string', 'min:4', 'max:60', 'regex:/^[a-z\\d\\-_,.()!\\s]+$/i'],
-      description: ['required', 'string', 'min:15', 'max:300', 'regex:/^[a-z\\d\\-_,.*()!\\s]+$/i'],
+      title: ['required', 'string', 'min:4', 'max:60', 'regex:/^[a-z\\d\\-_,\'.()!\\s]+$/i'],
+      description: ['required', 'string', 'min:15', 'max:300', 'regex:/^[a-z\\d\\-_,\'.*()!\\s]+$/i'],
     }, {
       in: 'The type specified has to be either repairs or maintenance.',
+      "min.title": 'The :attribute is too short. Min length is :min characters.',
+      "max.title": 'The :attribute is too long. Max length is :max characters.',
+      "regex.title": 'The title of your request contains invalid character(s)',
+      "required.title": 'Sorry, you have to specify a title for your request',
+      "required.description": 'Sorry, you have to specify a description for your request',
+      "min.description": 'The :attribute is too short. Min length is :min characters.',
+      "max.description": 'The :attribute is too long. Max length is :max characters.',
+      "regex.description": 'The description of your request contains invalid character(s)',
     });
 
     if (validation.passes()) {
@@ -60,6 +68,14 @@ class ValidateRequests {
       description: ['string', 'min:20', 'max:300', 'regex:/^[a-z\\d\\-_,.*()!\\s]+$/i'],
     }, {
       in: 'The type specified has to be either repairs or maintenance, lowercased',
+      "string.title": 'Sorry, the :attribute has to be a string value.',
+      "min.title": 'The :attribute is too short. Min length is :min characters.',
+      "max.title": 'The :attribute is too long. Max length is :max characters.',
+      "regex.title": 'The title of your request contains invalid character(s)',
+      "string.description": 'Sorry, the :attribute has to be a string value.',
+      "min.description": 'The :attribute is too short. Min length is :min characters.',
+      "max.description": 'The :attribute is too long. Max length is :max characters.',
+      "regex.description": 'The :attribute of your request contains invalid character(s)',
     });
 
     if (validation.passes()) {

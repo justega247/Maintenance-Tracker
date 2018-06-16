@@ -54,6 +54,7 @@ button {
     0px 1px 0px 0px rgba(250, 250, 250, 0.5) ;
   margin-left: auto;
   margin-right: auto;
+  padding-left: .5em;
 }
 
 #signin {

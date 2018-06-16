@@ -52,7 +52,7 @@ describe('POST /auth/signup', () => {
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.errors.email[0]).to.equal('The email format is invalid.');
+        expect(res.body.errors.email[0]).to.equal('Please enter a valid email address.');
       })
       .end(done);
   });
@@ -70,7 +70,7 @@ describe('POST /auth/signup', () => {
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.errors.username[0]).to.equal('The username field is required.');
+        expect(res.body.errors.username[0]).to.equal('Sorry, you have to enter a username.');
       })
       .end(done);
   });
@@ -88,7 +88,7 @@ describe('POST /auth/signup', () => {
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.errors.password[0]).to.equal('The password field is required.');
+        expect(res.body.errors.password[0]).to.equal('Sorry, you have to enter a password.');
       })
       .end(done);
   });
@@ -106,7 +106,7 @@ describe('POST /auth/signup', () => {
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.errors.fullname[0]).to.equal('The fullname format is invalid.');
+        expect(res.body.errors.fullname[0]).to.equal('The fullname you have entered contains invalid character(s).');
       })
       .end(done);
   });
@@ -171,7 +171,7 @@ describe('POST /auth/login', () => {
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.errors.username[0]).to.equal('The username field is required.');
+        expect(res.body.errors.username[0]).to.equal('Sorry, you have to enter a username.');
       })
       .end(done);
   });
@@ -186,7 +186,7 @@ describe('POST /auth/login', () => {
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.errors.password[0]).to.equal('The password field is required.');
+        expect(res.body.errors.password[0]).to.equal('Sorry, you have to enter a password.');
       })
       .end(done);
   });
@@ -244,7 +244,7 @@ describe('POST /users/requests', () => {
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.errors.title[0]).to.equal('The title field is required.');
+        expect(res.body.errors.title[0]).to.equal('Sorry, you have to specify a title for your request');
       })
       .end(done);
   });
@@ -262,7 +262,7 @@ describe('POST /users/requests', () => {
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
-        expect(res.body.errors.description[0]).to.equal('The description field is required.');
+        expect(res.body.errors.description[0]).to.equal('Sorry, you have to specify a description for your request');
       })
       .end(done);
   });
