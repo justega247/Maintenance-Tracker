@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Admin requests</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Old Standard TT' rel='stylesheet'>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="./../styles/adminrequest.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="header">
+      <h1>Maintenance Tracker <i class="fas fa-cogs"></i></h1>
+      <div id="logout">
+        <a href="index.html"><button id="lgbtn">Logout</button></a>
+      </div>
+    </div>
+    <div id="content">
+      <div id="filter">
+        <div><h3>Filter: </h3></div>
+        <div id="sort">
+          <select name="req" id="req">
+            <option value="repairs">Repairs</option>
+            <option value="maintenance">Maintenance</option>
+          </select>
+        </div>
+      </div>
+      <table>
+        <caption>All Requests</caption>
+        <thead>
+          <tr>
+            <th scope="col">Requester</th>
+            <th scope="col">Title</th>
+            <th scope="col">Type</th>
+            <th scope="col">Manage</th>
+            <th scope="col">Resolve</th>
+            <th scope="col">Created</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Requester">Thomas Price</td>
+            <td data-label="Title">bad chair arm</td>
+            <td data-label="Type">repairs</td>
+            <td data-label="Manage"><button id="manage">Manage <i class="far fa-clipboard"></i></button></td>
+            <td data-label="Resolve"><button id="resolve">Resolve <i class="far fa-check-square"></i></button></td>
+            <td data-label="Created">7/9/2018</td>
+          </tr>
+          <tr>
+            <td data-label="Requester">Thompson Adewale</td>
+            <td data-label="Title">bad chair arm</td>
+            <td data-label="Type">maintenance</td>
+            <td data-label="Manage"><button id="manage">Manage <i class="far fa-clipboard"></i></button></td>
+            <td data-label="Resolve"><button id="resolve">Resolve <i class="far fa-check-square"></i></button></td>
+            <td data-label="Created">7/9/2018</td>
+          </tr>
+          <tr>
+            <td data-label="Requester">Thomas Price</td>
+            <td data-label="Title">bad chair arm</td>
+            <td data-label="Type">repairs</td>
+            <td data-label="Manage"><button id="manage">Manage <i class="far fa-clipboard"></i></button></td>
+            <td data-label="Resolve"><button id="resolve">Resolve <i class="far fa-check-square"></i></button></td>
+            <td data-label="Created">6/9/2018</td>
+          </tr>
+          <tr>
+            <td data-label="Requester">Carl Cook</td>
+            <td data-label="Title">bad chair arm</td>
+            <td data-label="Type">maintenance</td>
+            <td data-label="Manage"><button id="manage">Manage <i class="far fa-clipboard"></i></button></td>
+            <td data-label="Resolve"><button id="resolve">Resolve <i class="far fa-check-square"></i></button></td>
+            <td data-label="Created">6/9/2018</td>
+          </tr>
+          <tr>
+            <td data-label="Requester">Thomas Price</td>
+            <td data-label="Title">bad chair arm</td>
+            <td data-label="Type">repairs</td>
+            <td data-label="Manage"><button id="manage">Manage <i class="far fa-clipboard"></i></button></td>
+            <td data-label="Resolve"><button id="resolve">Resolve <i class="far fa-check-square"></i></button></td>
+            <td data-label="Created">6/9/2018</td>
+          </tr>
+          <tr>
+            <td data-label="Requester">Edafe Okih</td>
+            <td data-label="Title">bad chair arm</td>
+            <td data-label="Type">repairs</td>
+            <td data-label="Manage"><button id="manage">Manage <i class="far fa-clipboard"></i></button></td>
+            <td data-label="Resolve"><button id="resolve">Resolve <i class="far fa-check-square"></i></button></td>
+            <td data-label="Created">6/9/2018</td>
+          </tr>
+          <tr>
+            <td data-label="Requester">Edafe Okih</td>
+            <td data-label="Title">bad chair arm</td>
+            <td data-label="Type">repairs</td>
+            <td data-label="Manage"><button id="manage">Manage <i class="far fa-clipboard"></i></button></td>
+            <td data-label="Resolve"><button id="resolve">Resolve <i class="far fa-check-square"></i></button></td>
+            <td data-label="Created">6/9/2018</td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div><h3 id="requestManage">Manage Request</h3></div>
+          <div><p>RequestId: <span id="requestId">22</span></p></div>
+          <div><p>Title: <span id="title">Faulty CPU</span></p></div>
+          <div><p>Type: <span id="type">repairs</span></p></div>
+          <div><p>Status: <span id="status">pending</span></p></div>
+          <div><p>Description: <span id="description">The CPU is faulty again, I would like to have it fixed.</span></p></div>
+          <div>
+            <h3>Decision:</h3>
+            <div>
+              <button class="decide" id="greenbtn">Approve</button>
+              <button class="decide" id="redbtn">Reject</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer"><small>&copy; Copyright 2018, Andela 21</small></div>
+  </div>
+  <script src="../js/adminrequest.js"></script>
+</body>
+</html>

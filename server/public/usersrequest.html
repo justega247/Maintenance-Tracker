@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>User request</title>
+
+  <script src="./js/authenticate.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Old Standard TT' rel='stylesheet'>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="./../styles/usersrequest.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="header">
+      <h1>Maintenance Tracker <i class="fas fa-cogs"></i></h1>
+      <div id="logout">
+        <a href="index.html"><button id="lgbtn">Logout</button></a>
+      </div>
+    </div>
+    <div id="content">
+      <div id="filter">
+        <div>
+          <div id="drop">
+            <h3>Filter: </h3>
+            <div id="sort">
+              <select name="req" id="req">
+                <option value="all">All</option>
+                <option value="resolved">Resolved</option>
+                <option value="rejected">Rejected</option>
+                <option value="pending">Pending</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div id="newrequest">
+          <a href="usernewreq.html"><button id="nwreq">create new request</button></a>
+        </div>
+      </div>
+      <table>
+        <caption>My Requests</caption>
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Type</th>
+            <th scope="col">Status</th>
+            <th scope="col">Details</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Created</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+      </table>
+
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div><h3 id="requestDetails">Request details</h3></div>
+          <div><p>RequestId: <span id="requestId"></span></p></div>
+          <div><p>Title: <span id="title"></span></p></div>
+          <div><p>Type: <span id="type"></span></p></div>
+          <div><p>Status: <span id="status"></span></p></div>
+          <div><p>Description: <span id="description"></span></p></div>
+        </div>
+      </div>
+
+      <div id="editModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <form action="#" id="editForm">
+            <div><h3 id="requestDetails">Edit Request</h3></div>
+            <div><p id="info"></p></div>
+            <div class="editForm">
+              <label for="Type"><b>Type:</b></label>
+              <select name="type" id="requestType">
+                <option value="maintenance">Maintenance</option>
+                <option value="repairs">Repairs</option>
+              </select>
+            </div>
+            <div class="editForm"><label for="title"><b>Title:</b></label></div>
+            <div class="editForm"><input class="update" type="text" name="title" id="requestTitle" required></div>
+            <div class="editForm"><label for="description"><b>Description:</b></label></div>
+            <div class="editForm"><textarea name="description" id="requestDescription" cols="40" rows="8" required></textarea></div>
+            <button type="submit" id="updateBtn"><b>Update</b></button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="footer"><small>&copy; Copyright 2018, Andela 21</small></div>
+  </div>
+  <script src="./js/usersrequest.js"></script>
+</body>
+</html>

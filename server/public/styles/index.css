@@ -1,0 +1,105 @@
+html, body {
+  max-width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: 'Old Standard TT';
+  font-size: 15px;
+  overflow-y: hidden;
+}
+
+h1 {
+  color: blue;
+}
+
+#info {
+  color: red;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+#login {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+  width: 100%;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+  background-image: url(https://images.pexels.com/photos/12598/96917deb7705adcee76b65caf8c652b1.jpg?auto=compress&cs=tinysrgb&h=350);
+  background-size: cover;
+}
+
+button {
+  background-color: blue;
+  border-radius: 8px;
+  color: whitesmoke;
+  padding-top: .6em;
+  padding-right: 1em;
+  padding-bottom: .6em;
+  padding-left: 1em;
+  font-size: 1.5em;
+  width: 100%
+}
+
+#signin:hover {
+  background-color: rgb(96, 111, 245);
+  color: white;
+}
+
+#login>div {
+  background-color: rgba(255, 255, 255, 0.808);
+  border: 1px solid;
+  padding: 30px 40px;
+  border-radius: 5px;
+  width: 400px;
+  height: 280px;
+}
+
+.lg {
+  border-radius: 3px;
+  box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.1),
+    0px 1px 0px 0px rgba(250, 250, 250, 0.5) ;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid;
+  padding-left: .5em;
+}
+
+#signup,#fg,#sign {
+  font-size: .9em;
+  text-decoration: none;
+}
+
+div>input {
+  border: 1px solid;
+  padding-bottom: 1em;
+  padding-top: 1em;
+  padding-left: .2em;
+  width: 100%;
+}
+
+.header {
+  text-align: center;
+}
+
+#extra {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#fg {
+  align-self: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+#lgfrm>div {
+  margin-bottom: 10px;
+}

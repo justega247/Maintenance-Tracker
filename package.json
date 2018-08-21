@@ -1,0 +1,62 @@
+{
+  "name": "maintenance-tracker-app",
+  "version": "1.0.0",
+  "description": "Maintenance Tracker App is an application that provides users with the ability to reach out to\r operations or repairs department regarding repair or maintenance requests and monitor the\r status of their request.",
+  "main": "app.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production babel-node server/bin/www",
+    "start:dev": "cross-env NODE_ENV=development nodemon --exec babel-node server/bin/www",
+    "pretest": "npm run migrate-test",
+    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require babel-core/register server/test/index.js --timeout 10000 --exit",
+    "test-watch": "nodemon --exec \"npm test\"",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "migrateme": "babel-node server/models/database.js",
+    "migrate": "cross-env NODE_ENV=production babel-node server/models/database.js",
+    "migrate-dev": "cross-env NODE_ENV=development babel-node server/models/database.js",
+    "migrate-test": "cross-env NODE_ENV=test babel-node server/models/database.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justega247/Maintenance-Tracker.git"
+  },
+  "author": "Okeremeta Tega",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justega247/Maintenance-Tracker/issues"
+  },
+  "homepage": "https://github.com/justega247/Maintenance-Tracker#readme",
+  "dependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "express-validator": "^5.2.0",
+    "jsonwebtoken": "^8.2.1",
+    "lodash.isempty": "^4.4.0",
+    "morgan": "^1.9.0",
+    "pg": "^7.4.3",
+    "validator": "^10.2.0",
+    "validatorjs": "^3.14.2",
+    "winston": "^3.0.0-rc5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.1.2",
+    "coveralls": "^3.0.1",
+    "cross-env": "^5.1.5",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2",
+    "mocha": "^5.1.1",
+    "nodemon": "^1.17.4",
+    "nyc": "^11.8.0",
+    "supertest": "^3.1.0"
+  }
+}

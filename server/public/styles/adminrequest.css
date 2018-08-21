@@ -1,0 +1,280 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: 'Old Standard TT';
+  font-size: 15px;
+}
+
+h1 {
+  color: white;
+}
+
+body {
+  min-height: 100vh;
+}
+
+#info {
+  color: red;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 1em;
+  background-color: blue;
+}
+
+#logout {
+  align-self: center;
+  margin-right: 1.8em;
+}
+
+#lgbtn {
+  padding: .6em 3em;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+#manage {
+  background-color: blue;
+  border-radius: .5em;
+  padding: .4em 1em;
+}
+
+#resolve {
+  background-color: green;
+  border-radius: .5em;
+  padding: .4em 1em;
+}
+
+#manage:hover {
+  cursor: pointer;
+  color: white;
+}
+
+#lgbtn:hover {
+  background-color: grey;
+  color: whitesmoke;
+}
+
+#sort {
+  align-self: center;
+  margin-left: .8em;
+}
+
+#req {
+  width: 25em;
+  padding: .6em 0em;
+  border: 1px solid;
+}
+
+#filter {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: baseline;
+  padding: 1em 1em;
+}
+
+tr:nth-of-type(odd) {
+  background: gray;
+}
+
+th {
+  background: white;
+  color: blue;
+  font-weight: bold;
+}
+
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 680px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  table td:last-child {
+    border-bottom: 0;
+  }
+
+  #filter {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #logout {
+    margin-bottom: 1em;
+  }
+
+  #req {
+    width: 18em;
+    padding: .3em 0em;
+    border: 1px solid;
+  }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#requestDetails {
+  text-align: center;
+}
+
+#greenbtn {
+  background-color: green;
+  border-radius: .5em;
+  padding: .4em 1em;
+}
+
+#greenbtn:hover {
+  color: white;
+  cursor: pointer;
+}
+
+#redbtn {
+  background-color: red;
+  border-radius: .5em;
+  margin-left: 1em;
+  padding: .4em 1em;
+}
+
+#redbtn:hover {
+  color: white;
+  cursor: pointer;
+}
+
+#requestManage {
+  text-align: center;
+}
+
+#container {
+  min-height: 100%;
+  position: relative;
+}
+
+#content {
+  padding:10px;
+  padding-bottom:60px;
+}
+
+#footer {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 0;
+  bottom:0;
+  width:100%;
+  height:60px;
+  background: whitesmoke;
+  color: #0000ff;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5em;
+}
