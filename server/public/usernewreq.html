@@ -6,47 +6,53 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>New request</title>
 
+  <script src="./js/authenticate.js"></script>
   <link href='https://fonts.googleapis.com/css?family=Old Standard TT' rel='stylesheet'>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <link rel="stylesheet" href="./../styles/usernewreq.css" type="text/css">
 </head>
 <body>
-  <div class="header">
-    <h1>Maintenance Tracker <i class="fas fa-cogs"></i></h1>
-    <div id="logout">
-      <a href="index.html"><button id="lgbtn">Logout</button></a>
+  <div id="container">
+    <div class="header">
+      <a href="usersrequest.html" id="dashboard"><h1>Maintenance Tracker <i class="fas fa-cogs"></i></h1></a>
+      <div id="logout">
+        <a href="index.html"><button id="lgbtn">Logout</button></a>
+      </div>
     </div>
-  </div>
-  <div id="head">
-    <div id="new"><h2>New Request</h2></div>
-    <a href="usersrequest.html"><button id="reqbtn">My requests</button></a>
-  </div>
-  <div class="container">
-    <div>
-      <form id="request">
-        <div id="info"></div>
+    <div id="content">
+      <div id="head">
+        <div id="new"><h2>New Request</h2></div>
+        <a href="usersrequest.html"><button id="reqbtn">My requests</button></a>
+      </div>
+      <div class="container">
         <div>
-          <label for="Type">Type: </label>
-          <select name="type" id="type">
-            <option value="maintenance">maintenance</option>
-            <option value="repairs">repairs</option>
-          </select>
+          <form id="request">
+            <div id="info"></div>
+            <div>
+              <label for="Type">Type: </label>
+              <select name="type" id="type">
+                <option value="maintenance">maintenance</option>
+                <option value="repairs">repairs</option>
+              </select>
+            </div>
+            <div>
+              <label for="Title">Title: </label>
+              <input type="text" name="title" id="title" autofocus required>
+            </div>
+            <div id="titleError"></div>
+            <div>
+              <label for="Description">Description: </label>
+              <br>
+              <textarea name="description" id="description" cols="40" rows="8" required></textarea>
+            </div>
+            <div id="descriptionError"></div>
+            <div><button type="submit" id="sub">submit</button></div>
+          </form>
         </div>
-        <div>
-          <label for="Title">Title: </label>
-          <input type="text" name="title" id="title" autofocus required>
-        </div>
-        <div>
-          <label for="Description">Description: </label>
-          <br>
-          <textarea name="description" id="description" cols="40" rows="8" required></textarea>
-        </div>
-        <div><button type="submit" id="sub">submit</button></div>
-      </form>
+      </div>
     </div>
+    <div id="footer"><small>&copy; Copyright 2018, Andela 21</small></div>
   </div>
-
-  <div id="footer"><small>&copy; Copyright 2018, Andela 21</small></div>
   <script src="./js/usernewreq.js"></script>
 </body>
 </html>

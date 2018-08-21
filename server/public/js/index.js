@@ -7,7 +7,7 @@ const loginUser = (e) => {
   const password = document.getElementById('password');
 
   const url = 'https://maintenance-tracker-andela.herokuapp.com/api/v1/auth/login';
-  //const url = 'http://localhost:8000/api/v1/auth/login';
+  // const url = 'http://localhost:8000/api/v1/auth/login';
 
   fetch(url , {
     method: 'post',
@@ -23,16 +23,16 @@ const loginUser = (e) => {
   })
     .then((res) => {
       const token = res.headers.get('x-auth');
-      localStorage.setItem('token', token);
+      localStorage.setItem('AuthenticationToken', token);
       return res.json();
     })
     .then((foundUser) => {
       if (foundUser.status !== 'success') {
-        document.getElementById('info').innerHTML = 'Please, log in with your details';
+        document.getElementById('info').innerHTML = `Please, log in with valid details or signup to create an account`;
       } else if (foundUser.data.user.id === 1) {
-        window.location.href = './adminrequest.html';
+        window.location.href = '/adminrequest.html';
       } else {
-        window.location.href = './usersrequest.html';
+        window.location.href = '/usersrequest.html';
       }
     });
 };

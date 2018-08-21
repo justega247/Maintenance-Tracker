@@ -1,6 +1,10 @@
 /* eslint-disable */
 
 const getAllUsersRequests = () => {
+  document.getElementById('lgbtn').addEventListener('click', () => {
+    localStorage.removeItem('AuthenticationToken');
+  });
+
   const createNode = element => document.createElement(element);
   const append = (parent, el) => parent.appendChild(el);
 
@@ -13,7 +17,7 @@ const getAllUsersRequests = () => {
     return createdAt;
   };
 
-  const retrievedToken = localStorage.getItem('token');
+  const retrievedToken = localStorage.getItem('AuthenticationToken');
 
   const url = 'https://maintenance-tracker-andela.herokuapp.com/api/v1/requests/';
   // const url = 'http://localhost:8000/api/v1/requests/';
@@ -126,7 +130,7 @@ const getAllUsersRequests = () => {
             })
               .then(res => res.json())
               .then((requestApproved) => {
-                window.location.href = './adminrequest.html';
+                window.location.href = '/adminrequest.html';
                 return null;
               });
           });
@@ -142,7 +146,7 @@ const getAllUsersRequests = () => {
             })
               .then(res => res.json())
               .then((requestDisapproved) => {
-                window.location.href = './adminrequest.html';
+                window.location.href = '/adminrequest.html';
                 return null;
               });
           });
@@ -159,7 +163,7 @@ const getAllUsersRequests = () => {
           })
             .then(res => res.json())
             .then((requestResolved) => {
-              window.location.href = './adminrequest.html';
+              window.location.href = '/adminrequest.html';
               return null;
             });
         });

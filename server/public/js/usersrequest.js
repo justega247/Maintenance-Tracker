@@ -1,6 +1,10 @@
 /* eslint-disable */
 
 const getUserRequests = () => {
+  document.getElementById('lgbtn').addEventListener('click', () => {
+    localStorage.removeItem('AuthenticationToken');
+  });
+
   const createNode = element => document.createElement(element);
   const append = (parent, el) => parent.appendChild(el);
 
@@ -13,7 +17,7 @@ const getUserRequests = () => {
     return createdAt;
   };
 
-  const retrievedToken = localStorage.getItem('token');
+  const retrievedToken = localStorage.getItem('AuthenticationToken');
 
   const url = 'https://maintenance-tracker-andela.herokuapp.com/api/v1/users/requests/';
   // const url = 'http://localhost:8000/api/v1/users/requests/';
@@ -167,7 +171,7 @@ const getUserRequests = () => {
                 if (updatedRequest.status !== 'success') {
                   document.getElementById('info').innerHTML = `${updatedRequest.message}`;
                 } else {
-                  window.location.href = './usersrequest.html';
+                  window.location.href = '/usersrequest.html';
                 }
               });
           });

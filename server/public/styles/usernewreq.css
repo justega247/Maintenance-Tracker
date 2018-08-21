@@ -13,9 +13,9 @@ h2 {
   padding-left: 1em;
 }
 
-#info {
-  color: white;
-  text-align: center;
+#titleError,#descriptionError {
+  color: red;
+  padding-top: .3em;
 }
 
 .header {
@@ -135,16 +135,30 @@ input {
   }
 }
 
+#dashboard {
+  text-decoration: none;
+}
+
+#container {
+  min-height: 100%;
+  position: relative;
+}
+
+#content {
+  padding:10px;
+  padding-bottom:60px;
+}
+
 #footer {
   display: flex;
   flex-direction: column;
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom:0;
   width:100%;
   height:60px;
-  background: #0000ff;
-  color: #ffffff;
+  background: whitesmoke;
+  color: #0000ff;
   align-items: center;
   justify-content: center;
   font-weight: bold;
