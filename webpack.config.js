@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = () => ({
   entry: './client/src/app.jsx',
@@ -17,7 +16,7 @@ module.exports = () => ({
       },
       {
         test: /\.css$/,
-        use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader'],
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
@@ -26,14 +25,12 @@ module.exports = () => ({
   },
   plugins: [
     new HtmlWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      filename: 'style.[contenthash].css',
-    }),
   ],
   devtool: 'cheap-module-eval-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'client', 'public'),
     publicPath: '/dist/',
+    historyApiFallback: true,
   },
-  mode: 'none',
+  mode: 'development',
 });

@@ -1,5 +1,6 @@
 .env
 .nyc_output/
+.vscode/
 client/public/dist/
 coverage/
 npm-debug.log

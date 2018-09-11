@@ -62,18 +62,16 @@ class ValidateRequests {
       description,
     }, {
       type: ['string', { in: ['repairs', 'maintenance'] }],
-      title: ['string', 'min:4', 'max:40', 'regex:/^[a-z\\d\\-_,.*()!\\s]+$/i'],
-      description: ['string', 'min:20', 'max:300', 'regex:/^[a-z\\d\\-_,.*()!\\s]+$/i'],
+      title: ['string', 'min:4', 'max:40'],
+      description: ['string', 'min:20', 'max:300'],
     }, {
       in: 'The type specified has to be either repairs or maintenance, lowercased',
       'string.title': 'Sorry, the :attribute has to be a string value.',
       'min.title': 'The :attribute is too short. Min length is :min characters.',
       'max.title': 'The :attribute is too long. Max length is :max characters.',
-      'regex.title': 'The title of your request contains invalid character(s)',
       'string.description': 'Sorry, the :attribute has to be a string value.',
       'min.description': 'The :attribute is too short. Min length is :min characters.',
       'max.description': 'The :attribute is too long. Max length is :max characters.',
-      'regex.description': 'The :attribute of your request contains invalid character(s)',
     });
 
     if (validation.passes()) {

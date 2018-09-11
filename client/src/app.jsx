@@ -1,10 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Dashboard from './components/DashboardPage';
+import AuthForm from './components/AuthPage';
+import NotFoundPage from './components/NotFoundPage';
 
-const jsx = (
-  <Dashboard />
+const routes = (
+  <BrowserRouter>
+    <div>
+      <Switch>
+        <Route exact path="/" component={Dashboard} />
+        <Route exact path="/signup" component={AuthForm} />
+        <Route component={NotFoundPage} />
+      </Switch>
+    </div>
+  </BrowserRouter>
 );
 
-const appRoot = document.getElementById('app');
-ReactDOM.render(jsx, appRoot);
+ReactDOM.render(routes, document.getElementById('app'));
