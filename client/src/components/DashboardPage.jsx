@@ -2,7 +2,7 @@ import React from 'react';
 
 const Dashboard = () => (
   <div>
-    This is a test right
+    This is from the Dashboard component
   </div>
 );
 
