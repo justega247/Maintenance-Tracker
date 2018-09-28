@@ -1,0 +1,23 @@
+.landing__image {
+  align-items: center;
+  background-image: url(https://bit.ly/2Dw3fMA);
+  background-size: cover;
+  color: $off-white;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  padding-top: auto;
+  padding-bottom: auto;
+  width: 100vw;
+}
+
+.landing__quote {
+  h1 {
+    font-size: 3.4rem;
+  }
+}
+
+.landing__button {
+  margin-top: 3rem;
+}
