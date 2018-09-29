@@ -5,11 +5,11 @@ exports[`Login Page should call startUserSignIn props for valid form submission 
   <Header />
   <div>
     <form
-      className="login__form"
+      className="auth__form"
       onSubmit={[Function]}
     >
       <div
-        className="login__body"
+        className="auth__body"
       >
         <div>
           <label
@@ -47,23 +47,23 @@ exports[`Login Page should call startUserSignIn props for valid form submission 
         </div>
         <div>
           <Button
-            className="button--signin"
+            className="button--big"
             text="Login"
             type="submit"
           />
         </div>
         <div
-          className="login__extra"
+          className="auth__extra"
         >
           <Link
-            className="login__extra-item"
+            className="auth__extra-item"
             replace={false}
             to="#"
           >
             Forgot Password?
           </Link>
           <Link
-            className="login__extra-item"
+            className="auth__extra-item"
             replace={false}
             to="/signup"
           >
@@ -81,11 +81,11 @@ exports[`Login Page should correctly render LoginPage 1`] = `
   <Header />
   <div>
     <form
-      className="login__form"
+      className="auth__form"
       onSubmit={[Function]}
     >
       <div
-        className="login__body"
+        className="auth__body"
       >
         <div>
           <label
@@ -123,23 +123,23 @@ exports[`Login Page should correctly render LoginPage 1`] = `
         </div>
         <div>
           <Button
-            className="button--signin"
+            className="button--big"
             text="Login"
             type="submit"
           />
         </div>
         <div
-          className="login__extra"
+          className="auth__extra"
         >
           <Link
-            className="login__extra-item"
+            className="auth__extra-item"
             replace={false}
             to="#"
           >
             Forgot Password?
           </Link>
           <Link
-            className="login__extra-item"
+            className="auth__extra-item"
             replace={false}
             to="/signup"
           >
@@ -157,11 +157,11 @@ exports[`Login Page should return error for invalid form submission 1`] = `
   <Header />
   <div>
     <form
-      className="login__form"
+      className="auth__form"
       onSubmit={[Function]}
     >
       <div
-        className="login__body"
+        className="auth__body"
       >
         <div>
           <label
@@ -211,23 +211,23 @@ exports[`Login Page should return error for invalid form submission 1`] = `
         </div>
         <div>
           <Button
-            className="button--signin"
+            className="button--big"
             text="Login"
             type="submit"
           />
         </div>
         <div
-          className="login__extra"
+          className="auth__extra"
         >
           <Link
-            className="login__extra-item"
+            className="auth__extra-item"
             replace={false}
             to="#"
           >
             Forgot Password?
           </Link>
           <Link
-            className="login__extra-item"
+            className="auth__extra-item"
             replace={false}
             to="/signup"
           >
