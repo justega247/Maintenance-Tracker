@@ -1,0 +1,29 @@
+.login__form {
+  align-items: center;
+  background-image: url(https://bit.ly/2MC0dpe);
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.login__body {
+  background-color: rgba(255, 255, 255, 0.808);
+  border: 1px solid;
+  padding: 30px 40px;
+  border-radius: 5px;
+  width: 400px;
+  height: 320px;
+}
+
+.login__extra {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.login__extra-item {
+  text-decoration: none;
+}
