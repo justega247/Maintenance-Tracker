@@ -1,0 +1,241 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Page should call startUserSignIn props for valid form submission 1`] = `
+<div>
+  <Header />
+  <div>
+    <form
+      className="login__form"
+      onSubmit={[Function]}
+    >
+      <div
+        className="login__body"
+      >
+        <div>
+          <label
+            htmlFor="username"
+          >
+            Username:
+            <div>
+              <input
+                className="form__input"
+                name="username"
+                onChange={[Function]}
+                placeholder="enter your username"
+                type="text"
+                value="allison"
+              />
+            </div>
+          </label>
+        </div>
+        <div>
+          <label
+            htmlFor="password"
+          >
+            Password:
+            <div>
+              <input
+                className="form__input"
+                name="password"
+                onChange={[Function]}
+                placeholder="enter your password"
+                type="password"
+                value="passing"
+              />
+            </div>
+          </label>
+        </div>
+        <div>
+          <Button
+            className="button--signin"
+            text="Login"
+            type="submit"
+          />
+        </div>
+        <div
+          className="login__extra"
+        >
+          <Link
+            className="login__extra-item"
+            replace={false}
+            to="#"
+          >
+            Forgot Password?
+          </Link>
+          <Link
+            className="login__extra-item"
+            replace={false}
+            to="/signup"
+          >
+            Sign up
+          </Link>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`Login Page should correctly render LoginPage 1`] = `
+<div>
+  <Header />
+  <div>
+    <form
+      className="login__form"
+      onSubmit={[Function]}
+    >
+      <div
+        className="login__body"
+      >
+        <div>
+          <label
+            htmlFor="username"
+          >
+            Username:
+            <div>
+              <input
+                className="form__input"
+                name="username"
+                onChange={[Function]}
+                placeholder="enter your username"
+                type="text"
+                value=""
+              />
+            </div>
+          </label>
+        </div>
+        <div>
+          <label
+            htmlFor="password"
+          >
+            Password:
+            <div>
+              <input
+                className="form__input"
+                name="password"
+                onChange={[Function]}
+                placeholder="enter your password"
+                type="password"
+                value=""
+              />
+            </div>
+          </label>
+        </div>
+        <div>
+          <Button
+            className="button--signin"
+            text="Login"
+            type="submit"
+          />
+        </div>
+        <div
+          className="login__extra"
+        >
+          <Link
+            className="login__extra-item"
+            replace={false}
+            to="#"
+          >
+            Forgot Password?
+          </Link>
+          <Link
+            className="login__extra-item"
+            replace={false}
+            to="/signup"
+          >
+            Sign up
+          </Link>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`Login Page should return error for invalid form submission 1`] = `
+<div>
+  <Header />
+  <div>
+    <form
+      className="login__form"
+      onSubmit={[Function]}
+    >
+      <div
+        className="login__body"
+      >
+        <div>
+          <label
+            htmlFor="username"
+          >
+            Username:
+            <div>
+              <input
+                className="form__input"
+                name="username"
+                onChange={[Function]}
+                placeholder="enter your username"
+                type="text"
+                value=""
+              />
+            </div>
+          </label>
+          <div
+            className="form__error"
+            key="0"
+          >
+            Sorry, you have to enter a username.
+          </div>
+        </div>
+        <div>
+          <label
+            htmlFor="password"
+          >
+            Password:
+            <div>
+              <input
+                className="form__input"
+                name="password"
+                onChange={[Function]}
+                placeholder="enter your password"
+                type="password"
+                value=""
+              />
+            </div>
+          </label>
+          <div
+            className="form__error"
+            key="0"
+          >
+            Sorry, you have to enter a password.
+          </div>
+        </div>
+        <div>
+          <Button
+            className="button--signin"
+            text="Login"
+            type="submit"
+          />
+        </div>
+        <div
+          className="login__extra"
+        >
+          <Link
+            className="login__extra-item"
+            replace={false}
+            to="#"
+          >
+            Forgot Password?
+          </Link>
+          <Link
+            className="login__extra-item"
+            replace={false}
+            to="/signup"
+          >
+            Sign up
+          </Link>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
