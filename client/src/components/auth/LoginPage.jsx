@@ -42,8 +42,8 @@ class LoginPage extends Component {
       <div>
         <Header />
         <div>
-          <form onSubmit={this.onSubmit} className="login__form">
-            <div className="login__body">
+          <form onSubmit={this.onSubmit} className="auth__form">
+            <div className="auth__body">
               <div>
                 <label htmlFor="username">
                   Username:
@@ -87,13 +87,13 @@ class LoginPage extends Component {
                   ))}
               </div>
               <div>
-                <Button className="button--signin" type="submit" text="Login" />
+                <Button className="button--big" type="submit" text="Login" />
               </div>
-              <div className="login__extra">
-                <Link className="login__extra-item" to="#">
+              <div className="auth__extra">
+                <Link className="auth__extra-item" to="#">
                   Forgot Password?
                 </Link>
-                <Link className="login__extra-item" to={routes.SIGN_UP}>
+                <Link className="auth__extra-item" to={routes.SIGN_UP}>
                   Sign up
                 </Link>
               </div>

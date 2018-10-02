@@ -6,11 +6,11 @@ import { faCogs } from '@fortawesome/free-solid-svg-icons';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import Dashboard from './components/DashboardPage';
-import AuthForm from './components/AuthPage';
 import NotFoundPage from './components/NotFoundPage';
 import LandingPage from './components/LandingPage';
 import LoginPage from './components/auth/LoginPage';
 import routes from '../src/constants/routes';
+import SignupPage from './components/auth/SignupPage';
 
 library.add(faCogs);
 
@@ -20,8 +20,8 @@ const Routes = (
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/signup" component={AuthForm} />
         <Route exact path={routes.SIGN_IN} component={LoginPage} />
+        <Route exact path={routes.SIGN_UP}  component={SignupPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

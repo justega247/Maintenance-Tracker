@@ -73,7 +73,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.2.3",
+    "babel-eslint": "^8.2.6",
     "chai": "^4.1.2",
     "coveralls": "^3.0.1",
     "cross-env": "^5.1.5",

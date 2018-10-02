@@ -1,0 +1,334 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Signup Page should call startUserSignUp props for valid form submission 1`] = `
+<div>
+  <Header />
+  <form
+    className="auth__form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="auth__body"
+    >
+      <div>
+        <label
+          htmlFor="username"
+        >
+          Username:
+          <div>
+            <input
+              className="form__input"
+              name="username"
+              onChange={[Function]}
+              placeholder="enter your username"
+              type="text"
+              value="allison"
+            />
+          </div>
+        </label>
+      </div>
+      <div>
+        <label
+          htmlFor="fullname"
+        >
+          Fullname:
+          <div>
+            <input
+              className="form__input"
+              name="fullname"
+              onChange={[Function]}
+              placeholder="enter your fullname"
+              type="text"
+              value="alli paterson"
+            />
+          </div>
+        </label>
+      </div>
+      <div>
+        <label
+          htmlFor="email"
+        >
+          Email:
+          <div>
+            <input
+              className="form__input"
+              name="email"
+              onChange={[Function]}
+              placeholder="enter your email"
+              type="email"
+              value="all2@gmail.com"
+            />
+          </div>
+        </label>
+      </div>
+      <div>
+        <label
+          htmlFor="password"
+        >
+          Password:
+          <div>
+            <input
+              className="form__input"
+              name="password"
+              onChange={[Function]}
+              placeholder="enter your password"
+              type="password"
+              value="passing"
+            />
+          </div>
+        </label>
+      </div>
+      <div>
+        <Button
+          className="button--big"
+          text="Signup"
+          type="submit"
+        />
+      </div>
+      <div>
+        <h4>
+          Already have an account?
+           
+          <Link
+            className="auth__extra-item"
+            replace={false}
+            to="/login"
+          >
+            Login
+          </Link>
+        </h4>
+      </div>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`Signup Page should correctly render SignupPage 1`] = `
+<div>
+  <Header />
+  <form
+    className="auth__form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="auth__body"
+    >
+      <div>
+        <label
+          htmlFor="username"
+        >
+          Username:
+          <div>
+            <input
+              className="form__input"
+              name="username"
+              onChange={[Function]}
+              placeholder="enter your username"
+              type="text"
+              value=""
+            />
+          </div>
+        </label>
+      </div>
+      <div>
+        <label
+          htmlFor="fullname"
+        >
+          Fullname:
+          <div>
+            <input
+              className="form__input"
+              name="fullname"
+              onChange={[Function]}
+              placeholder="enter your fullname"
+              type="text"
+              value=""
+            />
+          </div>
+        </label>
+      </div>
+      <div>
+        <label
+          htmlFor="email"
+        >
+          Email:
+          <div>
+            <input
+              className="form__input"
+              name="email"
+              onChange={[Function]}
+              placeholder="enter your email"
+              type="email"
+              value=""
+            />
+          </div>
+        </label>
+      </div>
+      <div>
+        <label
+          htmlFor="password"
+        >
+          Password:
+          <div>
+            <input
+              className="form__input"
+              name="password"
+              onChange={[Function]}
+              placeholder="enter your password"
+              type="password"
+              value=""
+            />
+          </div>
+        </label>
+      </div>
+      <div>
+        <Button
+          className="button--big"
+          text="Signup"
+          type="submit"
+        />
+      </div>
+      <div>
+        <h4>
+          Already have an account?
+           
+          <Link
+            className="auth__extra-item"
+            replace={false}
+            to="/login"
+          >
+            Login
+          </Link>
+        </h4>
+      </div>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`Signup Page should return error for invalid form submission 1`] = `
+<div>
+  <Header />
+  <form
+    className="auth__form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="auth__body"
+    >
+      <div>
+        <label
+          htmlFor="username"
+        >
+          Username:
+          <div>
+            <input
+              className="form__input"
+              name="username"
+              onChange={[Function]}
+              placeholder="enter your username"
+              type="text"
+              value=""
+            />
+          </div>
+        </label>
+        <div
+          className="form__error"
+          key="0"
+        >
+          Sorry, you have to enter a username.
+        </div>
+      </div>
+      <div>
+        <label
+          htmlFor="fullname"
+        >
+          Fullname:
+          <div>
+            <input
+              className="form__input"
+              name="fullname"
+              onChange={[Function]}
+              placeholder="enter your fullname"
+              type="text"
+              value=""
+            />
+          </div>
+        </label>
+        <div
+          className="form__error"
+          key="0"
+        >
+          Sorry, you have to enter your fullname.
+        </div>
+      </div>
+      <div>
+        <label
+          htmlFor="email"
+        >
+          Email:
+          <div>
+            <input
+              className="form__input"
+              name="email"
+              onChange={[Function]}
+              placeholder="enter your email"
+              type="email"
+              value=""
+            />
+          </div>
+        </label>
+        <div
+          className="form__error"
+          key="0"
+        >
+          Please you have to specify a valid email so we can contact you.
+        </div>
+      </div>
+      <div>
+        <label
+          htmlFor="password"
+        >
+          Password:
+          <div>
+            <input
+              className="form__input"
+              name="password"
+              onChange={[Function]}
+              placeholder="enter your password"
+              type="password"
+              value=""
+            />
+          </div>
+        </label>
+        <div
+          className="form__error"
+          key="0"
+        >
+          Sorry, you have to enter a password.
+        </div>
+      </div>
+      <div>
+        <Button
+          className="button--big"
+          text="Signup"
+          type="submit"
+        />
+      </div>
+      <div>
+        <h4>
+          Already have an account?
+           
+          <Link
+            className="auth__extra-item"
+            replace={false}
+            to="/login"
+          >
+            Login
+          </Link>
+        </h4>
+      </div>
+    </div>
+  </form>
+</div>
+`;
