@@ -13,6 +13,7 @@ exports[`Login Page should call startUserSignIn props for valid form submission 
       >
         <div>
           <label
+            className="label"
             htmlFor="username"
           >
             Username:
@@ -30,6 +31,7 @@ exports[`Login Page should call startUserSignIn props for valid form submission 
         </div>
         <div>
           <label
+            className="label"
             htmlFor="password"
           >
             Password:
@@ -89,6 +91,7 @@ exports[`Login Page should correctly render LoginPage 1`] = `
       >
         <div>
           <label
+            className="label"
             htmlFor="username"
           >
             Username:
@@ -106,6 +109,7 @@ exports[`Login Page should correctly render LoginPage 1`] = `
         </div>
         <div>
           <label
+            className="label"
             htmlFor="password"
           >
             Password:
@@ -165,6 +169,7 @@ exports[`Login Page should return error for invalid form submission 1`] = `
       >
         <div>
           <label
+            className="label"
             htmlFor="username"
           >
             Username:
@@ -183,11 +188,12 @@ exports[`Login Page should return error for invalid form submission 1`] = `
             className="form__error"
             key="0"
           >
-            Sorry, you have to enter a username.
+            username field is required.
           </div>
         </div>
         <div>
           <label
+            className="label"
             htmlFor="password"
           >
             Password:
@@ -206,7 +212,7 @@ exports[`Login Page should return error for invalid form submission 1`] = `
             className="form__error"
             key="0"
           >
-            Sorry, you have to enter a password.
+            password field is required.
           </div>
         </div>
         <div>
