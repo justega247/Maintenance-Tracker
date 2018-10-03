@@ -45,7 +45,7 @@ class LoginPage extends Component {
           <form onSubmit={this.onSubmit} className="auth__form">
             <div className="auth__body">
               <div>
-                <label htmlFor="username">
+                <label htmlFor="username" className="label">
                   Username:
                   <div>
                     <input
@@ -66,7 +66,7 @@ class LoginPage extends Component {
                   ))}
               </div>
               <div>
-                <label htmlFor="password">
+                <label htmlFor="password" className="label">
                   Password:
                   <div>
                     <input

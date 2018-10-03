@@ -25,7 +25,7 @@ class ValidateUser {
       password,
     }, {
       username: 'required|string|min:3|max:12|alpha_num',
-      fullname: ['required', 'string', 'min:4', 'max:40', 'regex:/([a-zA-Z]+)\\s([a-zA-Z]+)/'],
+      fullname: ['required', 'string', 'min:4', 'max:40', 'regex:/^([a-z\']+(-| )?)+$/i'],
       email: 'required|string|email',
       password: 'required|min:6|max:12|string',
     }, {
