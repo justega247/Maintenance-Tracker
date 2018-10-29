@@ -1,24 +1,30 @@
-import React from "react";
-import { shallow } from "enzyme";
-import LoginPage from "../../components/auth/LoginPage";
+import React from 'react';
+import { shallow } from 'enzyme';
+import { LoginPage } from '../../components/auth/LoginPage';
 
-let startUserSignIn, wrapper;
+let startUserLogin;
+let wrapper;
+let history;
 
-describe("Login Page", () => {
+describe('Login Page', () => {
   beforeEach(() => {
-    startUserSignIn = jest.fn();
-    wrapper = shallow(<LoginPage startUserSignIn={startUserSignIn} />);
+    startUserLogin = jest.fn();
+    history = { push: jest.fn() };
+    wrapper = shallow(<LoginPage
+      startUserLogin={startUserLogin}
+      history={history}
+    />);
   });
 
-  test("should correctly render LoginPage", () => {
+  test('should correctly render LoginPage', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
   test('should set username on input change', () => {
     const value = 'tommy';
-    const name = 'username'
+    const name = 'username';
     wrapper.find('input').at(0).simulate('change', {
-      target: { name, value }
+      target: { name, value },
     });
     expect(wrapper.state(name)).toBe(value);
   });
@@ -27,29 +33,30 @@ describe("Login Page", () => {
     const value = 'passing';
     const name = 'password';
     wrapper.find('input').at(1).simulate('change', {
-      target: { name, value }
+      target: { name, value },
     });
     expect(wrapper.state(name)).toBe(value);
   });
 
   test('should return error for invalid form submission', () => {
     wrapper.find('form').simulate('submit', {
-      preventDefault: () => { }
+      preventDefault: () => { },
     });
     expect(wrapper.state('errors')).not.toBe({});
     expect(wrapper).toMatchSnapshot();
   });
 
-  test('should call startUserSignIn props for valid form submission', () => {
+  test('should call startUserLogin props for valid form submission', () => {
     const validDetails = {
       username: 'allison',
       password: 'passing',
-    }
+    };
+
     wrapper.setState(validDetails);
     wrapper.find('form').simulate('submit', {
-      preventDefault: () => { }
+      preventDefault: () => { },
     });
-    expect(startUserSignIn).toHaveBeenCalledWith(validDetails);
+    expect(startUserLogin).toHaveBeenCalledWith(validDetails, history);
     expect(wrapper).toMatchSnapshot();
   });
 });

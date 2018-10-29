@@ -16,11 +16,11 @@ class ValidateUser {
     const validation = new Validator(
       {
         username,
-        password
+        password,
       },
       {
         username: 'required|string|min:3|max:12|alpha_num',
-        password: 'required|min:6|max:50|string'
+        password: 'required|min:6|max:50|string',
       },
       {
         'required.username': ':attribute field is required.',
@@ -36,11 +36,11 @@ class ValidateUser {
           'The :attribute is too short. Min length is :min characters.',
         'max.password':
           'The :attribute is too long. Max length is :max characters.',
-        'string.password': 'The :attribute has to be a string value.'
-      }
+        'string.password': 'The :attribute has to be a string value.',
+      },
     );
 
-    let validationErrors = {
+    const validationErrors = {
       hasErrors: false,
       errors: {},
     };
@@ -94,7 +94,7 @@ class ValidateUser {
       'string.password': 'The :attribute has to be a string value.',
     });
 
-    let validationErrors = {
+    const validationErrors = {
       hasErrors: false,
       errors: {},
     };

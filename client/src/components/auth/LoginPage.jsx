@@ -1,37 +1,39 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import Header from "../Header";
-import Button from "../common/Button";
-import ValidateUser from "../../utils/authValidation";
-import routes from "../../constants/routes";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+import Header from '../Header';
+import Button from '../common/Button';
+import ValidateUser from '../../utils/authValidation';
+import { frontendRoutes } from '../../constants/routes';
+import { startUserSignIn } from '../../actions/auth';
 
-class LoginPage extends Component {
+export class LoginPage extends Component {
   state = {
-    username: "",
-    password: "",
-    errors: {}
+    username: '',
+    password: '',
+    errors: {},
   };
 
-  onChange = event => {
+  onChange = (event) => {
     const { name, value } = event.target;
-    this.setState(() => ({
-      [name]: value
-    }));
+    this.setState({ [name]: value });
   };
 
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
 
     const { errors, hasErrors } = ValidateUser.signInDataValidation(this.state);
     this.setState(() => ({
-      errors
+      errors,
     }));
 
     if (!hasErrors) {
       const { username, password } = this.state;
-      this.props.startUserSignIn({ username, password });
+      const { startUserLogin, history } = this.props;
+      startUserLogin({ username, password }, history);
     }
   };
 
@@ -59,8 +61,8 @@ class LoginPage extends Component {
                   </div>
                 </label>
                 {errors.username &&
-                  errors.username.map((error, index) => (
-                    <div className="form__error" key={index}>
+                  errors.username.map(error => (
+                    <div className="form__error" key={error}>
                       {error}
                     </div>
                   ))}
@@ -80,8 +82,8 @@ class LoginPage extends Component {
                   </div>
                 </label>
                 {errors.password &&
-                  errors.password.map((error, index) => (
-                    <div className="form__error" key={index}>
+                  errors.password.map(error => (
+                    <div className="form__error" key={error}>
                       {error}
                     </div>
                   ))}
@@ -90,10 +92,10 @@ class LoginPage extends Component {
                 <Button className="button--big" type="submit" text="Login" />
               </div>
               <div className="auth__extra">
-                <Link className="auth__extra-item" to="#">
-                  Forgot Password?
-                </Link>
-                <Link className="auth__extra-item" to={routes.SIGN_UP}>
+                <div className="auth__extra-item">
+                  Yet to create an account?
+                </div>
+                <Link className="auth__extra-item" to={frontendRoutes.SIGN_UP}>
                   Sign up
                 </Link>
               </div>
@@ -106,11 +108,21 @@ class LoginPage extends Component {
 }
 
 LoginPage.defaultProps = {
-  startUserSignIn: () => {}
+  startUserLogin: () => {},
 };
 
 LoginPage.propTypes = {
-  startUserSignIn: PropTypes.func
+  startUserLogin: PropTypes.func,
+  history: PropTypes.instanceOf(Object).isRequired,
 };
 
-export default LoginPage;
+const mapStateToProps = state => ({
+  auth: state.auth.isAuthenticated,
+  error: state.auth.error,
+});
+
+const mapDispatchToProps = dispatch => ({
+  startUserLogin: bindActionCreators(startUserSignIn, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

@@ -18,6 +18,10 @@ module.exports = () => ({
         test: /\.s?css$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      {
+        test: /\.(jpe?g|png|svg|gif)$/i,
+        loader: 'file-loader',
+      },
     ],
   },
   resolve: {
@@ -31,6 +35,9 @@ module.exports = () => ({
     contentBase: path.join(__dirname, 'client', 'public'),
     publicPath: '/dist/',
     historyApiFallback: true,
+    proxy: {
+      '/api': 'http://localhost:8080',
+    },
   },
-  mode: 'development',
+  mode: process.env.NODE_ENV || 'development',
 });

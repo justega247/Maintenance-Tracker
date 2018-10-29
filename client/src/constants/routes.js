@@ -1,6 +1,12 @@
-const routes = {
+export const frontendRoutes = {
+  LANDING: '/',
   SIGN_UP: '/signup',
   SIGN_IN: '/login',
+  ADMIN_DASHBOARD: '/admin-dashboard',
+  USER_DASHBOARD: 'user-dashboard',
 };
 
-export default routes;
+export const backendRoutes = {
+  LOGIN: '/auth/login',
+  SIGN_UP: '/auth/signup',
+};

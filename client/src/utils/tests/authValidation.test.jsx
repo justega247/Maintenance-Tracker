@@ -1,12 +1,12 @@
-import Validateuser from "../authValidation";
+import Validateuser from '../authValidation';
 
 const { signInDataValidation, signUpDataValidation } = Validateuser;
 
-describe("Sign In Validations", () => {
-  test("should return an error when invalid data is sent", () => {
+describe('Sign In Validations', () => {
+  test('should return an error when invalid data is sent', () => {
     const invalidData = {
-      username: "?",
-      password: ""
+      username: '?',
+      password: '',
     };
     const result = signInDataValidation(invalidData);
     expect(result.hasErrors).toEqual(true);
@@ -14,10 +14,10 @@ describe("Sign In Validations", () => {
     expect(result.errors.password).toHaveLength(1);
   });
 
-  test("should not return an error when valid data is sent", () => {
+  test('should not return an error when valid data is sent', () => {
     const validData = {
-      username: "johnny76",
-      password: "password"
+      username: 'johnny76',
+      password: 'password',
     };
     const result = signInDataValidation(validData);
     expect(result.hasErrors).toEqual(false);
@@ -25,13 +25,13 @@ describe("Sign In Validations", () => {
   });
 });
 
-describe("Sign up Validations", () => {
-  test("should return an error when invalid data is sent", () => {
+describe('Sign up Validations', () => {
+  test('should return an error when invalid data is sent', () => {
     const invalidData = {
-      username: "?",
-      fullname: "",
-      email: "",
-      password: "",
+      username: '?',
+      fullname: '',
+      email: '',
+      password: '',
     };
     const result = signUpDataValidation(invalidData);
     expect(result.hasErrors).toEqual(true);
@@ -39,15 +39,15 @@ describe("Sign up Validations", () => {
     expect(result.errors.password).toHaveLength(1);
   });
 
-  test("should not return an error when valid data is sent", () => {
+  test('should not return an error when valid data is sent', () => {
     const validData = {
-      username: "johnny76",
-      fullname: "john walker",
-      email: "john@gnail.com",
-      password: "password"
+      username: 'johnny76',
+      fullname: 'john walker',
+      email: 'john@gnail.com',
+      password: 'password',
     };
     const result = signUpDataValidation(validData);
     expect(result.hasErrors).toEqual(false);
     expect(result.errors).toEqual({});
   });
-})
+});

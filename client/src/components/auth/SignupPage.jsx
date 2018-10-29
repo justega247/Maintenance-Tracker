@@ -1,38 +1,42 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import Header from "../Header";
-import Button from "../common/Button";
-import ValidateUser from "../../utils/authValidation";
-import routes from "../../constants/routes";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import Header from '../Header';
+import Button from '../common/Button';
+import ValidateUser from '../../utils/authValidation';
+import { frontendRoutes } from '../../constants/routes';
 
 class SignupPage extends Component {
   state = {
-    username: "",
-    fullname: "",
-    email: "",
-    password: "",
-    errors: {}
+    username: '',
+    fullname: '',
+    email: '',
+    password: '',
+    errors: {},
   };
 
-  onChange = event => {
+  onChange = (event) => {
     const { name, value } = event.target;
     this.setState(() => ({
-      [name]: value
+      [name]: value,
     }));
   };
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
 
     const { errors, hasErrors } = ValidateUser.signUpDataValidation(this.state);
     this.setState(() => ({
-      errors
+      errors,
     }));
 
     if (!hasErrors) {
-      const { username, fullname, email, password } = this.state;
-      this.props.startUserSignUp({ username, fullname, email, password });
+      const {
+        username, fullname, email, password,
+      } = this.state;
+      this.props.startUserSignUp({
+        username, fullname, email, password,
+      });
     }
   };
 
@@ -59,8 +63,8 @@ class SignupPage extends Component {
                 </div>
               </label>
               {errors.username &&
-                errors.username.map((error, index) => (
-                  <div className="form__error" key={index}>
+                errors.username.map(error => (
+                  <div className="form__error" key={error}>
                     {error}
                   </div>
                 ))}
@@ -80,8 +84,8 @@ class SignupPage extends Component {
                 </div>
               </label>
               {errors.fullname &&
-                errors.fullname.map((error, index) => (
-                  <div className="form__error" key={index}>
+                errors.fullname.map(error => (
+                  <div className="form__error" key={error}>
                     {error}
                   </div>
                 ))}
@@ -101,8 +105,8 @@ class SignupPage extends Component {
                 </div>
               </label>
               {errors.email &&
-                errors.email.map((error, index) => (
-                  <div className="form__error" key={index}>
+                errors.email.map(error => (
+                  <div className="form__error" key={error}>
                     {error}
                   </div>
                 ))}
@@ -122,8 +126,8 @@ class SignupPage extends Component {
                 </div>
               </label>
               {errors.password &&
-                errors.password.map((error, index) => (
-                  <div className="form__error" key={index}>
+                errors.password.map(error => (
+                  <div className="form__error" key={error}>
                     {error}
                   </div>
                 ))}
@@ -133,8 +137,8 @@ class SignupPage extends Component {
             </div>
             <div>
               <h4>
-                Already have an account?{" "}
-                <Link className="auth__extra-item" to={routes.SIGN_IN}>
+                Already have an account?{' '}
+                <Link className="auth__extra-item" to={frontendRoutes.SIGN_IN}>
                   Login
                 </Link>
               </h4>
@@ -147,11 +151,11 @@ class SignupPage extends Component {
 }
 
 SignupPage.defaultProps = {
-  startUserSignUp: () => {}
+  startUserSignUp: () => {},
 };
 
 SignupPage.propTypes = {
-  startUserSignUp: PropTypes.func
+  startUserSignUp: PropTypes.func,
 };
 
 export default SignupPage;
