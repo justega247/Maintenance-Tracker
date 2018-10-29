@@ -8,7 +8,7 @@ describe('GET /api/v1/requests/', () => {
   it('should return all the requests when accessed by the admin', (done) => {
     request(app)
       .get('/api/v1/requests')
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .expect(200)
       .expect((res) => {
         expect(res.body.status).to.equal('success');
@@ -21,7 +21,7 @@ describe('GET /api/v1/requests/', () => {
   it('should not return all the requests when the token supplied is expired', (done) => {
     request(app)
       .get('/api/v1/requests')
-      .set('x-auth', expiredToken)
+      .set('authorization', expiredToken)
       .expect(401)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
@@ -33,7 +33,7 @@ describe('GET /api/v1/requests/', () => {
   it('should return an error when a normal user tries to access the route', (done) => {
     request(app)
       .get('/api/v1/requests')
-      .set('x-auth', nextfakeToken)
+      .set('authorization', nextfakeToken)
       .expect(403)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
@@ -45,7 +45,7 @@ describe('GET /api/v1/requests/', () => {
   it('should return an error when the user does not exist', (done) => {
     request(app)
       .get('/api/v1/requests')
-      .set('x-auth', secondfakeToken)
+      .set('authorization', secondfakeToken)
       .expect(404)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
@@ -72,7 +72,7 @@ describe('PUT /:requestId/approve', () => {
 
     request(app)
       .put(`/api/v1/requests/${id}/approve`)
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .expect(200)
       .expect((res) => {
         expect(res.body.status).to.equal('success');
@@ -86,7 +86,7 @@ describe('PUT /:requestId/approve', () => {
 
     request(app)
       .put(`/api/v1/requests/${id}/approve`)
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
@@ -100,7 +100,7 @@ describe('PUT /:requestId/approve', () => {
 
     request(app)
       .put(`/api/v1/requests/${id}/approve`)
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .expect(404)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
@@ -116,7 +116,7 @@ describe('PUT /:requestId/disapprove', () => {
 
     request(app)
       .put(`/api/v1/requests/${id}/disapprove`)
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .expect(200)
       .expect((res) => {
         expect(res.body.status).to.equal('success');
@@ -130,7 +130,7 @@ describe('PUT /:requestId/disapprove', () => {
 
     request(app)
       .put(`/api/v1/requests/${id}/disapprove`)
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .expect(404)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
@@ -146,7 +146,7 @@ describe('PUT /:requestId/resolve', () => {
 
     request(app)
       .put(`/api/v1/requests/${id}/resolve`)
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .expect(200)
       .expect((res) => {
         expect(res.body.status).to.equal('success');
@@ -160,7 +160,7 @@ describe('PUT /:requestId/resolve', () => {
 
     request(app)
       .put(`/api/v1/requests/${id}/resolve`)
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .expect(422)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Login Page should call startUserSignIn props for valid form submission 1`] = `
+exports[`Login Page should call startUserLogin props for valid form submission 1`] = `
 <div>
   <Header />
   <div>
@@ -57,13 +57,11 @@ exports[`Login Page should call startUserSignIn props for valid form submission 
         <div
           className="auth__extra"
         >
-          <Link
+          <div
             className="auth__extra-item"
-            replace={false}
-            to="#"
           >
-            Forgot Password?
-          </Link>
+            Yet to create an account?
+          </div>
           <Link
             className="auth__extra-item"
             replace={false}
@@ -135,13 +133,11 @@ exports[`Login Page should correctly render LoginPage 1`] = `
         <div
           className="auth__extra"
         >
-          <Link
+          <div
             className="auth__extra-item"
-            replace={false}
-            to="#"
           >
-            Forgot Password?
-          </Link>
+            Yet to create an account?
+          </div>
           <Link
             className="auth__extra-item"
             replace={false}
@@ -186,7 +182,7 @@ exports[`Login Page should return error for invalid form submission 1`] = `
           </label>
           <div
             className="form__error"
-            key="0"
+            key="username field is required."
           >
             username field is required.
           </div>
@@ -210,7 +206,7 @@ exports[`Login Page should return error for invalid form submission 1`] = `
           </label>
           <div
             className="form__error"
-            key="0"
+            key="password field is required."
           >
             password field is required.
           </div>
@@ -225,13 +221,11 @@ exports[`Login Page should return error for invalid form submission 1`] = `
         <div
           className="auth__extra"
         >
-          <Link
+          <div
             className="auth__extra-item"
-            replace={false}
-            to="#"
           >
-            Forgot Password?
-          </Link>
+            Yet to create an account?
+          </div>
           <Link
             className="auth__extra-item"
             replace={false}

@@ -1,31 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import 'toastr/build/toastr.css';
+import { Provider } from 'react-redux';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCogs } from '@fortawesome/free-solid-svg-icons';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
-import Dashboard from './components/DashboardPage';
-import NotFoundPage from './components/NotFoundPage';
-import LandingPage from './components/LandingPage';
-import LoginPage from './components/auth/LoginPage';
-import routes from '../src/constants/routes';
-import SignupPage from './components/auth/SignupPage';
+import configureStore from './store/configureStore';
+import AppRouter from './routers/AppRouter';
+import setAuthorizationToken from './utils/authorization';
+import setCurrentUserToStore from './utils/setCurrentUser';
 
 library.add(faCogs);
 
-const Routes = (
-  <BrowserRouter>
-    <div>
-      <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path={routes.SIGN_IN} component={LoginPage} />
-        <Route exact path={routes.SIGN_UP}  component={SignupPage} />
-        <Route component={NotFoundPage} />
-      </Switch>
-    </div>
-  </BrowserRouter>
+const store = configureStore();
+
+setAuthorizationToken();
+
+setCurrentUserToStore(store);
+
+const jsx = (
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>
 );
 
-ReactDOM.render(Routes, document.getElementById('app'));
+ReactDOM.render(jsx, document.getElementById('app'));

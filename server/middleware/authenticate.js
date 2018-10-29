@@ -51,7 +51,7 @@ class Authenticate {
  * @param {func} next
  */
   static authenticateUser(req, res, next) {
-    const token = req.headers['x-auth'];
+    const token = req.headers.authorization;
 
     if (token) {
       verify(token, SECRET, (err, decoded) => {
@@ -91,7 +91,7 @@ class Authenticate {
  * @param {func} next
  */
   static authenticateAdminUser(req, res, next) {
-    const token = req.headers['x-auth'];
+    const token = req.headers.authorization;
 
     if (token) {
       verify(token, SECRET, (err, decoded) => {

@@ -47,12 +47,13 @@ class Users {
                 expiresIn: TOKEN_EXPIRATION_TIME,
               },
             );
-            res.header('x-auth', token).status(201).json({
+            res.header('authorization', token).status(201).json({
               data: {
                 user: {
                   id: createdUser.rows[0].id,
                   name: createdUser.rows[0].fullname,
                   username: createdUser.rows[0].username,
+                  token,
                 },
               },
               message: 'Account successfully created',
@@ -76,11 +77,12 @@ class Users {
       { id }, SECRET,
       { expiresIn: TOKEN_EXPIRATION_TIME },
     );
-    res.header('x-auth', token).status(200).json({
+    res.header('authorization', token).status(200).json({
       data: {
         user: {
           id,
           username,
+          token,
         },
       },
       message: 'You signed in successfully',

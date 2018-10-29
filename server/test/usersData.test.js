@@ -202,7 +202,7 @@ describe('POST /users/requests', () => {
     };
     request(app)
       .post('/api/v1/users/requests')
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .send(newRequest)
       .expect(201)
       .expect((res) => {
@@ -221,7 +221,7 @@ describe('POST /users/requests', () => {
     };
     request(app)
       .post('/api/v1/users/requests')
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .send(newRequest)
       .expect(400)
       .expect((res) => {
@@ -239,7 +239,7 @@ describe('POST /users/requests', () => {
     };
     request(app)
       .post('/api/v1/users/requests')
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .send(newRequest)
       .expect(400)
       .expect((res) => {
@@ -257,7 +257,7 @@ describe('POST /users/requests', () => {
     };
     request(app)
       .post('/api/v1/users/requests')
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .send(newRequest)
       .expect(400)
       .expect((res) => {
@@ -275,7 +275,7 @@ describe('POST /users/requests', () => {
     };
     request(app)
       .post('/api/v1/users/requests')
-      .set('x-auth', secondfakeToken)
+      .set('authorization', secondfakeToken)
       .send(newRequest)
       .expect(404)
       .expect((res) => {
@@ -293,7 +293,7 @@ describe('POST /users/requests', () => {
     };
     request(app)
       .post('/api/v1/users/requests')
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .send(newRequest)
       .expect(400)
       .expect((res) => {
@@ -311,7 +311,7 @@ describe('POST /users/requests', () => {
     };
     request(app)
       .post('/api/v1/users/requests')
-      .set('x-auth', expiredToken)
+      .set('authorization', expiredToken)
       .send(newRequest)
       .expect(401)
       .expect((res) => {
@@ -343,7 +343,7 @@ describe('GET /users/requests', () => {
   it('should return all the requests created by a user', (done) => {
     request(app)
       .get('/api/v1/users/requests')
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .expect(200)
       .expect((res) => {
         expect(res.body.status).to.equal('success');
@@ -355,7 +355,7 @@ describe('GET /users/requests', () => {
   it('should return a no request message when a user has not made any requests', (done) => {
     request(app)
       .get('/api/v1/users/requests')
-      .set('x-auth', nextfakeToken)
+      .set('authorization', nextfakeToken)
       .expect(200)
       .expect((res) => {
         expect(res.body.status).to.equal('success');
@@ -371,7 +371,7 @@ describe('GET /users/requests/:requestId', () => {
 
     request(app)
       .get(`/api/v1/users/requests/${requestId}`)
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .expect(200)
       .expect((res) => {
         expect(res.body.status).to.equal('success');
@@ -385,7 +385,7 @@ describe('GET /users/requests/:requestId', () => {
 
     request(app)
       .get(`/api/v1/users/requests/${requestId}`)
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .expect(404)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
@@ -399,7 +399,7 @@ describe('GET /users/requests/:requestId', () => {
 
     request(app)
       .get(`/api/v1/users/requests/${requestId}`)
-      .set('x-auth', nextfakeToken)
+      .set('authorization', nextfakeToken)
       .expect(400)
       .expect((res) => {
         expect(res.body.status).to.equal('fail');
@@ -420,7 +420,7 @@ describe('PUT users/requests/requestsId/', () => {
 
     request(app)
       .put(`/api/v1/users/requests/${requestId}`)
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .send(update)
       .expect(200)
       .expect((res) => {
@@ -440,7 +440,7 @@ describe('PUT users/requests/requestsId/', () => {
 
     request(app)
       .put(`/api/v1/users/requests/${requestId}`)
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .send(update)
       .expect(400)
       .expect((res) => {
@@ -460,7 +460,7 @@ describe('PUT users/requests/requestsId/', () => {
 
     request(app)
       .put(`/api/v1/users/requests/${requestId}`)
-      .set('x-auth', nextfakeToken)
+      .set('authorization', nextfakeToken)
       .send(update)
       .expect(200)
       .expect((res) => {
@@ -480,7 +480,7 @@ describe('PUT users/requests/requestsId/', () => {
 
     request(app)
       .put(`/api/v1/users/requests/${requestId}`)
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .send(update)
       .expect(401)
       .expect((res) => {
@@ -500,7 +500,7 @@ describe('PUT users/requests/requestsId/', () => {
 
     request(app)
       .put(`/api/v1/users/requests/${requestId}`)
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .send(update)
       .expect(404)
       .expect((res) => {
@@ -520,7 +520,7 @@ describe('PUT users/requests/requestsId/', () => {
 
     request(app)
       .put(`/api/v1/users/requests/${requestId}`)
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .send(update)
       .expect(400)
       .expect((res) => {
@@ -539,7 +539,7 @@ describe('PUT users/requests/requestsId/', () => {
 
     request(app)
       .put(`/api/v1/users/requests/${requestId}`)
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .send(update)
       .expect(400)
       .expect((res) => {
@@ -557,7 +557,7 @@ describe('PUT users/requests/requestsId/', () => {
 
     request(app)
       .put('/api/v1/users/requests/poll')
-      .set('x-auth', fakeToken)
+      .set('authorization', fakeToken)
       .send(update)
       .expect(422)
       .expect((res) => {
