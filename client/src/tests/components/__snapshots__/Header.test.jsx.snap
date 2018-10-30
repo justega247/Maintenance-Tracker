@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should correctly render Header 1`] = `
+<div>
+  <header
+    className="header"
+  >
+    <Link
+      className="header__title"
+      replace={false}
+      to="/"
+    >
+      <span>
+        Maintenance Tracker 
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon="cogs"
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </span>
+    </Link>
+  </header>
+</div>
+`;
+
+exports[`Header should render correct header when user is not the admin 1`] = `
+<div>
+  <header
+    className="header"
+  >
+    <Link
+      className="header__title"
+      replace={false}
+      to="/"
+    >
+      <span>
+        Maintenance Trackers 
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon="cogs"
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </span>
+    </Link>
+    <div>
+      <Link
+        replace={false}
+        to="/create-request"
+      >
+        Create Request
+      </Link>
+      <Link
+        replace={false}
+        to="/view-request"
+      >
+        View Request
+      </Link>
+      <button>
+        Logout
+      </button>
+    </div>
+  </header>
+</div>
+`;

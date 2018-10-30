@@ -20,7 +20,7 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/requests', requestRoutes);
 
-app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, '../client/public/dist')));
 
 app.get('/api/v1', (req, res) => res.status(200).json({
   message: 'Welcome to the maintenance tracker app version(1)',

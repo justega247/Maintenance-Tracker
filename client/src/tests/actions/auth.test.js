@@ -4,7 +4,7 @@ import moxios from 'moxios';
 import jwt from 'jsonwebtoken';
 import { backendRoutes } from '../../constants/routes';
 import config from '../../config';
-import { startUserSignIn } from '../../actions/auth';
+import { startUserSignIn, startUserSignUp } from '../../actions/auth';
 import { SET_CURRENT_USER, SET_CURRENT_USER_FAIL } from '../../constants/actionTypes';
 import mockData from '../__mocks__/mockData';
 import mockCookieStorage from '../__mocks__/mockCookiesStorage';
@@ -49,6 +49,24 @@ describe('Authentication Actions', () => {
     }];
     const store = createMockStore({});
     store.dispatch(startUserSignIn(loginData, history))
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+    done();
+  });
+  test('creates SET_CURRENT_USER when signup is successful', (done) => {
+    const { authResponse, signUpDetails } = mockData;
+    moxios.stubRequest(`${config.apiUrl}${backendRoutes.SIGN_UP}`, {
+      status: 201,
+      response: authResponse.data.data,
+    });
+
+    const expectedActions = [{
+      type: SET_CURRENT_USER,
+      user: jwt.decode(authResponse.data.data.user.token),
+    }];
+    const store = createMockStore({});
+    store.dispatch(startUserSignUp(signUpDetails, history))
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });

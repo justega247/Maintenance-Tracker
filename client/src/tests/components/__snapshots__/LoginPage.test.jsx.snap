@@ -2,7 +2,6 @@
 
 exports[`Login Page should call startUserLogin props for valid form submission 1`] = `
 <div>
-  <Header />
   <div>
     <form
       className="auth__form"
@@ -78,7 +77,6 @@ exports[`Login Page should call startUserLogin props for valid form submission 1
 
 exports[`Login Page should correctly render LoginPage 1`] = `
 <div>
-  <Header />
   <div>
     <form
       className="auth__form"
@@ -154,7 +152,6 @@ exports[`Login Page should correctly render LoginPage 1`] = `
 
 exports[`Login Page should return error for invalid form submission 1`] = `
 <div>
-  <Header />
   <div>
     <form
       className="auth__form"
