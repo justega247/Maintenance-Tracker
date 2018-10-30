@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import Header from '../Header';
 import Button from '../common/Button';
 import ValidateUser from '../../utils/authValidation';
 import { frontendRoutes } from '../../constants/routes';
@@ -42,7 +41,6 @@ export class LoginPage extends Component {
 
     return (
       <div>
-        <Header />
         <div>
           <form onSubmit={this.onSubmit} className="auth__form">
             <div className="auth__body">

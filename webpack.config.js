@@ -28,9 +28,11 @@ module.exports = () => ({
     extensions: ['.js', '.jsx'],
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'client/public/index.html'),
+    }),
   ],
-  devtool: 'cheap-module-eval-source-map',
+  devtool: process.env.NODE_ENV !== 'production' ? 'cheap-module-eval-source-map' : 'inline-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'client', 'public'),
     publicPath: '/dist/',

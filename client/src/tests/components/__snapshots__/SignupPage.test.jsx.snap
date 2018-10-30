@@ -2,7 +2,6 @@
 
 exports[`Signup Page should call startUserSignUp props for valid form submission 1`] = `
 <div>
-  <Header />
   <form
     className="auth__form"
     onSubmit={[Function]}
@@ -109,7 +108,6 @@ exports[`Signup Page should call startUserSignUp props for valid form submission
 
 exports[`Signup Page should correctly render SignupPage 1`] = `
 <div>
-  <Header />
   <form
     className="auth__form"
     onSubmit={[Function]}
@@ -216,7 +214,6 @@ exports[`Signup Page should correctly render SignupPage 1`] = `
 
 exports[`Signup Page should return error for invalid form submission 1`] = `
 <div>
-  <Header />
   <form
     className="auth__form"
     onSubmit={[Function]}

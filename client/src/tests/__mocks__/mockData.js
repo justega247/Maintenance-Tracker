@@ -8,6 +8,7 @@ const mockData = {
     username: 'jasmine',
     email: 'jasmine@yahoo.com',
     password: 'password',
+    fullname: 'jasmine pearl',
   },
 
   authResponse: {

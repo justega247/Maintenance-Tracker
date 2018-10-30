@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Header from '../Header';
 import Button from '../common/Button';
 import ValidateUser from '../../utils/authValidation';
 import { frontendRoutes } from '../../constants/routes';
+import { startUserSignUp } from '../../actions/auth';
 
-class SignupPage extends Component {
+
+export class SignupPage extends Component {
   state = {
     username: '',
     fullname: '',
@@ -17,9 +20,7 @@ class SignupPage extends Component {
 
   onChange = (event) => {
     const { name, value } = event.target;
-    this.setState(() => ({
-      [name]: value,
-    }));
+    this.setState({ [name]: value });
   };
 
   onSubmit = (event) => {
@@ -34,9 +35,10 @@ class SignupPage extends Component {
       const {
         username, fullname, email, password,
       } = this.state;
-      this.props.startUserSignUp({
+      const { startUserRegister, history } = this.props;
+      startUserRegister({
         username, fullname, email, password,
-      });
+      }, history);
     }
   };
 
@@ -45,7 +47,6 @@ class SignupPage extends Component {
 
     return (
       <div>
-        <Header />
         <form onSubmit={this.onSubmit} className="auth__form">
           <div className="auth__body">
             <div>
@@ -151,11 +152,21 @@ class SignupPage extends Component {
 }
 
 SignupPage.defaultProps = {
-  startUserSignUp: () => {},
+  startUserRegister: () => {},
 };
 
 SignupPage.propTypes = {
-  startUserSignUp: PropTypes.func,
+  startUserRegister: PropTypes.func,
+  history: PropTypes.instanceOf(Object).isRequired,
 };
 
-export default SignupPage;
+const mapStateToProps = state => ({
+  auth: state.auth.isAuthenticated,
+  error: state.auth.error,
+});
+
+const mapDispatchToProps = dispatch => ({
+  startUserRegister: bindActionCreators(startUserSignUp, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignupPage);

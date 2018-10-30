@@ -2,7 +2,6 @@
 
 exports[`Landing Page should correctly render LandingPage 1`] = `
 <div>
-  <Header />
   <div
     className="landing__image"
   >

@@ -1,12 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Header from './Header';
 import Button from './common/Button';
 import { frontendRoutes } from '../constants/routes';
 
 const LandingPage = () => (
   <div>
-    <Header />
     <div className="landing__image">
       <div className="landing__quote">
         <h1>No need to wait till something breaks</h1>

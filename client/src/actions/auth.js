@@ -44,6 +44,25 @@ export const startUserSignIn = ({
     });
 };
 
+export const startUserSignUp = ({
+  username, fullname, email, password,
+}, history) => (dispatch) => {
+  const userDetails = {
+    username, fullname, email, password,
+  };
+  return axios.post(`${config.apiUrl}${backendRoutes.SIGN_UP}`, userDetails)
+    .then((response) => {
+      const { token } = response.data.data.user;
+      Cookie.set('jwtToken', token);
+      history.push(frontendRoutes.USER_DASHBOARD);
+      dispatch(setCurrentUser(jwt.decode(token)));
+    })
+    .catch((error) => {
+      const { message } = error.response.data;
+      dispatch(setCurrentUserError(message));
+    });
+};
+
 export const logoutCurrentUser = () => ({
   type: LOGOUT_USER,
 });
