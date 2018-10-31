@@ -10,6 +10,8 @@ import AdminRequestPage from '../components/AdminRequestPage';
 import LoginPage from '../components/auth/LoginPage';
 import SignupPage from '../components/auth/SignupPage';
 import CreateRequestPage from '../components/CreateRequestPage';
+import RequestDetailsPage from '../components/UserRequestDetails';
+import EditRequestForm from '../components/EditRequestForm';
 import PrivateRoute from '../utils/PrivateRoute';
 
 
@@ -26,6 +28,8 @@ export default () => (
         <PrivateRoute exact path={frontendRoutes.ADMIN_DASHBOARD} component={AdminRequestPage} />
         <PrivateRoute exact path={frontendRoutes.USER_DASHBOARD} component={UserRequestPage} />
         <PrivateRoute exact path={frontendRoutes.CREATE_REQUEST} component={CreateRequestPage} />
+        <PrivateRoute exact path={frontendRoutes.VIEW_REQUEST} component={RequestDetailsPage} />
+        <PrivateRoute exact path={frontendRoutes.EDIT_REQUEST} component={EditRequestForm} />
         <PrivateRoute component={NotFoundPage} />
       </Switch>
     </div>

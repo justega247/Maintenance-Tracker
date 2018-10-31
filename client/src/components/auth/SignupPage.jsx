@@ -54,7 +54,7 @@ export class SignupPage extends Component {
         <form onSubmit={this.onSubmit} className="auth__form">
           <div className="auth__body">
             <div>
-              <label htmlFor="username" className="label">
+              <label htmlFor="username" className="label request__label">
                 Username:
                 <div>
                   <input
@@ -75,7 +75,7 @@ export class SignupPage extends Component {
                 ))}
             </div>
             <div>
-              <label htmlFor="fullname" className="label">
+              <label htmlFor="fullname" className="label request__label">
                 Fullname:
                 <div>
                   <input
@@ -96,7 +96,7 @@ export class SignupPage extends Component {
                 ))}
             </div>
             <div>
-              <label htmlFor="email" className="label">
+              <label htmlFor="email" className="label request__label">
                 Email:
                 <div>
                   <input
@@ -117,7 +117,7 @@ export class SignupPage extends Component {
                 ))}
             </div>
             <div>
-              <label htmlFor="password" className="label">
+              <label htmlFor="password" className="label request__label">
                 Password:
                 <div>
                   <input
@@ -156,12 +156,11 @@ export class SignupPage extends Component {
 }
 
 SignupPage.defaultProps = {
-  startUserRegister: () => {},
   auth: false,
 };
 
 SignupPage.propTypes = {
-  startUserRegister: PropTypes.func,
+  startUserRegister: PropTypes.func.isRequired,
   auth: PropTypes.bool,
 };
 

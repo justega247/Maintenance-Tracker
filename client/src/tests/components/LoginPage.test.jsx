@@ -1,15 +1,21 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { LoginPage } from '../../components/auth/LoginPage';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import LoginPage from '../../components/auth/LoginPage';
 
 let startUserLogin;
 let wrapper;
 
+const createMockStore = configureMockStore([thunk]);
+const store = createMockStore({});
+
 describe('Login Page', () => {
   beforeEach(() => {
     startUserLogin = jest.fn();
-    wrapper = shallow(<LoginPage
+    wrapper = shallow(<LoginPage.WrappedComponent
       startUserLogin={startUserLogin}
+      store={store}
     />);
   });
 
@@ -55,5 +61,15 @@ describe('Login Page', () => {
     });
     expect(startUserLogin).toHaveBeenCalledWith(validDetails);
     expect(wrapper).toMatchSnapshot();
+  });
+
+  test('should redirect user', () => {
+    const wrapper1 = shallow(<LoginPage.WrappedComponent
+      startUserLogin={startUserLogin}
+      store={store}
+      auth
+      userId={1}
+    />);
+    expect(wrapper1).toMatchSnapshot();
   });
 });

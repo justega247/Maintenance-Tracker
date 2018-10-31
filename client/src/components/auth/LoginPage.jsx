@@ -46,12 +46,12 @@ export class LoginPage extends Component {
     }
 
     return (
-      <div>
-        <div>
+      <div className="create__request">
+        <div className="create__request">
           <form onSubmit={this.onSubmit} className="auth__form">
             <div className="auth__body">
               <div>
-                <label htmlFor="username" className="label">
+                <label htmlFor="username" className="label request__label">
                   Username:
                   <div>
                     <input
@@ -72,7 +72,7 @@ export class LoginPage extends Component {
                   ))}
               </div>
               <div>
-                <label htmlFor="password" className="label">
+                <label htmlFor="password" className="label request__label">
                   Password:
                   <div>
                     <input
@@ -112,13 +112,12 @@ export class LoginPage extends Component {
 }
 
 LoginPage.defaultProps = {
-  startUserLogin: () => {},
   auth: false,
   userId: undefined,
 };
 
 LoginPage.propTypes = {
-  startUserLogin: PropTypes.func,
+  startUserLogin: PropTypes.func.isRequired,
   auth: PropTypes.bool,
   userId: PropTypes.number,
 };

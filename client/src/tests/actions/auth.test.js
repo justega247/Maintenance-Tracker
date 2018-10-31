@@ -19,7 +19,7 @@ describe('Authentication Actions', () => {
     const { authResponse, loginData } = mockData;
     moxios.stubRequest(`${config.apiUrl}${backendRoutes.LOGIN}`, {
       status: 200,
-      response: authResponse.data.data,
+      response: authResponse.data,
     });
 
     const expectedActions = [{
@@ -56,7 +56,7 @@ describe('Authentication Actions', () => {
     const { authResponse, signUpDetails } = mockData;
     moxios.stubRequest(`${config.apiUrl}${backendRoutes.SIGN_UP}`, {
       status: 201,
-      response: authResponse.data.data,
+      response: authResponse.data,
     });
 
     const expectedActions = [{
@@ -71,11 +71,13 @@ describe('Authentication Actions', () => {
     done();
   });
 
-  test('should set up logout current user action object', () => {
-    const action = logoutCurrentUser();
-    expect(action).toEqual({
+  test('creates LOGOUT_USER action', () => {
+    const expectedActions = [{
       type: LOGOUT_USER,
-    });
+    }];
+    const store = createMockStore({});
+    store.dispatch(logoutCurrentUser());
+    expect(store.getActions()).toEqual(expectedActions);
   });
 
   test('should set up set current user action object', () => {

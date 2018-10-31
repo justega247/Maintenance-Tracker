@@ -1,0 +1,270 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RequestForm should call the submit props 1`] = `
+<div
+  className="request__form"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <div>
+      <label
+        className="label request__label"
+        htmlFor="type"
+      >
+        Type:
+        <select
+          className="request__type"
+          name="type"
+          onChange={[Function]}
+          value="repairs"
+        >
+          <option
+            key="repairs"
+            value="repairs"
+          >
+            repairs
+          </option>
+          <option
+            key="maintenance"
+            value="maintenance"
+          >
+            maintenance
+          </option>
+        </select>
+      </label>
+    </div>
+    <div>
+      <label
+        className="label request__label"
+        htmlFor="title"
+      >
+        Title:
+        <div>
+          <input
+            className="form__input"
+            name="title"
+            onChange={[Function]}
+            placeholder="enter a title"
+            type="text"
+            value="Broken hedges"
+          />
+        </div>
+      </label>
+    </div>
+    <div>
+      <label
+        className="label request__label"
+        htmlFor="description"
+      >
+        Description:
+        <div>
+          <textarea
+            className="form__input"
+            name="description"
+            onChange={[Function]}
+            placeholder="enter a description"
+            value="We will need to check and get the hedges fixed"
+          />
+        </div>
+      </label>
+    </div>
+    <div>
+      <Button
+        className="button--big"
+        text="Save Request"
+        type="submit"
+      />
+    </div>
+  </form>
+</div>
+`;
+
+exports[`RequestForm should call the submit props 2`] = `
+<div
+  className="request__form"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <div>
+      <label
+        className="label request__label"
+        htmlFor="type"
+      >
+        Type:
+        <select
+          className="request__type"
+          name="type"
+          onChange={[Function]}
+          value="repairs"
+        >
+          <option
+            key="repairs"
+            value="repairs"
+          >
+            repairs
+          </option>
+          <option
+            key="maintenance"
+            value="maintenance"
+          >
+            maintenance
+          </option>
+        </select>
+      </label>
+    </div>
+    <div>
+      <label
+        className="label request__label"
+        htmlFor="title"
+      >
+        Title:
+        <div>
+          <input
+            className="form__input"
+            name="title"
+            onChange={[Function]}
+            placeholder="enter a title"
+            type="text"
+            value=""
+          />
+        </div>
+      </label>
+      <div
+        className="form__error"
+        key="Sorry, you have to specify a title for your request"
+      >
+        Sorry, you have to specify a title for your request
+      </div>
+    </div>
+    <div>
+      <label
+        className="label request__label"
+        htmlFor="description"
+      >
+        Description:
+        <div>
+          <textarea
+            className="form__input"
+            name="description"
+            onChange={[Function]}
+            placeholder="enter a description"
+            value=""
+          />
+        </div>
+      </label>
+      <div
+        className="form__error"
+        key="Sorry, you have to specify a description for your request"
+      >
+        Sorry, you have to specify a description for your request
+      </div>
+    </div>
+    <div>
+      <Button
+        className="button--big"
+        text="Save Request"
+        type="submit"
+      />
+    </div>
+  </form>
+</div>
+`;
+
+exports[`RequestForm should render RequestForm correctly 1`] = `
+<div
+  className="request__form"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <div>
+      <label
+        className="label request__label"
+        htmlFor="type"
+      >
+        Type:
+        <select
+          className="request__type"
+          name="type"
+          onChange={[Function]}
+          value="repairs"
+        >
+          <option
+            key="repairs"
+            value="repairs"
+          >
+            repairs
+          </option>
+          <option
+            key="maintenance"
+            value="maintenance"
+          >
+            maintenance
+          </option>
+        </select>
+      </label>
+    </div>
+    <div>
+      <label
+        className="label request__label"
+        htmlFor="title"
+      >
+        Title:
+        <div>
+          <input
+            className="form__input"
+            name="title"
+            onChange={[Function]}
+            placeholder="enter a title"
+            type="text"
+            value=""
+          />
+        </div>
+      </label>
+    </div>
+    <div>
+      <label
+        className="label request__label"
+        htmlFor="description"
+      >
+        Description:
+        <div>
+          <textarea
+            className="form__input"
+            name="description"
+            onChange={[Function]}
+            placeholder="enter a description"
+            value=""
+          />
+        </div>
+      </label>
+    </div>
+    <div>
+      <Button
+        className="button--big"
+        text="Save Request"
+        type="submit"
+      />
+    </div>
+  </form>
+</div>
+`;
+
+exports[`RequestForm should render connected component 1`] = `
+<RequestForm
+  fetchRequest={[Function]}
+  onSubmit={[MockFunction]}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+/>
+`;

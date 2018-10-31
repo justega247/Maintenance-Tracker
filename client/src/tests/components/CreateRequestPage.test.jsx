@@ -1,10 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CreateRequestPage } from '../../components/CreateRequestPage';
-import mockData from '../__mocks__/mockData';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import ConnectedRequestPage, { CreateRequestPage } from '../../components/CreateRequestPage';
 
 let wrapper;
 let props;
+
+const createMockStore = configureMockStore([thunk]);
+const store = createMockStore({});
+
 describe('CreateRequestPage', () => {
   beforeEach(() => {
     props = {
@@ -18,9 +23,14 @@ describe('CreateRequestPage', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  test('should handle onSubmit', () => {
-    const { request } = mockData;
-    wrapper.find('RequestForm').prop('onSubmit')(request);
-    expect(props.startCreateRequest).toHaveBeenCalledWith(request, props.history);
+  test('should call startCreateRequest onSubmit', () => {
+    const instance = wrapper.instance();
+    instance.onSubmit();
+    expect(props.startCreateRequest).toHaveBeenCalled();
+  });
+
+  test('should render connected component', () => {
+    wrapper = shallow(<ConnectedRequestPage store={store} {...props} />);
+    expect(wrapper).toMatchSnapshot();
   });
 });

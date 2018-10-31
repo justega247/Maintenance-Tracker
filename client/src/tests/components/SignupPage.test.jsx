@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { SignupPage } from '../../components/auth/SignupPage';
+import SignupPage from '../../components/auth/SignupPage';
 
 let startUserRegister;
 let wrapper;
@@ -8,7 +8,7 @@ let wrapper;
 describe('Signup Page', () => {
   beforeEach(() => {
     startUserRegister = jest.fn();
-    wrapper = shallow(<SignupPage
+    wrapper = shallow(<SignupPage.WrappedComponent
       startUserRegister={startUserRegister}
     />);
   });
@@ -74,5 +74,13 @@ describe('Signup Page', () => {
     });
     expect(startUserRegister).toHaveBeenCalledWith(validDetails);
     expect(wrapper).toMatchSnapshot();
+  });
+
+  test('should redirect user', () => {
+    const wrapper1 = shallow(<SignupPage.WrappedComponent
+      startUserRegister={startUserRegister}
+      auth
+    />);
+    expect(wrapper1).toMatchSnapshot();
   });
 });
