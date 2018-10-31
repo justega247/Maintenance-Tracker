@@ -11,4 +11,5 @@ export const frontendRoutes = {
 export const backendRoutes = {
   LOGIN: '/auth/login',
   SIGN_UP: '/auth/signup',
+  REQUESTS: '/users/requests',
 };

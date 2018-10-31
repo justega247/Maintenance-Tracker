@@ -9,6 +9,9 @@ import UserRequestPage from '../components/UserRequestPage';
 import AdminRequestPage from '../components/AdminRequestPage';
 import LoginPage from '../components/auth/LoginPage';
 import SignupPage from '../components/auth/SignupPage';
+import CreateRequestPage from '../components/CreateRequestPage';
+import PrivateRoute from '../utils/PrivateRoute';
+
 
 export const history = createHistory();
 
@@ -20,9 +23,10 @@ export default () => (
         <Route exact path={frontendRoutes.LANDING} component={LandingPage} />
         <Route exact path={frontendRoutes.SIGN_IN} component={LoginPage} />
         <Route exact path={frontendRoutes.SIGN_UP} component={SignupPage} />
-        <Route exact path={frontendRoutes.ADMIN_DASHBOARD} component={AdminRequestPage} />
-        <Route exact path={frontendRoutes.USER_DASHBOARD} component={UserRequestPage} />
-        <Route component={NotFoundPage} />
+        <PrivateRoute exact path={frontendRoutes.ADMIN_DASHBOARD} component={AdminRequestPage} />
+        <PrivateRoute exact path={frontendRoutes.USER_DASHBOARD} component={UserRequestPage} />
+        <PrivateRoute exact path={frontendRoutes.CREATE_REQUEST} component={CreateRequestPage} />
+        <PrivateRoute component={NotFoundPage} />
       </Switch>
     </div>
   </BrowserRouter>

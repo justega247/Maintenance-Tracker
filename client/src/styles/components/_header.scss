@@ -13,3 +13,26 @@
   text-decoration: none;
   background: white;
 }
+
+.auth__header {
+  background-color: $blue;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.auth__title {
+  color: white;
+  text-decoration: none;
+}
+
+.nav__item {
+  color: white;
+  margin-right: 20px;
+  text-decoration: none;
+}
+
+.nav__div {
+  padding-top: 10px;
+}

@@ -3,6 +3,59 @@
 exports[`Header should correctly render Header 1`] = `
 <div>
   <header
+    className="header auth__header"
+  >
+    <Link
+      className="auth__title"
+      replace={false}
+      to="/"
+    >
+      <span>
+        Maintenance Trackers 
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon="cogs"
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </span>
+    </Link>
+    <div
+      className="nav__div"
+    >
+      <Link
+        className="nav__item"
+        replace={false}
+        to="/view-request"
+      >
+        View Request
+      </Link>
+      <Button
+        className="button--login"
+        onClick={[Function]}
+        text="Logout"
+        type="button"
+      />
+    </div>
+  </header>
+</div>
+`;
+
+exports[`Header should render correct header when user is not logged in 1`] = `
+<div>
+  <header
     className="header"
   >
     <Link
@@ -39,10 +92,10 @@ exports[`Header should correctly render Header 1`] = `
 exports[`Header should render correct header when user is not the admin 1`] = `
 <div>
   <header
-    className="header"
+    className="header auth__header"
   >
     <Link
-      className="header__title"
+      className="auth__title"
       replace={false}
       to="/"
     >
@@ -68,22 +121,29 @@ exports[`Header should render correct header when user is not the admin 1`] = `
         />
       </span>
     </Link>
-    <div>
+    <div
+      className="nav__div"
+    >
       <Link
+        className="nav__item"
         replace={false}
         to="/create-request"
       >
         Create Request
       </Link>
       <Link
+        className="nav__item"
         replace={false}
         to="/view-request"
       >
         View Request
       </Link>
-      <button>
-        Logout
-      </button>
+      <Button
+        className="button--login"
+        onClick={[Function]}
+        text="Logout"
+        type="button"
+      />
     </div>
   </header>
 </div>

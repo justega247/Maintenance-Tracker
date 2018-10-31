@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -35,16 +35,20 @@ export class SignupPage extends Component {
       const {
         username, fullname, email, password,
       } = this.state;
-      const { startUserRegister, history } = this.props;
+      const { startUserRegister } = this.props;
       startUserRegister({
         username, fullname, email, password,
-      }, history);
+      });
     }
   };
 
   render() {
     const { errors } = this.state;
+    const { auth } = this.props;
 
+    if (auth) {
+      return <Redirect to={frontendRoutes.USER_DASHBOARD} />;
+    }
     return (
       <div>
         <form onSubmit={this.onSubmit} className="auth__form">
@@ -153,11 +157,12 @@ export class SignupPage extends Component {
 
 SignupPage.defaultProps = {
   startUserRegister: () => {},
+  auth: false,
 };
 
 SignupPage.propTypes = {
   startUserRegister: PropTypes.func,
-  history: PropTypes.instanceOf(Object).isRequired,
+  auth: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({

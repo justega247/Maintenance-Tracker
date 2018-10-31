@@ -4,15 +4,12 @@ import { SignupPage } from '../../components/auth/SignupPage';
 
 let startUserRegister;
 let wrapper;
-let history;
 
 describe('Signup Page', () => {
   beforeEach(() => {
     startUserRegister = jest.fn();
-    history = { push: jest.fn() };
     wrapper = shallow(<SignupPage
       startUserRegister={startUserRegister}
-      history={history}
     />);
   });
 
@@ -75,7 +72,7 @@ describe('Signup Page', () => {
     wrapper.find('form').simulate('submit', {
       preventDefault: () => { },
     });
-    expect(startUserRegister).toHaveBeenCalledWith(validDetails, history);
+    expect(startUserRegister).toHaveBeenCalledWith(validDetails);
     expect(wrapper).toMatchSnapshot();
   });
 });

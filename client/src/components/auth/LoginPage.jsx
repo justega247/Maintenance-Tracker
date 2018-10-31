@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -31,13 +31,19 @@ export class LoginPage extends Component {
 
     if (!hasErrors) {
       const { username, password } = this.state;
-      const { startUserLogin, history } = this.props;
-      startUserLogin({ username, password }, history);
+      const { startUserLogin } = this.props;
+      startUserLogin({ username, password });
     }
   };
 
+
   render() {
     const { errors } = this.state;
+    const { auth, userId } = this.props;
+    const RedirectionRoute = userId === 1 ? `${frontendRoutes.ADMIN_DASHBOARD}` : `${frontendRoutes.USER_DASHBOARD}`;
+    if (auth) {
+      return <Redirect to={RedirectionRoute} />;
+    }
 
     return (
       <div>
@@ -107,15 +113,19 @@ export class LoginPage extends Component {
 
 LoginPage.defaultProps = {
   startUserLogin: () => {},
+  auth: false,
+  userId: undefined,
 };
 
 LoginPage.propTypes = {
   startUserLogin: PropTypes.func,
-  history: PropTypes.instanceOf(Object).isRequired,
+  auth: PropTypes.bool,
+  userId: PropTypes.number,
 };
 
 const mapStateToProps = state => ({
   auth: state.auth.isAuthenticated,
+  userId: state.auth.user.id,
   error: state.auth.error,
 });
 

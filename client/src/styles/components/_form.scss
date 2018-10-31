@@ -15,3 +15,30 @@
   font-style: italic;
   margin-bottom: .05rem;
 }
+
+.request__form {
+  background-color: rgba(245, 245, 245, 0.466);
+  margin: 70px auto;
+  max-width: 500px;
+  min-width: 300px;
+  padding: 30px;
+  width: 70%;
+}
+
+.request__type {
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+.create__request {
+  background-image: linear-gradient(#000000b4, #000000b4), url(https://bit.ly/2MC0dpe);
+  background-size: cover;
+  height: 100vh;
+}
+
+.create__request-title {
+  color: white;
+  margin: 0 auto;
+  padding-top: 80px;
+  text-align: center
+}
