@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateRequestPage should render CreateRequestPage correctly 1`] = `
+<div
+  className="create__request"
+>
+  <div>
+    <div>
+      <h1
+        className="create__request-title"
+      >
+        Add Request
+      </h1>
+    </div>
+  </div>
+  <div
+    className="content-container"
+  >
+    <RequestForm
+      onSubmit={[Function]}
+    />
+  </div>
+</div>
+`;

@@ -4,19 +4,17 @@ import moxios from 'moxios';
 import jwt from 'jsonwebtoken';
 import { backendRoutes } from '../../constants/routes';
 import config from '../../config';
-import { startUserSignIn, startUserSignUp } from '../../actions/auth';
-import { SET_CURRENT_USER, SET_CURRENT_USER_FAIL } from '../../constants/actionTypes';
+import { startUserSignIn, startUserSignUp, logoutCurrentUser, setCurrentUserError, setCurrentUser } from '../../actions/auth';
+import { SET_CURRENT_USER, SET_CURRENT_USER_FAIL, LOGOUT_USER } from '../../constants/actionTypes';
 import mockData from '../__mocks__/mockData';
 import mockCookieStorage from '../__mocks__/mockCookiesStorage';
 
 window.Cookies = mockCookieStorage;
 const createMockStore = configureMockStore([thunk]);
-let history;
+
 describe('Authentication Actions', () => {
   beforeEach(() => moxios.install());
   afterEach(() => moxios.uninstall());
-  history = { push: jest.fn() };
-
   test('should setup setCurrentUser object', (done) => {
     const { authResponse, loginData } = mockData;
     moxios.stubRequest(`${config.apiUrl}${backendRoutes.LOGIN}`, {
@@ -29,7 +27,7 @@ describe('Authentication Actions', () => {
       user: jwt.decode(authResponse.data.data.user.token),
     }];
     const store = createMockStore({});
-    store.dispatch(startUserSignIn(loginData, history))
+    store.dispatch(startUserSignIn(loginData))
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
@@ -48,7 +46,7 @@ describe('Authentication Actions', () => {
       error: errorResponse,
     }];
     const store = createMockStore({});
-    store.dispatch(startUserSignIn(loginData, history))
+    store.dispatch(startUserSignIn(loginData))
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
@@ -66,10 +64,34 @@ describe('Authentication Actions', () => {
       user: jwt.decode(authResponse.data.data.user.token),
     }];
     const store = createMockStore({});
-    store.dispatch(startUserSignUp(signUpDetails, history))
+    store.dispatch(startUserSignUp(signUpDetails))
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
     done();
+  });
+
+  test('should set up logout current user action object', () => {
+    const action = logoutCurrentUser();
+    expect(action).toEqual({
+      type: LOGOUT_USER,
+    });
+  });
+
+  test('should set up set current user action object', () => {
+    const { currentUser, token } = mockData;
+    const action = setCurrentUser(jwt.decode(token));
+    expect(action).toEqual({
+      type: SET_CURRENT_USER,
+      user: currentUser,
+    });
+  });
+
+  test('should set up set current user error action object', () => {
+    const action = setCurrentUserError('error');
+    expect(action).toEqual({
+      type: SET_CURRENT_USER_FAIL,
+      error: 'error',
+    });
   });
 });

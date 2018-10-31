@@ -7,7 +7,7 @@ let wrapper;
 describe('Header', () => {
   beforeEach(() => {
     const props = {
-      auth: false,
+      auth: true,
       userId: 1,
     };
     wrapper = shallow(<Header {...props} />);
@@ -23,5 +23,21 @@ describe('Header', () => {
     };
     const wrapper1 = shallow(<Header {...props} />);
     expect(wrapper1).toMatchSnapshot();
+  });
+
+  test('should render correct header when user is not logged in', () => {
+    const props = {
+      auth: false,
+      userId: 2,
+    };
+    const wrapper1 = shallow(<Header {...props} />);
+    expect(wrapper1).toMatchSnapshot();
+  });
+
+  test('should start the logout action on button click', () => {
+    const startLogout = jest.fn();
+    const wrapper1 = shallow(<Header auth userId={2} startLogout={startLogout} />);
+    wrapper1.find('Button').simulate('click');
+    expect(startLogout).toHaveBeenCalled();
   });
 });

@@ -4,15 +4,12 @@ import { LoginPage } from '../../components/auth/LoginPage';
 
 let startUserLogin;
 let wrapper;
-let history;
 
 describe('Login Page', () => {
   beforeEach(() => {
     startUserLogin = jest.fn();
-    history = { push: jest.fn() };
     wrapper = shallow(<LoginPage
       startUserLogin={startUserLogin}
-      history={history}
     />);
   });
 
@@ -56,7 +53,7 @@ describe('Login Page', () => {
     wrapper.find('form').simulate('submit', {
       preventDefault: () => { },
     });
-    expect(startUserLogin).toHaveBeenCalledWith(validDetails, history);
+    expect(startUserLogin).toHaveBeenCalledWith(validDetails);
     expect(wrapper).toMatchSnapshot();
   });
 });

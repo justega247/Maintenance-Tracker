@@ -7,7 +7,7 @@ import {
   LOGOUT_USER,
 } from '../constants/actionTypes';
 import config from '../config';
-import { backendRoutes, frontendRoutes } from '../constants/routes';
+import { backendRoutes } from '../constants/routes';
 
 // USER_LOGIN
 export const setCurrentUser = user => ({
@@ -23,18 +23,13 @@ export const setCurrentUserError = error => ({
 export const startUserSignIn = ({
   username,
   password,
-}, history) => (dispatch) => {
+}) => (dispatch) => {
   const userDetails = { username, password };
   return axios
     .post(`${config.apiUrl}${backendRoutes.LOGIN}`, userDetails)
     .then((response) => {
       const { token } = response.data.data.user;
       Cookie.set('jwtToken', token);
-      if (response.data.data.user.id === 1) {
-        history.push(frontendRoutes.ADMIN_DASHBOARD);
-      } else {
-        history.push(frontendRoutes.USER_DASHBOARD);
-      }
       dispatch(setCurrentUser(jwt.decode(token)));
       return response;
     })
@@ -46,7 +41,7 @@ export const startUserSignIn = ({
 
 export const startUserSignUp = ({
   username, fullname, email, password,
-}, history) => (dispatch) => {
+}) => (dispatch) => {
   const userDetails = {
     username, fullname, email, password,
   };
@@ -54,7 +49,6 @@ export const startUserSignUp = ({
     .then((response) => {
       const { token } = response.data.data.user;
       Cookie.set('jwtToken', token);
-      history.push(frontendRoutes.USER_DASHBOARD);
       dispatch(setCurrentUser(jwt.decode(token)));
     })
     .catch((error) => {
