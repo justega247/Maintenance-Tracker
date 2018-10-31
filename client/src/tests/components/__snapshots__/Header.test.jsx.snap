@@ -8,10 +8,12 @@ exports[`Header should correctly render Header 1`] = `
     <Link
       className="auth__title"
       replace={false}
-      to="/"
+      to="/admin-dashboard"
     >
-      <span>
-        Maintenance Trackers 
+      <span
+        className="header__name"
+      >
+        Maintenance Tracker 
         <FontAwesomeIcon
           border={false}
           className=""
@@ -38,16 +40,18 @@ exports[`Header should correctly render Header 1`] = `
       <Link
         className="nav__item"
         replace={false}
-        to="/view-request"
+        to="/admin-dashboard"
       >
-        View Request
+        View Requests
       </Link>
-      <Button
-        className="button--login"
+      <Link
+        className="nav__item logout__link"
         onClick={[Function]}
-        text="Logout"
-        type="button"
-      />
+        replace={false}
+        to="#"
+      >
+        Logout
+      </Link>
     </div>
   </header>
 </div>
@@ -97,10 +101,12 @@ exports[`Header should render correct header when user is not the admin 1`] = `
     <Link
       className="auth__title"
       replace={false}
-      to="/"
+      to="/user-dashboard"
     >
-      <span>
-        Maintenance Trackers 
+      <span
+        className="header__name"
+      >
+        Maintenance Tracker 
         <FontAwesomeIcon
           border={false}
           className=""
@@ -134,16 +140,18 @@ exports[`Header should render correct header when user is not the admin 1`] = `
       <Link
         className="nav__item"
         replace={false}
-        to="/view-request"
+        to="/user-dashboard"
       >
-        View Request
+        View Requests
       </Link>
-      <Button
-        className="button--login"
+      <Link
+        className="nav__item logout__link"
         onClick={[Function]}
-        text="Logout"
-        type="button"
-      />
+        replace={false}
+        to="#"
+      >
+        Logout
+      </Link>
     </div>
   </header>
 </div>

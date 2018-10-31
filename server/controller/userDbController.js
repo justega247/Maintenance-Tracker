@@ -106,7 +106,7 @@ class Users {
     description = description.trim().toLowerCase();
 
     const getUserRequests = `SELECT * FROM requests WHERE requests.user_id = '${id}'`;
-    const requestDetails = `INSERT INTO requests (user_id,title,type,description) VALUES('${id}','${title}','${type}','${description}') RETURNING id, title, type, description, user_id;`;
+    const requestDetails = `INSERT INTO requests (user_id,title,type,description) VALUES('${id}','${title}','${type}','${description}') RETURNING id, title, type, description, status, user_id;`;
 
     pool.query(getUserRequests)
       .then((userRequests) => {

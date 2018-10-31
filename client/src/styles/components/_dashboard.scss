@@ -1,3 +1,98 @@
 .dashboard {
   color: $blue;
 }
+
+.details {
+  background-color: blue;
+  border-radius: .5em;
+  color: white;
+  padding: .5em 1em;
+}
+
+.edit {
+  background-color: rgb(232, 231, 223);
+  border-radius: .5em;
+  padding: .5em 1em;
+}
+
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 50px 0 100px 0;
+  padding: 0;
+  table-layout: fixed;
+  width: 100%;
+}
+
+th {
+  background: white;
+  color: blue;
+  font-weight: bold;
+}
+
+tr:nth-of-type(odd) {
+  background: gray;
+}
+
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 650px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  table td:last-child {
+    border-bottom: 0;
+  }
+}

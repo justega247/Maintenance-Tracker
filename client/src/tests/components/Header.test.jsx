@@ -37,7 +37,7 @@ describe('Header', () => {
   test('should start the logout action on button click', () => {
     const startLogout = jest.fn();
     const wrapper1 = shallow(<Header auth userId={2} startLogout={startLogout} />);
-    wrapper1.find('Button').simulate('click');
+    wrapper1.find('.logout__link').simulate('click');
     expect(startLogout).toHaveBeenCalled();
   });
 });
