@@ -36,3 +36,18 @@
 .nav__div {
   padding-top: 10px;
 }
+
+@media screen and (max-width: 650px) {
+  .auth__header {
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .auth__title .header__name {
+    font-size: 20px;
+  }
+
+  .nav__div {
+    padding: 0;
+  }
+}

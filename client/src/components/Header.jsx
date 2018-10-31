@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { frontendRoutes } from '../constants/routes';
-import Button from './common/Button';
 import { logoutAction } from '../actions/auth';
 
 export class Header extends Component {
@@ -16,25 +15,22 @@ export class Header extends Component {
 
   render() {
     const { auth, userId } = this.props;
+    const RedirectionRoute = userId === 1 ? `${frontendRoutes.ADMIN_DASHBOARD}` : `${frontendRoutes.USER_DASHBOARD}`;
+
     return (
       <div>
         {
       auth ? (
         <header className="header auth__header">
-          <Link className="auth__title" to="/">
-            <span>
-          Maintenance Trackers <FontAwesomeIcon icon="cogs" />
+          <Link className="auth__title" to={RedirectionRoute}>
+            <span className="header__name">
+          Maintenance Tracker <FontAwesomeIcon icon="cogs" />
             </span>
           </Link>
           <div className="nav__div">
             {userId !== 1 && <Link to={frontendRoutes.CREATE_REQUEST} className="nav__item">Create Request</Link>}
-            <Link to={frontendRoutes.VIEW_REQUESTS} className="nav__item">View Request</Link>
-            <Button
-              className="button--login"
-              type="button"
-              text="Logout"
-              onClick={this.onLogout}
-            />
+            <Link to={RedirectionRoute} className="nav__item">View Requests</Link>
+            <Link to="#" className="nav__item logout__link" onClick={this.onLogout}>Logout</Link>
           </div>
         </header>
       ) : (

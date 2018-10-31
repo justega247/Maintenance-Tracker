@@ -12,19 +12,21 @@
 .auth__body {
   background-color: rgba(255, 255, 255, 0.808);
   border: 1px solid;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 30px 40px;
   border-radius: 5px;
-  width: 400px;
   height: auto;
+  margin: 70px auto;
+  max-width: 400px;
+  min-width: 250px;
+  width: 70%;
 }
 
 .auth__extra {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .auth__extra-item {
@@ -33,4 +35,12 @@
 
 .label {
 margin-top: 30px;
+}
+
+@media screen and (max-width: 650px) {
+  .auth__body {
+    margin-bottom: 0px;
+    margin-top: 45px;
+    padding-bottom: 0px;
+  }
 }
