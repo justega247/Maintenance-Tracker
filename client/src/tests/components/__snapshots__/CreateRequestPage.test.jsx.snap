@@ -16,9 +16,30 @@ exports[`CreateRequestPage should render CreateRequestPage correctly 1`] = `
   <div
     className="content-container"
   >
-    <RequestForm
+    <Connect(RequestForm)
       onSubmit={[Function]}
     />
   </div>
 </div>
+`;
+
+exports[`CreateRequestPage should render connected component 1`] = `
+<CreateRequestPage
+  history={
+    Object {
+      "push": [MockFunction],
+    }
+  }
+  startCreateRequest={[Function]}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+/>
 `;

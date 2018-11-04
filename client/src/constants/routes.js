@@ -5,7 +5,8 @@ export const frontendRoutes = {
   ADMIN_DASHBOARD: '/admin-dashboard',
   USER_DASHBOARD: '/user-dashboard',
   CREATE_REQUEST: '/create-request',
-  VIEW_REQUESTS: '/view-request',
+  EDIT_REQUEST: '/edit-request/:id',
+  VIEW_REQUEST: '/view-request/:id',
 };
 
 export const backendRoutes = {

@@ -1,0 +1,236 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Edit Request Form should call the submit props 1`] = `
+<div
+  className="create__request"
+>
+  <div>
+    <div>
+      <h1
+        className="create__request-title"
+      >
+        Edit Request
+      </h1>
+    </div>
+  </div>
+  <div
+    className="content-container"
+  >
+    <div
+      className="request__form"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div>
+          <label
+            className="label request__label"
+            htmlFor="type"
+          >
+            Type:
+            <select
+              className="request__type"
+              name="type"
+              onChange={[Function]}
+              value="repairs"
+            >
+              <option
+                key="repairs"
+                value="repairs"
+              >
+                repairs
+              </option>
+              <option
+                key="maintenance"
+                value="maintenance"
+              >
+                maintenance
+              </option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label
+            className="label request__label"
+            htmlFor="title"
+          >
+            Title:
+            <div>
+              <input
+                className="form__input"
+                name="title"
+                onChange={[Function]}
+                placeholder="enter a title"
+                type="text"
+                value=""
+              />
+            </div>
+          </label>
+          <div
+            className="form__error"
+            key="Sorry, you have to specify a title for your request"
+          >
+            Sorry, you have to specify a title for your request
+          </div>
+        </div>
+        <div>
+          <label
+            className="label request__label"
+            htmlFor="description"
+          >
+            Description:
+            <div>
+              <textarea
+                className="form__input"
+                name="description"
+                onChange={[Function]}
+                placeholder="enter a description"
+                value=""
+              />
+            </div>
+          </label>
+          <div
+            className="form__error"
+            key="Sorry, you have to specify a description for your request"
+          >
+            Sorry, you have to specify a description for your request
+          </div>
+        </div>
+        <div>
+          <Button
+            className="button--big"
+            text="Edit Request"
+            type="submit"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Edit Request Form should render EditRequestForm correctly 1`] = `
+<div
+  className="create__request"
+>
+  <div>
+    <div>
+      <h1
+        className="create__request-title"
+      >
+        Edit Request
+      </h1>
+    </div>
+  </div>
+  <div
+    className="content-container"
+  >
+    <div
+      className="request__form"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div>
+          <label
+            className="label request__label"
+            htmlFor="type"
+          >
+            Type:
+            <select
+              className="request__type"
+              name="type"
+              onChange={[Function]}
+              value=""
+            >
+              <option
+                key="repairs"
+                value="repairs"
+              >
+                repairs
+              </option>
+              <option
+                key="maintenance"
+                value="maintenance"
+              >
+                maintenance
+              </option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label
+            className="label request__label"
+            htmlFor="title"
+          >
+            Title:
+            <div>
+              <input
+                className="form__input"
+                name="title"
+                onChange={[Function]}
+                placeholder="enter a title"
+                type="text"
+                value=""
+              />
+            </div>
+          </label>
+        </div>
+        <div>
+          <label
+            className="label request__label"
+            htmlFor="description"
+          >
+            Description:
+            <div>
+              <textarea
+                className="form__input"
+                name="description"
+                onChange={[Function]}
+                placeholder="enter a description"
+                value=""
+              />
+            </div>
+          </label>
+        </div>
+        <div>
+          <Button
+            className="button--big"
+            text="Edit Request"
+            type="submit"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Edit Request Form should render connected component 1`] = `
+<EditRequestForm
+  fetchRequest={[Function]}
+  history={
+    Object {
+      "push": [MockFunction],
+    }
+  }
+  match={
+    Object {
+      "params": Object {
+        "id": 2,
+      },
+    }
+  }
+  startUpdateRequest={[Function]}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+/>
+`;

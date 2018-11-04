@@ -25,7 +25,7 @@ RequestList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  requests: state.requests,
+  requests: state.requests.requests,
 });
 
 export default connect(mapStateToProps)(RequestList);

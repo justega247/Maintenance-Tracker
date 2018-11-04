@@ -33,6 +33,38 @@ const mockData = {
     },
   },
 
+  requestsResponse: {
+    data: {
+      data: {
+        request: {
+          id: 3,
+          title: 'Broken hedges',
+          type: 'repairs',
+          description: 'We will need to check and get the hedges fixed',
+          user_id: 2,
+        },
+      },
+      message: 'Your requests have been retrieved',
+      status: 'success',
+    },
+  },
+
+  oneRequestResponse: {
+    data: {
+      data: {
+        request: {
+          id: 3,
+          title: 'Broken hedges',
+          type: 'repairs',
+          description: 'We will need to check and get the hedges fixed',
+          user_id: 2,
+        },
+      },
+      message: 'Your request has been retrieved',
+      status: 'success',
+    },
+  },
+
   token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTQwOTI1MzkwLCJleHAiOjE1NDEwMTE3OTB9.2mF07KKBxiAjJKopEJESzFLCDMW45HUL0FSgX0oaAow',
 
   currentUser: {

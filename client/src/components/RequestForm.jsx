@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ValidateRequests from '../utils/requestValidation';
 import Button from './common/Button';
+import { startFetchRequest } from '../actions/request';
 
-export default class RequestForm extends Component {
+
+export class RequestForm extends Component {
   state = {
     title: '',
     type: 'repairs',
@@ -41,7 +45,7 @@ export default class RequestForm extends Component {
       <div className="request__form">
         <form onSubmit={this.onSubmit}>
           <div>
-            <label htmlFor="type" className="label">
+            <label htmlFor="type" className="label request__label">
               Type:
               <select
                 name="type"
@@ -60,7 +64,7 @@ export default class RequestForm extends Component {
             </label>
           </div>
           <div>
-            <label htmlFor="title" className="label">
+            <label htmlFor="title" className="label request__label">
               Title:
               <div>
                 <input
@@ -81,7 +85,7 @@ export default class RequestForm extends Component {
                   ))}
           </div>
           <div>
-            <label htmlFor="description" className="label">
+            <label htmlFor="description" className="label request__label">
               Description:
               <div>
                 <textarea
@@ -113,3 +117,9 @@ export default class RequestForm extends Component {
 RequestForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
+
+const mapDispatchToProps = dispatch => ({
+  fetchRequest: bindActionCreators(startFetchRequest, dispatch),
+});
+
+export default connect(null, mapDispatchToProps)(RequestForm);

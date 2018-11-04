@@ -11,7 +11,7 @@ exports[`Signup Page should call startUserSignUp props for valid form submission
     >
       <div>
         <label
-          className="label"
+          className="label request__label"
           htmlFor="username"
         >
           Username:
@@ -29,7 +29,7 @@ exports[`Signup Page should call startUserSignUp props for valid form submission
       </div>
       <div>
         <label
-          className="label"
+          className="label request__label"
           htmlFor="fullname"
         >
           Fullname:
@@ -47,7 +47,7 @@ exports[`Signup Page should call startUserSignUp props for valid form submission
       </div>
       <div>
         <label
-          className="label"
+          className="label request__label"
           htmlFor="email"
         >
           Email:
@@ -65,7 +65,7 @@ exports[`Signup Page should call startUserSignUp props for valid form submission
       </div>
       <div>
         <label
-          className="label"
+          className="label request__label"
           htmlFor="password"
         >
           Password:
@@ -117,7 +117,7 @@ exports[`Signup Page should correctly render SignupPage 1`] = `
     >
       <div>
         <label
-          className="label"
+          className="label request__label"
           htmlFor="username"
         >
           Username:
@@ -135,7 +135,7 @@ exports[`Signup Page should correctly render SignupPage 1`] = `
       </div>
       <div>
         <label
-          className="label"
+          className="label request__label"
           htmlFor="fullname"
         >
           Fullname:
@@ -153,7 +153,7 @@ exports[`Signup Page should correctly render SignupPage 1`] = `
       </div>
       <div>
         <label
-          className="label"
+          className="label request__label"
           htmlFor="email"
         >
           Email:
@@ -171,7 +171,7 @@ exports[`Signup Page should correctly render SignupPage 1`] = `
       </div>
       <div>
         <label
-          className="label"
+          className="label request__label"
           htmlFor="password"
         >
           Password:
@@ -212,6 +212,13 @@ exports[`Signup Page should correctly render SignupPage 1`] = `
 </div>
 `;
 
+exports[`Signup Page should redirect user 1`] = `
+<Redirect
+  push={false}
+  to="/user-dashboard"
+/>
+`;
+
 exports[`Signup Page should return error for invalid form submission 1`] = `
 <div>
   <form
@@ -223,7 +230,7 @@ exports[`Signup Page should return error for invalid form submission 1`] = `
     >
       <div>
         <label
-          className="label"
+          className="label request__label"
           htmlFor="username"
         >
           Username:
@@ -247,7 +254,7 @@ exports[`Signup Page should return error for invalid form submission 1`] = `
       </div>
       <div>
         <label
-          className="label"
+          className="label request__label"
           htmlFor="fullname"
         >
           Fullname:
@@ -271,7 +278,7 @@ exports[`Signup Page should return error for invalid form submission 1`] = `
       </div>
       <div>
         <label
-          className="label"
+          className="label request__label"
           htmlFor="email"
         >
           Email:
@@ -295,7 +302,7 @@ exports[`Signup Page should return error for invalid form submission 1`] = `
       </div>
       <div>
         <label
-          className="label"
+          className="label request__label"
           htmlFor="password"
         >
           Password:

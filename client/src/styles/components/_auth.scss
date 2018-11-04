@@ -1,6 +1,6 @@
 .auth__form {
   align-items: center;
-  background-image: url(https://bit.ly/2MC0dpe);
+  background-image: linear-gradient(#000000b4, #000000b4), url(https://bit.ly/2MC0dpe);
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -10,7 +10,7 @@
 }
 
 .auth__body {
-  background-color: rgba(255, 255, 255, 0.808);
+  background-color: rgba(245, 245, 245, 0.522);
   border: 1px solid;
   flex-direction: column;
   justify-content: center;

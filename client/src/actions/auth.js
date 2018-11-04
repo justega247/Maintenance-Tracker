@@ -31,7 +31,6 @@ export const startUserSignIn = ({
       const { token } = response.data.data.user;
       Cookie.set('jwtToken', token);
       dispatch(setCurrentUser(jwt.decode(token)));
-      return response;
     })
     .catch((error) => {
       const { message } = error.response.data;

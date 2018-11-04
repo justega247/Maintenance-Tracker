@@ -1,8 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Login Page should call startUserLogin props for valid form submission 1`] = `
-<div>
-  <div>
+<div
+  className="create__request"
+>
+  <div
+    className="create__request"
+  >
     <form
       className="auth__form"
       onSubmit={[Function]}
@@ -12,7 +16,7 @@ exports[`Login Page should call startUserLogin props for valid form submission 1
       >
         <div>
           <label
-            className="label"
+            className="label request__label"
             htmlFor="username"
           >
             Username:
@@ -30,7 +34,7 @@ exports[`Login Page should call startUserLogin props for valid form submission 1
         </div>
         <div>
           <label
-            className="label"
+            className="label request__label"
             htmlFor="password"
           >
             Password:
@@ -76,8 +80,12 @@ exports[`Login Page should call startUserLogin props for valid form submission 1
 `;
 
 exports[`Login Page should correctly render LoginPage 1`] = `
-<div>
-  <div>
+<div
+  className="create__request"
+>
+  <div
+    className="create__request"
+  >
     <form
       className="auth__form"
       onSubmit={[Function]}
@@ -87,7 +95,7 @@ exports[`Login Page should correctly render LoginPage 1`] = `
       >
         <div>
           <label
-            className="label"
+            className="label request__label"
             htmlFor="username"
           >
             Username:
@@ -105,7 +113,7 @@ exports[`Login Page should correctly render LoginPage 1`] = `
         </div>
         <div>
           <label
-            className="label"
+            className="label request__label"
             htmlFor="password"
           >
             Password:
@@ -150,9 +158,20 @@ exports[`Login Page should correctly render LoginPage 1`] = `
 </div>
 `;
 
+exports[`Login Page should redirect user 1`] = `
+<Redirect
+  push={false}
+  to="/admin-dashboard"
+/>
+`;
+
 exports[`Login Page should return error for invalid form submission 1`] = `
-<div>
-  <div>
+<div
+  className="create__request"
+>
+  <div
+    className="create__request"
+  >
     <form
       className="auth__form"
       onSubmit={[Function]}
@@ -162,7 +181,7 @@ exports[`Login Page should return error for invalid form submission 1`] = `
       >
         <div>
           <label
-            className="label"
+            className="label request__label"
             htmlFor="username"
           >
             Username:
@@ -186,7 +205,7 @@ exports[`Login Page should return error for invalid form submission 1`] = `
         </div>
         <div>
           <label
-            className="label"
+            className="label request__label"
             htmlFor="password"
           >
             Password:
