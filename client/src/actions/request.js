@@ -1,4 +1,5 @@
 import axios from 'axios';
+import toastr from 'toastr';
 import { backendRoutes, frontendRoutes } from '../constants/routes';
 import {
   ADD_REQUEST,
@@ -10,7 +11,13 @@ import {
   EDIT_REQUEST,
   EDIT_REQUEST_ERROR,
   FETCH_ADMIN_REQUESTS,
-  FETCH_ADMIN_REQUESTS_ERROR
+  FETCH_ADMIN_REQUESTS_ERROR,
+  MANAGE_ADMIN_REQUEST_APPROVE,
+  MANAGE_ADMIN_REQUEST_APPROVE_ERROR,
+  MANAGE_ADMIN_REQUEST_DISAPPROVE,
+  MANAGE_ADMIN_REQUEST_DISAPPROVE_ERROR,
+  MANAGE_ADMIN_REQUEST_RESOLVE,
+  MANAGE_ADMIN_REQUEST_RESOLVE_ERROR
 } from '../constants/actionTypes';
 import config from '../config';
 
@@ -123,3 +130,66 @@ export const startFetchAdminRequests = () => dispatch =>
       }
     })
     .catch(error => dispatch(fetchAdminRequestsError(error.response)));
+
+export const adminRequestApprove = request => ({
+  type: MANAGE_ADMIN_REQUEST_APPROVE,
+  request
+});
+
+export const adminRequestApproveError = error => ({
+  type: MANAGE_ADMIN_REQUEST_APPROVE_ERROR,
+  error
+});
+
+export const startAdminRequestApprove = id => dispatch =>
+  axios
+    .put(`${config.apiUrl}${backendRoutes.ADMIN_REQUESTS}/${id}/approve`)
+    .then(response => {
+      dispatch(adminRequestApprove(response.data.data.request));
+      toastr.success('request approved');
+    })
+    .catch(error => {
+      dispatch(adminRequestApproveError(error.response));
+    });
+
+export const adminRequestDisapprove = request => ({
+  type: MANAGE_ADMIN_REQUEST_DISAPPROVE,
+  request
+});
+
+export const adminRequestDisapproveError = error => ({
+  type: MANAGE_ADMIN_REQUEST_DISAPPROVE_ERROR,
+  error
+});
+
+export const startAdminRequestDisapprove = id => dispatch =>
+  axios
+    .put(`${config.apiUrl}${backendRoutes.ADMIN_REQUESTS}/${id}/disapprove`)
+    .then(response => {
+      dispatch(adminRequestApprove(response.data.data.request));
+      toastr.success('request disapproved');
+    })
+    .catch(error => {
+      dispatch(adminRequestApproveError(error.response));
+    });
+
+export const adminRequestResolve = request => ({
+  type: MANAGE_ADMIN_REQUEST_RESOLVE,
+  request
+});
+
+export const adminRequestResolveError = error => ({
+  type: MANAGE_ADMIN_REQUEST_RESOLVE_ERROR,
+  error
+});
+
+export const startAdminRequestResolve = id => dispatch =>
+  axios
+    .put(`${config.apiUrl}${backendRoutes.ADMIN_REQUESTS}/${id}/resolve`)
+    .then(response => {
+      dispatch(adminRequestApprove(response.data.data.request));
+      toastr.success('request resolved');
+    })
+    .catch(error => {
+      dispatch(adminRequestApproveError(error.response));
+    });

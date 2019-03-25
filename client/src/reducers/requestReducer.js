@@ -8,7 +8,13 @@ import {
   FETCH_REQUESTS_ERROR,
   FETCH_ADMIN_REQUESTS_ERROR,
   FETCH_REQUEST_ERROR,
-  EDIT_REQUEST_ERROR
+  EDIT_REQUEST_ERROR,
+  MANAGE_ADMIN_REQUEST_APPROVE,
+  MANAGE_ADMIN_REQUEST_APPROVE_ERROR,
+  MANAGE_ADMIN_REQUEST_DISAPPROVE,
+  MANAGE_ADMIN_REQUEST_DISAPPROVE_ERROR,
+  MANAGE_ADMIN_REQUEST_RESOLVE,
+  MANAGE_ADMIN_REQUEST_RESOLVE_ERROR
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -62,6 +68,33 @@ export default (state = initialState, action) => {
         requests
       };
     case FETCH_ADMIN_REQUESTS_ERROR:
+      return {
+        ...state
+      };
+    case MANAGE_ADMIN_REQUEST_APPROVE:
+      return {
+        ...state,
+        request
+      };
+    case MANAGE_ADMIN_REQUEST_APPROVE_ERROR:
+      return {
+        ...state
+      };
+    case MANAGE_ADMIN_REQUEST_DISAPPROVE:
+      return {
+        ...state,
+        request
+      };
+    case MANAGE_ADMIN_REQUEST_DISAPPROVE_ERROR:
+      return {
+        ...state
+      };
+    case MANAGE_ADMIN_REQUEST_RESOLVE:
+      return {
+        ...state,
+        request
+      };
+    case MANAGE_ADMIN_REQUEST_RESOLVE_ERROR:
       return {
         ...state
       };
