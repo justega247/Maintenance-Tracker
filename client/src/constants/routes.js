@@ -6,11 +6,12 @@ export const frontendRoutes = {
   USER_DASHBOARD: '/user-dashboard',
   CREATE_REQUEST: '/create-request',
   EDIT_REQUEST: '/edit-request/:id',
-  VIEW_REQUEST: '/view-request/:id',
+  VIEW_REQUEST: '/view-request/:id'
 };
 
 export const backendRoutes = {
   LOGIN: '/auth/login',
   SIGN_UP: '/auth/signup',
   REQUESTS: '/users/requests',
+  ADMIN_REQUESTS: '/requests'
 };
